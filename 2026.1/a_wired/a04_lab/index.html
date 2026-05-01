@@ -1,0 +1,2393 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Arista Campus Workshop Documentation">
+      
+      
+      
+        <link rel="canonical" href="https://arista-channel.github.io/acws/2026.1/a_wired/a04_lab/">
+      
+      
+        <link rel="prev" href="../a03_lab/">
+      
+      
+        <link rel="next" href="../../b_wireless/b01_lab/">
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>A04 - Operations, Dashboards, and Events - Arista Campus Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/enhanced-components.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a-04-operations-dashboards-and-events" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden="">
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Arista Campus Workshop" class="md-header__button md-logo" aria-label="Arista Campus Workshop" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arista Campus Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A04 - Operations, Dashboards, and Events
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../a01_lab/" class="md-tabs__link">
+          
+  
+  Wired Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../b_wireless/b01_lab/" class="md-tabs__link">
+          
+  
+  Wireless Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../c_security/c01_lab/" class="md-tabs__link">
+          
+  
+  Security Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../references/agenda/" class="md-tabs__link">
+          
+  
+  References
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Arista Campus Workshop" class="md-nav__button md-logo" aria-label="Arista Campus Workshop" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Arista Campus Workshop
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1">
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab/access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Wired Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Wired Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A01 - Explore EOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a02_atd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A02 - Provisioning a Campus Fabric
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A03 - Access Interface Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    A04 - Operations, Dashboards, and Events
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    A04 - Operations, Dashboards, and Events
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intro-to-network-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intro to Network Hierarchy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intro to Network Hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Compliance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dashboards
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dashboards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#campus-health-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Campus Health Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Device Health
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Dashboard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customize-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customize Notifications
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wireless Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Wireless Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B01 - Wireless Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b02_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B02 - WiFi Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B03 - Guest Wireless with AGNI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b04_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B04 - Smart System Upgrade
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Security Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Security Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C01 - AGNI and WiFi EAP-TLS 802.1X
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c02_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C02 - AGNI UPSK Wireless Policy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C03 - AGNI and Wired EAP-TLS 802.1X
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            References
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1">
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/agenda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agenda
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2">
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista Configuration Tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Arista Configuration Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/config_tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intangi Iris
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3">
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista Advance EOS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Arista Advance EOS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/arista_eos_guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arista EOS Tips &amp; Tricks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4">
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista @Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arista @Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/arista_home/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Arista switches and APs for Home Use
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CloudVision Demos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            CloudVision Demos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/change_control_workspace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Change Control Workspace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6">
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Working with Certificates
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Working with Certificates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/cut_paste_certs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cut-and-Paste Method
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/radsec_on_eos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring RadSec on EOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7">
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wired
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            Wired
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/interface_diag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interface Diagnostics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/agni_tacacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AGNI Tacacs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8">
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wireless
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Wireless
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/radius/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Radius
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/l2tunnel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guest AP Tunnel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/radsec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RadSec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/wips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WIPS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intro-to-network-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intro to Network Hierarchy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intro to Network Hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Compliance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dashboards
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dashboards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#campus-health-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Campus Health Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Device Health
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Dashboard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customize-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customize Notifications
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+
+    <a href="../../print_page" title="Site PDF" class="md-content__button md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5v1m5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5v3m4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5m-6.5 0h1v3h-1v-3m-5 0h1v1H7v-1Z"></path></svg>
+    </a>
+
+
+
+                  
+
+
+<h1 id="a-04-operations-dashboards-and-events">A-04 | Operations, Dashboards, and Events<a class="headerlink" href="#a-04-operations-dashboards-and-events" title="Permanent link">¶</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h2>
+<p>In this lab we will explore some of the features of CloudVision to manage and operate your campus network.</p>
+<h2 id="intro-to-network-hierarchy">Intro to Network Hierarchy<a class="headerlink" href="#intro-to-network-hierarchy" title="Permanent link">¶</a></h2>
+<p>Campus networks can be rather extensive in size and their reach, including many sites, buildings, and floors where your precious network gear is deployed. The Network Hierarchy view aligns closely with the same way you'll manage your wireless access points in CV-CUE:</p>
+<ol>
+<li>
+<p>Click on the <code>Network Hierarchy</code> tab on the left</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/hierarchy/01_hierarchy.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/hierarchy/01_hierarchy.png"></a></p>
+</li>
+<li>
+<p>Note your <code>Network</code> contains the workshop campus, campus pod, and access-pod as you drill down.</p>
+</li>
+<li>Click on <code>Workshop</code> to view a summary of all the devices deployed under the top level campus <code>Workshop</code></li>
+<li>
+<p>Click on <code>IDF1</code> and note we now get more detail about the switches and clients connected to those devices in the <code>Overview</code> tab.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/hierarchy/02_hierarchy.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/hierarchy/02_hierarchy.png"></a></p>
+</li>
+<li>
+<p>Click on the <code>Front Panel</code> tab to view more detail about what's connected, the capabilities of your switches in the stack, and access to quick actions to make changes on the interfaces.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/hierarchy/03_hierarchy.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/hierarchy/03_hierarchy.png"></a></p>
+</li>
+<li>
+<p>Let's now use Network Hierarchy to drill down into a compliance issue.</p>
+</li>
+</ol>
+<h3 id="configuration-compliance">Configuration Compliance<a class="headerlink" href="#configuration-compliance" title="Permanent link">¶</a></h3>
+<p>The Network Hierarchy view is one of many ways to visualize your campus, namely to drill down to a specific area of the network to configure or troubleshoot an issue.</p>
+<p>to showcase compliance panel and 2 devices should flagged (due to rollback above). This will open the compliance dashboard and we can sync the config from there via Change Control.</p>
+<ol>
+<li>If you're not already on the <code>Network Hierarchy</code> page, click the tab on the left.</li>
+<li>
+<p>Click the top level <code>Network</code> object, and take note of the <code>Compliance</code> panel on the right</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/hierarchy/04_hierarchy.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/hierarchy/04_hierarchy.png"></a></p>
+</li>
+<li>
+<p>We have 2 devices that are violating the <code>Configuration</code> compliance item</p>
+</li>
+<li>
+<p>Click on <code>Compliance</code> and you should see the <code>Compliance Overview</code> with our 2 devices out of configuration compliance</p>
+</li>
+<li>
+<p>Let's select your device below and click <code>Sync Config</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/hierarchy/05_hierarchy.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/hierarchy/05_hierarchy.png"></a></p>
+</li>
+<li>
+<p>This will create a <code>Change Control</code> with our two devices</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/hierarchy/06_hierarchy.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/hierarchy/06_hierarchy.png"></a></p>
+</li>
+<li>
+<p>Click on the <code>Review and Approve</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Why is our configuration out of sync?!</p>
+<p>Recall CloudVision is designed to act as the "Source of Truth" for your configuration. It contains a designed configuration it considers the standard, driven through configuration in Studios. When we added our Vlan in the previous step, we rolled that change back, and now there is a discrepancy.</p>
+<p>This could be a real life scenario where a VLAN was added, rolled back due to an unforeseen issue, and scheduled to be added at a later date. We need that vlan, we are reminded the device is out of compliance, and possibly for a good reason!</p>
+</div>
+</li>
+<li>
+<p>Click on <code>Approve and Execute</code> when you're ready</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/hierarchy/07_hierarchy.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/hierarchy/07_hierarchy.png"></a></p>
+</li>
+<li>
+<p>This is pushing the designed configuration back to the device</p>
+</li>
+<li>
+<p>Let's go back to our <code>Network Hierarchy</code> or <code>Devices &gt; Compliance Overview</code> and we should see are switches are not in compliance again.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Network Hierarchy</label><label for="__tabbed_1_2">Compliance Overview</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/hierarchy/08_compliance_1.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/hierarchy/08_compliance_1.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/hierarchy/08_compliance_2.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/hierarchy/08_compliance_2.png"></a></p>
+</div>
+</div>
+</div>
+</li>
+</ol>
+<h2 id="dashboards">Dashboards<a class="headerlink" href="#dashboards" title="Permanent link">¶</a></h2>
+<p>Dashboards are an important way to visualize commonly requested information, we've already seen the Campus Health Dashboard a few times in previous labs. This lab section shows you how to navigate the built-in dashboards and customize your own.</p>
+<h3 id="campus-health-overview">Campus Health Overview<a class="headerlink" href="#campus-health-overview" title="Permanent link">¶</a></h3>
+<ol>
+<li>
+<p>Open the Dashboards Section and we will see the Campus Health Overview dashboard is set to our home dashboard.</p>
+<div class="admonition tip">
+<p class="admonition-title">Dashboard Home Page</p>
+<p>CloudVision has a couple features that customize a users experience. There is a built in profile for <code>Campus Monitoring</code> that can be applied to a user role, this will set the "Campus Health Overview" dashboard as the primary dashboard. A user can also select any built-in or custom dashboard as the home/primary dashboard.</p>
+</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/01_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/01_dashboards.png"></a></p>
+</li>
+<li>
+<p>You’ll be presented with a curated selection of common campus related monitoring tools</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/02_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/02_dashboards.png"></a></p>
+</li>
+<li>
+<p>Feel free to explore the Campus Health dashboard briefly and then navigate back to the Dashboards landing page by selecting Dashboards in the upper left.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/03_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/03_dashboards.png"></a></p>
+</li>
+</ol>
+<h3 id="device-health">Device Health<a class="headerlink" href="#device-health" title="Permanent link">¶</a></h3>
+<ol>
+<li>
+<p>Next, Select the Device Hardware dashboard</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/04_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/04_dashboards.png"></a></p>
+</li>
+<li>
+<p>By default, this dashboard selects all devices.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/05_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/05_dashboards.png"></a></p>
+</li>
+<li>
+<p>Change the dashboard to select only <code>leaf1a</code> or <code>leaf1b</code> by changing from <code>device: *</code> to <code>device:</code> to match a single device. Once you’ve selected an individual device, the dashboard will filter to results for only this device.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/06_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/06_dashboards.png"></a></p>
+</li>
+<li>
+<p>Navigate back to the Dashboards landing page by clicking Dashboards in upper left.</p>
+</li>
+</ol>
+<h3 id="custom-dashboard">Custom Dashboard<a class="headerlink" href="#custom-dashboard" title="Permanent link">¶</a></h3>
+<p>Next, let’s add a new customized dashboard. There are three main constructs we will touch on here:</p>
+<ul>
+<li><strong>Metrics (Devices)</strong>: telemetry data specific to a device</li>
+<li><strong>Metrics (Interfaces)</strong>: telemetry data specific to the interfaces of a device</li>
+<li><strong>Summaries</strong>: a metric or set of metrics summarized into a single view</li>
+</ul>
+<p>There is a lot to unpack in dashboards as you have a significant amount of power in customizing the data and look of your dashboard. See how dashboards are quickly created before we get started.</p>
+<p>Let's get started:</p>
+<ol>
+<li>
+<p>Click the <code>+ New Dashboard</code> button.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/07_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/07_dashboards.png"></a></p>
+</li>
+<li>
+<p>Provide a useful <code>Name</code> for the Dashboard, such as <code>Pod##-Student#</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/08_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/08_dashboards.png"></a></p>
+</li>
+<li>
+<p>Next, let’s add a combination of visualizations that we want to capture</p>
+</li>
+<li>First, click the drop down on the upper right and change from <code>Metrics</code> to <code>Summaries</code></li>
+<li>
+<p>Within the <code>Summaries</code> list, click on, or drag the <code>Events</code> widget into the dashboard canvas</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/09_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/09_dashboards.png"></a></p>
+</li>
+<li>
+<p>Within the <code>Events</code> tile now added to your dashboard, click the <code>Configure</code> button</p>
+</li>
+<li>
+<p>Within the right side menu bar, select the following:</p>
+<div class="admonition example">
+<p class="admonition-title">Dashboard Settings</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>View Mode</td>
+<td>Severity Timeline</td>
+</tr>
+<tr>
+<td>Show Active Only</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Dataset</td>
+<td><code>Access-Pod: IDF1</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/10_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/10_dashboards.png"></a></p>
+</li>
+<li>
+<p>Dismiss the customization menu by clicking the <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path d="M2.22 2.22a.749.749 0 0 1 1.06 0L6 4.939 8.72 2.22a.749.749 0 1 1 1.06 1.06L7.061 6 9.78 8.72a.749.749 0 1 1-1.06 1.06L6 7.061 3.28 9.78a.749.749 0 1 1-1.06-1.06L4.939 6 2.22 3.28a.749.749 0 0 1 0-1.06Z"></path></svg></span> in upper right corner</p>
+</li>
+<li>
+<p>Next, change the <code>Summaries</code> menu back to <code>Metrics</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/11_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/11_dashboards.png"></a></p>
+</li>
+<li>
+<p>Within the Metrics menu, click and drag a <code>Table</code> and a <code>Horizon Graph</code> to the canvas</p>
+<div class="admonition tip">
+<p class="admonition-title">Drag the tiles</p>
+<p>You can drag the tiles around by the respective menu bars and resize each tile using the lower right corner handles.</p>
+</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/12_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/12_dashboards.png"></a></p>
+</li>
+<li>
+<p>Let's configure the <code>Table</code> first by clicking the then click the three-dots <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 12a2 2 0 0 1 2-2 2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2m-6 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2m-6 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2Z"></path></svg></span> menu and click <code>Configure</code></p>
+<div class="admonition example">
+<p class="admonition-title">Table Settings</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Source</td>
+<td>Devices</td>
+</tr>
+<tr>
+<td>Metrics #1</td>
+<td>802.1X Interface Count</td>
+</tr>
+<tr>
+<td>Metrics #2</td>
+<td>CPU Utilization</td>
+</tr>
+<tr>
+<td>Metrics #3</td>
+<td>Total Power Granted</td>
+</tr>
+<tr>
+<td>Metrics #4</td>
+<td>ARP Table Size</td>
+</tr>
+<tr>
+<td>Metrics #5</td>
+<td>Boot Time</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/13_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/13_dashboards.png"></a></p>
+</li>
+<li>
+<p>Dismiss the customization menu with the <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path d="M2.22 2.22a.749.749 0 0 1 1.06 0L6 4.939 8.72 2.22a.749.749 0 1 1 1.06 1.06L7.061 6 9.78 8.72a.749.749 0 1 1-1.06 1.06L6 7.061 3.28 9.78a.749.749 0 1 1-1.06-1.06L4.939 6 2.22 3.28a.749.749 0 0 1 0-1.06Z"></path></svg></span> button in upper right</p>
+</li>
+<li>
+<p>Now let's configure the <code>Horizon Graph</code> by clicking the then click the three-dots <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 12a2 2 0 0 1 2-2 2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2m-6 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2m-6 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2Z"></path></svg></span> menu and click <code>Configure</code></p>
+<div class="admonition example">
+<p class="admonition-title">Horizon Graph Settings</p>
+<p>Target your student device below!</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Source</td>
+<td>Interfaces</td>
+</tr>
+<tr>
+<td>View Type</td>
+<td>Multiple Metrics for One Source</td>
+</tr>
+<tr>
+<td>Interface (device)</td>
+<td><code>pod##-leaf1</code></td>
+</tr>
+<tr>
+<td>Interface (interface)</td>
+<td><code>Ethernet1</code></td>
+</tr>
+<tr>
+<td>Metrics #1</td>
+<td>Bitrate In</td>
+</tr>
+<tr>
+<td>Metrics #2</td>
+<td>Bitrate Out</td>
+</tr>
+<tr>
+<td>Metrics #3</td>
+<td>Operational Status</td>
+</tr>
+<tr>
+<td>Metrics #4</td>
+<td>Interface Authentication State</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/14_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/14_dashboards.png"></a></p>
+</li>
+<li>
+<p>Dismiss the customization menu with the <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path d="M2.22 2.22a.749.749 0 0 1 1.06 0L6 4.939 8.72 2.22a.749.749 0 1 1 1.06 1.06L7.061 6 9.78 8.72a.749.749 0 1 1-1.06 1.06L6 7.061 3.28 9.78a.749.749 0 1 1-1.06-1.06L4.939 6 2.22 3.28a.749.749 0 0 1 0-1.06Z"></path></svg></span> button in upper right</p>
+</li>
+<li>
+<p>You can resize and drag the components around, but you should have a new dashboard that looks something like this.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/dashboards/15_dashboards.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/dashboards/15_dashboards.png"></a></p>
+</li>
+<li>
+<p>Save and completed the dashboard customization by clicking the <code>Done</code> button in upper menu bar</p>
+</li>
+</ol>
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">¶</a></h2>
+<p>In this section, we will explore the Events stream and the tools and filters to help process and manage critical errors versus informational data.</p>
+<ol>
+<li>
+<p>First, open <code>Events</code> from the menu bar</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/events/01_events.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/events/01_events.png"></a></p>
+</li>
+<li>
+<p>Next, select a different time frame for the summary visualization, click the current time selection and change this to <code>1 Hour</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/events/02_events.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/events/02_events.png"></a></p>
+</li>
+<li>
+<p>You can also toggle between a bar graph and event count display</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">Events Graph</label><label for="__tabbed_2_2">Events Table</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/events/03_events.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/events/03_events.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/events/04_events.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/events/04_events.png"></a></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Focusing on the <code>Event List</code> next, Note the <code>Export</code> button to download the current Event list as CSV. Notice you can download <code>All Events</code> or only <code>Selected</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/events/05_events.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/events/05_events.png"></a></p>
+</li>
+<li>
+<p>Next, select the Gear <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm-1.5 0a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path><path d="M12 1c.266 0 .532.009.797.028.763.055 1.345.617 1.512 1.304l.352 1.45c.019.078.09.171.225.221.247.089.49.19.728.302.13.061.246.044.315.002l1.275-.776c.603-.368 1.411-.353 1.99.147.402.349.78.726 1.128 1.129.501.578.515 1.386.147 1.99l-.776 1.274c-.042.069-.058.185.002.315.112.238.213.481.303.728.048.135.142.205.22.225l1.45.352c.687.167 1.249.749 1.303 1.512.038.531.038 1.063 0 1.594-.054.763-.616 1.345-1.303 1.512l-1.45.352c-.078.019-.171.09-.221.225-.089.248-.19.491-.302.728-.061.13-.044.246-.002.315l.776 1.275c.368.603.353 1.411-.147 1.99-.349.402-.726.78-1.129 1.128-.578.501-1.386.515-1.99.147l-1.274-.776c-.069-.042-.185-.058-.314.002a8.606 8.606 0 0 1-.729.303c-.135.048-.205.142-.225.22l-.352 1.45c-.167.687-.749 1.249-1.512 1.303-.531.038-1.063.038-1.594 0-.763-.054-1.345-.616-1.512-1.303l-.352-1.45c-.019-.078-.09-.171-.225-.221a8.138 8.138 0 0 1-.728-.302c-.13-.061-.246-.044-.315-.002l-1.275.776c-.603.368-1.411.353-1.99-.147-.402-.349-.78-.726-1.128-1.129-.501-.578-.515-1.386-.147-1.99l.776-1.274c.042-.069.058-.185-.002-.314a8.606 8.606 0 0 1-.303-.729c-.048-.135-.142-.205-.22-.225l-1.45-.352c-.687-.167-1.249-.749-1.304-1.512a11.158 11.158 0 0 1 0-1.594c.055-.763.617-1.345 1.304-1.512l1.45-.352c.078-.019.171-.09.221-.225.089-.248.19-.491.302-.728.061-.13.044-.246.002-.315l-.776-1.275c-.368-.603-.353-1.411.147-1.99.349-.402.726-.78 1.129-1.128.578-.501 1.386-.515 1.99-.147l1.274.776c.069.042.185.058.315-.002.238-.112.481-.213.728-.303.135-.048.205-.142.225-.22l.352-1.45c.167-.687.749-1.249 1.512-1.304C11.466 1.01 11.732 1 12 1Zm-.69 1.525c-.055.004-.135.05-.161.161l-.353 1.45a1.832 1.832 0 0 1-1.172 1.277 7.147 7.147 0 0 0-.6.249 1.833 1.833 0 0 1-1.734-.074l-1.274-.776c-.098-.06-.186-.036-.228 0a9.774 9.774 0 0 0-.976.976c-.036.042-.06.131 0 .228l.776 1.274c.314.529.342 1.18.074 1.734a7.147 7.147 0 0 0-.249.6 1.831 1.831 0 0 1-1.278 1.173l-1.45.351c-.11.027-.156.107-.16.162a9.63 9.63 0 0 0 0 1.38c.004.055.05.135.161.161l1.45.353a1.832 1.832 0 0 1 1.277 1.172c.074.204.157.404.249.6.268.553.24 1.204-.074 1.733l-.776 1.275c-.06.098-.036.186 0 .228.301.348.628.675.976.976.042.036.131.06.228 0l1.274-.776a1.83 1.83 0 0 1 1.734-.075c.196.093.396.176.6.25a1.831 1.831 0 0 1 1.173 1.278l.351 1.45c.027.11.107.156.162.16a9.63 9.63 0 0 0 1.38 0c.055-.004.135-.05.161-.161l.353-1.45a1.834 1.834 0 0 1 1.172-1.278 6.82 6.82 0 0 0 .6-.248 1.831 1.831 0 0 1 1.733.074l1.275.776c.098.06.186.036.228 0 .348-.301.675-.628.976-.976.036-.042.06-.131 0-.228l-.776-1.275a1.834 1.834 0 0 1-.075-1.733c.093-.196.176-.396.25-.6a1.831 1.831 0 0 1 1.278-1.173l1.45-.351c.11-.027.156-.107.16-.162a9.63 9.63 0 0 0 0-1.38c-.004-.055-.05-.135-.161-.161l-1.45-.353c-.626-.152-1.08-.625-1.278-1.172a6.576 6.576 0 0 0-.248-.6 1.833 1.833 0 0 1 .074-1.734l.776-1.274c.06-.098.036-.186 0-.228a9.774 9.774 0 0 0-.976-.976c-.042-.036-.131-.06-.228 0l-1.275.776a1.831 1.831 0 0 1-1.733.074 6.88 6.88 0 0 0-.6-.249 1.835 1.835 0 0 1-1.173-1.278l-.351-1.45c-.027-.11-.107-.156-.162-.16a9.63 9.63 0 0 0-1.38 0Z"></path></svg></span> icon to toggle <code>Event List Roll Up</code>. This setting combines repeated events into groups. Toggle this On and Off, watch the effect this has on the list of Events.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/events/06_events.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/events/06_events.png"></a></p>
+</li>
+<li>
+<p>Next, utilizing the Event Filters on the right pane is important to reduce the amount of data displayed.</p>
+<details open="open">
+<summary>Filter Settings</summary>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Severity</td>
+<td><code>Critical</code>, <code>Error</code></td>
+</tr>
+<tr>
+<td>Type #1</td>
+<td>`Unexpected Link Shutdown</td>
+</tr>
+<tr>
+<td>Type #2</td>
+<td><code>Device Clock Out of Sync</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/events/07_events.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/events/07_events.png"></a></p>
+</li>
+<li>
+<p>Acknowledge and Unacknowledging events</p>
+<ol>
+<li>
+<p>To acknowledge from the filtered event list, select specific events and Acknowledge them.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/events/08_events.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/events/08_events.png"></a></p>
+</li>
+<li>
+<p>Adding a note is optional, select the <code>Acknowledge</code> button to mark these selected events.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/events/09_events.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/events/09_events.png"></a></p>
+</li>
+<li>
+<p>Acknowledged events are not deleted from the event list, only flagged as acknowledged and can be referenced by changing the filtered <code>Acknowledgement State</code>. Click <code>Acknowledgement State</code> and select <code>Acknowledged</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/events/10_events.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/events/10_events.png"></a></p>
+</li>
+<li>
+<p>Un-acknowledging an event can be done in the same way, click the box to the left of the <code>Acknowledged event</code>, and click <code>Unacknowledge</code> at the top of the event list.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/events/11_events.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/events/11_events.png"></a></p>
+</li>
+</ol>
+</li>
+<li>
+<p>Events and filtering lab section complete!</p>
+</li>
+</ol>
+<h3 id="customize-notifications">Customize Notifications<a class="headerlink" href="#customize-notifications" title="Permanent link">¶</a></h3>
+<p>In this lab, you will configure CloudVision to send an email alert to an email address using the built-in “SendGrid” email service. There are other notification systems natively supported in CloudVision, but we'll focus on email for this lab (Example: email, chat, SNMP, Syslog, etc).</p>
+<ol>
+<li>Configure <code>SendGrid</code> email service.</li>
+<li>If you are not already, click on the <code>Events</code> menu option.</li>
+<li>
+<p>Click on the <code>Notifications</code> button in the top right of the screen.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/01_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/01_notify.png"></a></p>
+</li>
+<li>
+<p>Check the system status for the <code>Config back-end</code> and <code>Relay back-end</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Status Unknown!?</p>
+<p>Before receivers and notifications are configured, the status will be “Unknown”.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">Status Unknown</label><label for="__tabbed_3_2">Status Ready</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/02_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/02_notify.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/03_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/03_notify.png"></a></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Now, configure the SendGrid receiver by clicking on <code>Receivers</code> in the menu, then click on the <code>Add Receiver</code> button. Name the receiver <code>SendGrid for Campus ATD</code>, then click the <code>Add Configuration</code> button and select <code>SendGrid</code> from the menu options.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/04_notify_1.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/04_notify_1.png"></a></p>
+</li>
+<li>
+<p>Type in <code>cvaas-alerts@arista.com</code> in the email address field. This is a shared email address that you can receive emails at during this lab and check the <code>Send notification when events are resolved</code> checkbox. Click the <code>Save</code> button in the upper right hand side of the screen to save your new receiver.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/04_notify_2.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/04_notify_2.png"></a></p>
+</li>
+<li>
+<p>Once you are happy with receiver’s configuration, click the <code>Save</code> button at the top of the screen</p>
+</li>
+<li>
+<p>Next, configure a <code>Rule</code> to use the new receiver. Click on the <code>Rules</code> menu option, then click <code>Add Rule</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/05_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/05_notify.png"></a></p>
+</li>
+<li>
+<p>Configure <code>Rule Conditions</code> for this rule. Click on the <code>+ Device</code> button, then choose your switch from the <code>Device</code> drop down box.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">Add Device</label><label for="__tabbed_4_2">Select Device</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/06_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/06_notify.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/07_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/07_notify.png"></a></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Now click on the <code>+ Event Type</code> button. Add <code>Event Types</code> by choosing them from the drop down box as shown in the image below:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">Add Event</label><label for="__tabbed_5_2">Select Event</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/08_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/08_notify.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/09_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/09_notify.png"></a></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Select all of the severity options by clicking on the <code>+ Severity</code> button and choosing the options from the drop down box.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/10_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/10_notify.png"></a></p>
+</li>
+<li>
+<p>Next, choose your new <code>SendGrid for Campus ATD</code> receiver from the <code>Receiver</code> dropdown box, select the <code>Continue Checking Rules</code> box, and save your changes by clicking on the <code>Save</code> button.</p>
+<div class="admonition tip">
+<p class="admonition-title">SAVE the changes!!</p>
+<p>Make sure to save your changes in this screen with the Save button along the top of your screen.</p>
+</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/11_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/11_notify.png"></a></p>
+</li>
+<li>
+<p>Now lets test your new receiver and rule</p>
+</li>
+<li>
+<p>Click on the <code>Status</code> menu option. Configure the <code>Test Notification Sender</code> by changing the <code>Event Type</code> to be <code>Device Stopped Streaming</code> and selecting your switch from the <code>Device</code> drop down box. Click the <code>Send Test Notification</code> button.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">Send Notification</label><label for="__tabbed_6_2">Notification Sent</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/12_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/12_notify.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/13_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/13_notify.png"></a></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>After a minute or two, you should receive the email alert at the email address you configured in the Receiver</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/images/a03/notify/14_notify.png" data-desc-position="bottom"><img alt="Campus Studio" src="../assets/images/a03/notify/14_notify.png"></a></p>
+</li>
+<li>
+<p>You can remove your event receiver to avoid additional emails before continuing!</p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">🎉 CONGRATS! You have completed the Wired labs! 🎉</p>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"></path></svg>
+    </span>
+    2025-10-24
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Arista Networks
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/AristaNetworks" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.arista.com" target="_blank" rel="noopener" title="www.arista.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 20.9 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.path", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="../../javascripts/enhanced-gifs.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

@@ -1,0 +1,98 @@
+:root > * {
+  --md-primary-fg-color:  #16325B;
+  --md-typeset-a-color:   #d47122;
+  --md-accent-fg-color:   hsl(27, 72%, 48%);
+  --md-code-hl-string-color: #7c9dc4;
+  --md-code-hl-keyword-color: #d47122;
+  --md-code-hl-name-color: #d47122;
+  /* --md-code-hl-number-color:
+  --md-code-hl-special-color
+  --md-code-hl-function-color
+  --md-code-hl-constant-color
+  --md-code-hl-keyword-color
+  --md-code-hl-operator-color
+  --md-code-hl-punctuation-color
+  --md-code-hl-comment-color
+  --md-code-hl-generic-color
+  --md-code-hl-variable-color */
+}
+
+.md-grid {
+  max-width: 1440px;
+}
+.cloudvision {
+  color: #146095;
+}
+[data-md-color-scheme="slate"] .md-typeset code, .md-typeset kbd, .md-typeset pre {
+  color:   #aad037;
+}
+.md-typeset code, .md-typeset kbd, .md-typeset pre {
+  color:   #1C7D4D;
+}
+
+.md-typeset .md-button--primary:hover {
+  background-color: #aad037;
+  border-color: #aad037;
+  color: #2e3340;
+}
+
+.md-typeset .tabbed-labels>label>[href]:first-child {
+  /* background-color: #B2CF53; */
+  background-color: #c7c7c7;
+  border-radius: 4px 4px 0 0;
+  color: #2e3340;
+  margin: 4px;
+  padding: 8px 20px 8px 20px;
+}
+
+/* Tab padding and coloring on hover */
+.md-typeset .tabbed-labels>label>[href]:first-child:hover {
+  background-color: #aad037;
+  /* background-color: #333333; */
+  border-radius: 4px 4px 0 0;
+  margin: 4px;
+  padding: 8px 20px 8px 20px;
+}
+
+/* Tab padding and coloring */
+[data-md-color-scheme="slate"]  .md-typeset .tabbed-labels>label>[href]:first-child {
+  /* background-color: #B2CF53; */
+  background-color: #2e3340;
+  border-radius: 4px 4px 0 0;
+  color: #efefef;
+  margin: 4px;
+  padding: 8px 20px 8px 20px;
+}
+
+
+/* Tab padding and coloring on hover */
+[data-md-color-scheme="slate"] .md-typeset .tabbed-labels>label>[href]:first-child:hover {
+  background-color: #B2CF53;
+  /* background-color: #333333; */
+  border-radius: 4px 4px 0 0;
+  color: #2e3340;
+  margin: 4px;
+  padding: 8px 20px 8px 20px;
+}
+
+/* .md-content img {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+  } */
+
+/* .highlight.no-copy .md-clipboard { display: none; } */
+
+/* Make ATD Token column wider */
+.md-typeset table td:nth-child(4) {
+  min-width: 200px;
+  word-break: break-all;
+}
+
+/* Or target all table cells with long URLs */
+.md-typeset table td {
+  word-wrap: break-word;
+  max-width: 300px;
+}
+
+/* Hero banner styles moved to enhanced-components.css to avoid conflicts */

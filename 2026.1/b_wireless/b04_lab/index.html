@@ -1,0 +1,2621 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Arista Campus Workshop Documentation">
+      
+      
+      
+        <link rel="canonical" href="https://arista-channel.github.io/acws/2026.1/b_wireless/b04_lab/">
+      
+      
+        <link rel="prev" href="../b03_lab/">
+      
+      
+        <link rel="next" href="../../c_security/c01_lab/">
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>B04 - Smart System Upgrade - Arista Campus Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/enhanced-components.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#b-04-arista-smart-system-upgrade-ssu" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden="">
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Arista Campus Workshop" class="md-header__button md-logo" aria-label="Arista Campus Workshop" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arista Campus Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              B04 - Smart System Upgrade
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../a_wired/a01_lab/" class="md-tabs__link">
+          
+  
+  Wired Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../b01_lab/" class="md-tabs__link">
+          
+  
+  Wireless Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../c_security/c01_lab/" class="md-tabs__link">
+          
+  
+  Security Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../references/agenda/" class="md-tabs__link">
+          
+  
+  References
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Arista Campus Workshop" class="md-nav__button md-logo" aria-label="Arista Campus Workshop" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Arista Campus Workshop
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1">
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab/access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wired Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Wired Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A01 - Explore EOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a02_atd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A02 - Provisioning a Campus Fabric
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A03 - Access Interface Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a04_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A04 - Operations, Dashboards, and Events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Wireless Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Wireless Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../b01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B01 - Wireless Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../b02_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B02 - WiFi Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../b03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B03 - Guest Wireless with AGNI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    B04 - Smart System Upgrade
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    B04 - Smart System Upgrade
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caveats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caveats
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perform-arista-ssu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perform Arista SSU
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-lab-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 AI Lab Assistant
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Security Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Security Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C01 - AGNI and WiFi EAP-TLS 802.1X
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c02_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C02 - AGNI UPSK Wireless Policy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C03 - AGNI and Wired EAP-TLS 802.1X
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            References
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1">
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/agenda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agenda
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2">
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista Configuration Tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Arista Configuration Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/config_tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intangi Iris
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3">
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista Advance EOS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Arista Advance EOS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/arista_eos_guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arista EOS Tips &amp; Tricks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4">
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista @Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arista @Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/arista_home/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Arista switches and APs for Home Use
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CloudVision Demos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            CloudVision Demos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/change_control_workspace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Change Control Workspace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6">
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Working with Certificates
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Working with Certificates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/cut_paste_certs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cut-and-Paste Method
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/radsec_on_eos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring RadSec on EOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7">
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wired
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            Wired
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/interface_diag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interface Diagnostics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/agni_tacacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AGNI Tacacs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8">
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wireless
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Wireless
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/radius/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Radius
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/l2tunnel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guest AP Tunnel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/radsec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RadSec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/wips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WIPS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caveats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caveats
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perform-arista-ssu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perform Arista SSU
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-lab-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 AI Lab Assistant
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+
+    <a href="../../print_page" title="Site PDF" class="md-content__button md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5v1m5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5v3m4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5m-6.5 0h1v3h-1v-3m-5 0h1v1H7v-1Z"></path></svg>
+    </a>
+
+
+
+                  
+
+
+<h1 id="b-04-arista-smart-system-upgrade-ssu">B-04 | Arista Smart System Upgrade (<abbr title="Smart System Upgrade (or ASU)">SSU</abbr>)<a class="headerlink" href="#b-04-arista-smart-system-upgrade-ssu" title="Permanent link">¶</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h2>
+<p>Arista's Smart System Upgrade (<abbr title="Smart System Upgrade (or ASU)">SSU</abbr>) is a feature to minimize traffic loss when upgrading from one <abbr title="Smart System Upgrade (or ASU)">SSU</abbr>-supported <abbr title="Arista's Extensible Operating System">EOS</abbr> version to a newer <abbr title="Smart System Upgrade (or ASU)">SSU</abbr>-supported <abbr title="Arista's Extensible Operating System">EOS</abbr> version. <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> is also referred to as ‘hitless’ upgrades. The <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> feature allows a switch to maintain packet forwarding (Data Plane) while the Management and Control plane perform the OS upgrade.</p>
+<div class="admonition info">
+<p class="admonition-title">Arista Smart System Upgrade</p>
+<p>Additional information about this feature can be found in the <a href="https://www.arista.com/en/support/toi/eos-4-15-2f/13710-hitless-ssu" target="_blank">Arista TOI for Smart System Upgrade</a></p>
+</div>
+<p>In our workshop lab topology you will see that each leaf in your pod is directly connected to the access point and RaspberryPi client. Traditionally, a firmware upgrade on the lead in the pod would cause the access point, wireless clients connected to the access point, and the raspberry pi client to lose network connectivity. In this lab, we will use Arista <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> on the leaf switch in your pod to perform a firmware upgrade minimizing any network disruptions for both wired and wireless clients.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">¶</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Continuous POE should be configured to maintain POE power delivery to connected devices.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Must be running an <abbr title="Arista's Extensible Operating System">EOS</abbr> version that includes the <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> feature.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Must be upgrading to a new <abbr title="Arista's Extensible Operating System">EOS</abbr> version that also includes the <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> feature.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Spanning-tree must be running in <abbr title="Multiple Spanning Tree">MST</abbr> mode or disabled.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Spanning-tree edge ports must have portfast and BPDUGuard enabled.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Switches running BGP must be configured with <code>graceful-restart</code> otherwise routes are lost and the hardware may fail to forward traffic.</li>
+</ul>
+<h2 id="caveats">Caveats<a class="headerlink" href="#caveats" title="Permanent link">¶</a></h2>
+<p>As you can imagine, disconnecting the Control and Management plane off the data plane will come with some caveats depending on what features you are running! While that's the case, most instances where <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> is valuable is where we have no resiliency or ability to "route around" the switch in maintenance.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> only supports upgrades. Hitless image downgrades are not supported.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> If a new <abbr title="Arista's Extensible Operating System">EOS</abbr> version includes an FPGA upgrade, the FPGA upgrade will be suppressed. FPGA upgrades require a full reboot of a switch to apply.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Some switch features, when in use, will prevent <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> from starting. See the <a href="https://www.arista.com/en/support/toi/eos-4-15-2f/13710-hitless-ssu#limitations" target="_blank">Arista TOI</a> for more details</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">First, download the desired <abbr title="Arista's Extensible Operating System">EOS</abbr> image to the switch flash storage using CloudVision Change Control.</p>
+<p>For detailed instructions on using the <strong>Action Download File</strong> feature in Change Control, see the <a href="../../references/change_control_workspace/">Change Control Action Download File Guide</a>.</p>
+</div>
+<h2 id="perform-arista-ssu">Perform Arista <abbr title="Smart System Upgrade (or ASU)">SSU</abbr><a class="headerlink" href="#perform-arista-ssu" title="Permanent link">¶</a></h2>
+<p>Let's begin the hands-on portion of this lab. <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> can be triggered on the command line or via CloudVision. For this lab we will be triggering an <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> upgrade using the command line, preferably using the serial port of the switch. As in</p>
+<div class="admonition tip">
+<p class="admonition-title">Console via SSH</p>
+<p>Using the console we will get a more in depth look at the logs as the switch upgrades. However, SSH is fine if you do not have a console cable. There is example output below you can refer to.</p>
+</div>
+<ol>
+<li>
+<p>Connect to the <code>pod&lt;##&gt;-leaf1</code> switch serial port (where ## is a 2 digit character between 01-20 that was assigned to your lab/Pod). The login username/password is <code>arista/arista</code>. Type <code>enable</code> to enter privileged mode.</p>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pod00-leaf1 login: arista
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Last login: Tue Jul 30 22:16:56 on ttyS0
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>pod00-leaf1&gt;enable
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>pod00-leaf1#
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Type <code>show version</code> to show the current running version of the switch.</p>
+<div class="admonition note">
+<p class="admonition-title"><abbr title="Arista's Extensible Operating System">EOS</abbr> Version</p>
+<p>Smart System Upgrade (<abbr title="Smart System Upgrade (or ASU)">SSU</abbr>) is supported on <abbr title="Arista's Extensible Operating System">EOS</abbr> versions 4.31.5M and later on CCS-710P-12/16P switches. In this example, the switch is currently running <abbr title="Arista's Extensible Operating System">EOS</abbr>-4.34.0F. This is a supported <abbr title="Arista's Extensible Operating System">EOS</abbr> version for Arista <abbr title="Smart System Upgrade (or ASU)">SSU</abbr>.</p>
+</div>
+<p>show version</p>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">Arista CCS-710P-16P</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">Hardware version</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11.02</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="nt">Serial number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WTW22220037</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="nt">Hardware MAC address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2cdd.e9fd.af50</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="nt">System MAC address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2cdd.e9fd.af50</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="nt">Software image version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.34.0F</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="nt">Architecture</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">i686</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="nt">Internal build version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.34.0F-41661064.4340F</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="nt">Internal build ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8346ed5e-061a-4a70-9c36-b6eee6fc0848</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="nt">Image format version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="nt">Image optimization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Strata-4GB</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="nt">Uptime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2 hours and 5 minutes</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="nt">Total memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3952472 kB</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="nt">Free memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2193016 kB</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Type <code>dir</code> to show the list of files in the <code>flash:</code> filesystem. You should note that there are some <abbr title="Arista's Extensible Operating System">EOS</abbr> image versions already on the flash storage of the leaf1a switch. Choose the latest <abbr title="Arista's Extensible Operating System">EOS</abbr> image version which is our target update version for this lab.</p>
+<p>dir</p>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Directory of flash:/</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-    25449761           Jul 21  2024  AristaCloudGateway-1.0.0-1.swix</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-    32184348           Apr 14 21:54  AristaCloudGateway-1.0.2-1.swix</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-    32566624            Jun 6 13:20  AristaCloudGateway-1.0.3-1.swix</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-       18480            Jul 2 05:51  AsuFastPktTransmit.log</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-   783781597            Dec 6  2021  EOS-4.29.1FX-710P-DHCP.swi</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rwx   834335804            Jul 1 03:33  EOS-4.31.6M.swi</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rwx   894262536            May 5 14:16  EOS-4.34.0F.swi</span>
+</span><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-  1531686247            Jul 2 03:42  EOS-4.34.1F.swi</span>
+</span><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">drwx        4096           Jun 15 00:24  Fossil</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-       11360            Jul 2 05:51  SsuRestore.log</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-       11360            Jul 2 05:51  SsuRestoreLegacy.log</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">drwx        4096            Dec 6  2021  aboot</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-          27            Jul 2 05:47  boot-config</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-          32            Jul 2 05:47  boot-extensions</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">drwx        4096            Jul 2 08:01  debug</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">drwx        4096            Feb 4  2023  fastpkttx.backup</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">drwx       16384            Dec 6  2021  lost+found</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">drwx        4096            Jul 2 08:00  persist</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">drwx        4096            Feb 4  2023  schedule</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-        5224            Jul 2 05:47  startup-config</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">drwx        4096           Jul 21  2024  tpm-data</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">-rw-           0           Jun 29 20:50  zerotouch-config</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">drwx        4096           Jun 23 20:34  ztp-debug</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">7527178240 bytes total (2043318272 bytes free) on flash</span><span class="p p-Indicator">:</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Type <code>show reload fast-boot</code>.  This command will show you an output of warnings or incompatibilities with the current configuration of the switch. As mentioned in the prerequisites section above, if any configuration is set in a way that prevents <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> from starting, the reasons will be listed here.</p>
+<p>show reload fast-boot
+     ```</p>
+<details class="quote" open="open">
+<summary>Example Output when <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> will proceed with caution. In this case, <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> is compatible</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">pod00-leaf1a#show reload fast-boot</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Warnings in the current configuration detected</span><span class="p p-Indicator">:</span>
+</span><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">If you are performing an upgrade, and the Release Notes for the new version of EOS indicate that MLAG is not backwards-compatible with the currently installed version (4.34.1F), the upgrade will result in packet loss.</span>
+</span><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Mlag is configured</span>
+</span></code></pre></div>
+</details>
+<details class="quote" open="open">
+<summary>Example Output when <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> will proceed without caution</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">pod00-leaf1a#show reload fast-boot</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">No warnings or unsupported configuration found.</span>
+</span></code></pre></div>
+</details>
+</li>
+<li>
+<p>Now that we have confirmed our configuration is ready to allow <abbr title="Smart System Upgrade (or ASU)">SSU</abbr>, let's prepare the switch for the upgrade process by setting the new boot image in the configuration of the switch. Issue the following commands:</p>
+<div class="admonition tip">
+<p class="admonition-title">⏲ Setting the boot flash will take a few seconds!</p>
+</div>
+<p>configure
+boot system flash:<abbr title="Arista's Extensible Operating System">EOS</abbr>-4.34.1F.swi
+exit
+write</p>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">pod00-leaf1#configure</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">pod00-leaf1(config)#boot system flash:EOS-4.34.1F.swi</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">pod00-leaf1(config)#exit</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">pod00-leaf1#write</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Copy completed successfully.</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Before we apply the new firmware, let's start a ping test which will run during the switch upgrade process. We will see that the ping traffic will continue to flow through the switch even while its software is being upgraded.</p>
+<ol>
+<li>Please make sure that your laptop is connected to the wireless network called <code>ATD-##-PSK</code>. Use the PSK you configured in the previous lab to associate with this wireless network.</li>
+<li>
+<p>Open a terminal and ping your gateway using the commands below. If you want to increase the interval to get more granular results, feel free!</p>
+<details class="info">
+<summary><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z"></path></svg></span> MAC OS</summary>
+<p>Open Terminal and run the following, please replace ## with your pod number (1-12)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ping<span class="w"> </span><span class="m">10</span>.1.##.1
+</code></pre></div>
+</details>
+<details class="info">
+<summary><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 12V6.75l6-1.32v6.48L3 12m17-9v8.75l-10 .15V5.21L20 3M3 13l6 .09v6.81l-6-1.15V13m17 .25V22l-10-1.91V13.1l10 .15Z"></path></svg></span> Windows</summary>
+<p>Open Command Prompt and run the following, please replace ## with your pod number (1-12)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ping<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span>.1.##.1
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Now leave this window open for the following steps. We will see ping packets being sent and received every second. You are now pinging the gateway IP address for your pod from your wireless device connected to your pods access point. The ping traffic must traverse the <code>leaf1</code>switch to reach the gateway.  We should be able to observe how traffic is affected while the switch is upgrading during <abbr title="Smart System Upgrade (or ASU)">SSU</abbr>.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Now, in a standard firmware upgrade process, you would issue a normal reload command. However, in this lab, we want to trigger a <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> upgrade. This is where we use the command below, go ahead and issue that command now. 🚀</p>
+<div class="admonition danger">
+<p class="admonition-title">REMINDER</p>
+<p>During this test, <strong>do not plug in or unplug devices from the switch</strong>. Recall, the control plane will effectively be down, so changes or updates to the switch at a hardware level (like populating MAC add/removals) are unavailable.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">reload fast-boot now</span>
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>As the <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> process proceeds, you can watch the output on the serial console showing the switch preparing itself for reboot. The switch will reboot shortly, and you should see the normal output of a switch reboot.</p>
+<div class="admonition note">
+<p class="admonition-title"><abbr title="Accelerated System Upgrade (or SSU)">ASU</abbr> vs <abbr title="Smart System Upgrade (or ASU)">SSU</abbr></p>
+<p>During the <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> reboot process, you may see messages referring to Arista Smart Upgrade, or <abbr title="Accelerated System Upgrade (or SSU)">ASU</abbr>. <abbr title="Accelerated System Upgrade (or SSU)">ASU</abbr> is a previous version of <abbr title="Smart System Upgrade (or ASU)">SSU</abbr>, and some references to <abbr title="Accelerated System Upgrade (or SSU)">ASU</abbr> still exist in code for the <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> process.</p>
+</div>
+</li>
+<li>
+<p>When you see the following message in your serial console of the switch, the switch is now rebooting.
+        # yaml
+        reloading /mnt/flash/<abbr title="Arista's Extensible Operating System">EOS</abbr>-4.34.1F.swi
+        ```</p>
+</li>
+<li>
+<p>SSH to the switch is not possible since the management plane of the switch is rebooting. However, the dataplane is still functional. Open the ping terminal window we started in <code>step 6</code> and note that ping packets are still being sent and received even though the switch is in the middle of its reboot process.</p>
+</li>
+<li>
+<p>Below is the output of the full process, with highlights on terminal messages indicating the progress of the upgrade.</p>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">pod00-leaf1#reload fast-boot now</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Running AsuPatchDb:doPatch( version=4.34.0F-38783123.4315M, model=Strata )</span><span class="w"> </span><span class="c1">#(1)!</span>
+</span><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Optimizing image for current system - this may take a minute...</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">No warnings or unsupported configuration found.</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">2024-07-31 17:51:14.459848 Kernel Files /mnt/flash/EOS-4.34.1F.swi extracted from SWI</span><span class="w"> </span><span class="c1">#(2)!</span>
+</span><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">2024-07-31 17:51:16.439052 ProcOutput passed to Kernel ['crashkernel=512-4G:45M,4G-8G:59M,8G-32G:89M,32G-:121M', 'nmi_watchdog=panic', 'tsc=reliable', 'pcie_ports=native', 'reboot=p', 'usb-storage.delay_use=0', 'pti=off', 'crash_kexec_post_notifiers', 'watchdog.stop_on_reboot=0', 'mds=off', 'nohz=off', 'printk.console_no_auto_verbose=1', 'CONSOLESPEED=9600', 'console=ttyS0', 'gpt', 'Aboot=Aboot-norcal6-6.2.1-2-25288791', 'net_ma1=pci0000:00/0000:00:12.0/usb1/.*$', 'platform=raspberryisland', 'scd.lpc_irq=3', 'scd.lpc_res_addr=0xf00000', 'scd.lpc_res_size=0x100000', 'block_flash=pci0000:00/0000:00:14.7/mmc_host/.*$', 'block_usb1=pci0000:00/0000:00:12.0/usb1/1-1/1-1.1/.*$', 'block_usb2=pci0000:00/0000:00:12.0/usb1/1-1/1-1.4/.*$', 'block_drive=pci0000:00/0000:00:11.0/.*host./target.:0:0/.*$', 'sid=RaspberryIsland16', 'log_buf_len=2M', 'systemd.show_status=0', 'sdhci.append_quirks2=0x40', 'amd_iommu=off', 'nvme_core.default_ps_max_latency_us=0', 'SWI=/mnt/flash/EOS-4.34.1F.swi', 'arista.asu_hitless']</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Proceeding with reload</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">No qualified FPGAs to upgrade</span><span class="w"> </span><span class="c1">#(3)!</span>
+</span><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">waiting for platform processing ..........................................................ok</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Shutting down packet drivers</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">2024-07-31 17:52:54.117479 bringing fab down</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">2024-07-31 17:52:54.437128 bringing fifo down</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">reloading /mnt/flash/EOS-4.34.1F.swi</span><span class="w"> </span><span class="c1">#(4)!</span>
+</span><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Shutting down management interface(s)</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">1 block</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">umount</span><span class="nt">: /mnt/flash</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target is busy.</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">    </span><span class="p p-Indicator">[</span><span class="nv">71576.090602</span><span class="p p-Indicator">][</span><span class="nv">T15227</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="nt">kexec_core</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Starting new kernel</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">    </span><span class="p p-Indicator">[</span><span class="w">    </span><span class="nv">2.363505</span><span class="p p-Indicator">][</span><span class="w">  </span><span class="nv">T296</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="nt">Running e2fsck on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/mnt/flash</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">    </span><span class="p p-Indicator">[</span><span class="w">    </span><span class="nv">2.803117</span><span class="p p-Indicator">][</span><span class="w">  </span><span class="nv">T303</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">e2fsck on /mnt/flash took 1s</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">    </span><span class="p p-Indicator">[</span><span class="w">    </span><span class="nv">3.116739</span><span class="p p-Indicator">][</span><span class="w">  </span><span class="nv">T370</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="nt">Running e2fsck on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/mnt/crash</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">    </span><span class="p p-Indicator">[</span><span class="w">    </span><span class="nv">3.181814</span><span class="p p-Indicator">][</span><span class="w">  </span><span class="nv">T375</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">e2fsck on /mnt/crash took 0s</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Mounting SWIM Filesystem</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Optimization Strata-4GB root squash found</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Optimization Strata-4GB all squashes found</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Mounting optimization Strata-4GB</span><span class="w"> </span><span class="c1">#(5)!</span>
+</span><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Switching rootfs</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Welcome to Arista Networks EOS 4.34.1F</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">    </span><span class="nt">Architecture</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">i386</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="w">    </span><span class="p p-Indicator">[</span><span class="w">   </span><span class="nv">43.938521</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sh[2099]</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Starting EOS initialization stage 1</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="w">    </span><span class="nt">Starting NorCal initialization</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">OK</span><span class="w">  </span><span class="p p-Indicator">]</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="w">    </span><span class="p p-Indicator">[</span><span class="w">   </span><span class="nv">48.023047</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sh[2181]</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Starting EOS initialization stage 2</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="w">    </span><span class="nt">Completing EOS initialization (press ESC to skip)</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">OK</span><span class="w">  </span><span class="p p-Indicator">]</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="w">    </span><span class="nt">Model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CCS-710P-16P</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="w">    </span><span class="nt">Serial Number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WTW22200366</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="w">    </span><span class="nt">System RAM</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3952504 kB</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">    </span><span class="nt">Flash Memory size</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">7.1G</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="w">    </span><span class="nt">pod00-leaf1 login</span><span class="p">:</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a>
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Wait for the SSU process to complete. This can take up to 10 minute.  When you see the following console message, the switch management plane has finished its reboot.</span>
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a>
+<a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a>
+<a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a><span class="w">    </span><span class="nt">pod00-leaf1 login</span><span class="p">:</span>
+</code></pre></div>
+<ol>
+<li>Remember the mention, there may still be some mention of <abbr title="Accelerated System Upgrade (or SSU)">ASU</abbr> in the code. This is the <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> process kicking off.</li>
+<li>Extracting the boot image we configured</li>
+<li>No FPGAs to upgrade, recall if there were, this would require a full reload!</li>
+<li>Reloading the management and control plane to the new software image</li>
+<li>Mounting the software on to the hardware, <code>Strata</code> in this case is the family of ASICs</li>
+</ol>
+</details>
+</li>
+<li>
+<p>You can now login with the username/password and type <code>enable</code> to get back to privileged commands mode. Check the new current running version of the switch with the command <code>show version</code>. You should see the switch has upgraded to <code>EOS-4.34.1F</code></p>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="l l-Scalar l-Scalar-Plain">Arista CCS-710P-16P</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="l l-Scalar l-Scalar-Plain">Hardware version</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11.04</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nt">Serial number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WTW23350461</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nt">Hardware MAC address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2cdd.e9f6.e9f2</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nt">System MAC address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2cdd.e9f6.e9f2</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="hll"><span class="nt">Software image version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.34.1F</span>
+</span><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nt">Architecture</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">i686</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="nt">Internal build version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.34.1F-37710335.4314M</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="nt">Internal build ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">d26721db-c526-41ec-bf9d-0a14b4edfcf5</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="nt">Image format version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="nt">Image optimization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Strata-4GB</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="nt">Uptime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5 minutes</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="nt">Total memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3952504 kB</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="nt">Free memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2880904 kB</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>After the management plane boots up, there are still some processes running before <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> can be considered successful. Run the following command to watch for the log message indicating <abbr title="Smart System Upgrade (or ASU)">SSU</abbr> is fully successful. You should see the message <code>reload hitless reconciliation complete</code> about 2 minutes after the switch completes its reload.</p>
+<p>show log follow | inc hitless</p>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="l l-Scalar l-Scalar-Plain">campus-pod11-leaf1a#show log follow | inc hitless</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Aug  8 19:51:59 campus-pod11-leaf1a StageMgr</span><span class="nt">: %LAUNCHER-6-BOOT_STATUS</span><span class="p">:</span><span class="w"> </span><span class="s">'reload</span><span class="nv"> </span><span class="s">hitless'</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reconciliation complete.</span>
+</span></code></pre></div>
+</details>
+</li>
+<li>
+<p>As our final step, take another look at the terminal window that was running the consistent pings. You should see pings continue to flow without issue during the upgrade. Only towards the end of the process you may see 1 or 2 pings lost as the ASIC reconnects to the updated management plane.</p>
+<div class="admonition success">
+<p class="admonition-title">800 ms Cutover 🏎️</p>
+<p>The below example output was sending pings every 100ms, as you see below the cutover time to the new <abbr title="Arista's Extensible Operating System">EOS</abbr> image disrupted the dataplane for all of 700-800ms!! This is fast enough you may not even notice the disruption on an active zoom call!</p>
+</div>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="l l-Scalar l-Scalar-Plain">me@MacBook-Pro ~ % ping -i 0.1 10.0.111.1</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="l l-Scalar l-Scalar-Plain">64 bytes from 9.9.9.9</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=0 ttl=51 time=10.974 ms</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nt">64 bytes from 9.9.9.9</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=1 ttl=51 time=10.147 ms</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nt">64 bytes from 9.9.9.9</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=2 ttl=51 time=10.583 ms</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nt">64 bytes from 9.9.9.9</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=3 ttl=51 time=10.657 ms</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="nn">...</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">truncated for brevity</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="l l-Scalar l-Scalar-Plain">64 bytes from 9.9.9.9</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=4885 ttl=51 time=10.586 ms</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="nt">64 bytes from 9.9.9.9</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=4886 ttl=51 time=10.954 ms</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="nt">64 bytes from 9.9.9.9</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=4887 ttl=51 time=10.632 ms</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Request timeout for icmp_seq 4888</span>
+</span><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Request timeout for icmp_seq 4889</span>
+</span><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Request timeout for icmp_seq 4890</span>
+</span><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Request timeout for icmp_seq 4891</span>
+</span><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Request timeout for icmp_seq 4892</span>
+</span><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Request timeout for icmp_seq 4893</span>
+</span><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Request timeout for icmp_seq 4894</span>
+</span><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Request timeout for icmp_seq 4895</span>
+</span><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="nt">64 bytes from 9.9.9.9</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=4896 ttl=51 time=11.481 ms</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="nt">64 bytes from 9.9.9.9</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=4897 ttl=51 time=11.637 ms</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="nt">64 bytes from 9.9.9.9</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=4898 ttl=51 time=11.237 ms</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="nt">64 bytes from 9.9.9.9</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=4899 ttl=51 time=10.859 ms</span>
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="nt">64 bytes from 9.9.9.9</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=4900 ttl=51 time=10.595 ms</span>
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="nt">64 bytes from 9.9.9.9</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp_seq=4901 ttl=51 time=10.516 ms</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>We see from this example output above, only 8 pings were lost (100 ms each) at the end of the process near the 10 minute mark after starting the ping test. If you we're pinging at 1 per second, you should see 1 maybe 2 pings drop.</p>
+</li>
+<li>
+<p>As a last item to leave you with, you can validate your reload reason to confirm why the switch last reloaded using the command below.</p>
+<p>show reload cause</p>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">Reload Cause 1</span><span class="p">:</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="l l-Scalar l-Scalar-Plain">-------------------</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Hitless reload requested by the user.</span>
+</span><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nt">Reload Time</span><span class="p">:</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="l l-Scalar l-Scalar-Plain">------------</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Reload occurred at Thu Jan 23 11:08:51 2025 CST.</span>
+</span><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="nt">Recommended Action</span><span class="p">:</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="l l-Scalar l-Scalar-Plain">-------------------</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="l l-Scalar l-Scalar-Plain">No action necessary.</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="nt">Debugging Information</span><span class="p">:</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="l l-Scalar l-Scalar-Plain">-------------------------------</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="l l-Scalar l-Scalar-Plain">None available.</span>
+</code></pre></div>
+</details>
+</li>
+</ol>
+<h2 id="ai-lab-assistant">🤖 AI Lab Assistant<a class="headerlink" href="#ai-lab-assistant" title="Permanent link">¶</a></h2>
+<p>Want to automate all the commands above? Use our embedded AI agent to execute the entire lab automatically!</p>
+<div id="lab-agent-container">
+    <div class="agent-header">
+        <h3>🚀 B04 Lab Automation Agent</h3>
+        <p>Let the AI handle the SSU upgrade while you focus on learning the concepts!</p>
+    </div>
+
+    <div class="agent-controls">
+        <div class="connection-section">
+            <label for="student-select">Select Student:</label>
+            <select id="student-select">
+                <option value="1">Student 1 (Pod 01)</option>
+                <option value="2">Student 2 (Pod 02)</option>
+                <option value="3">Student 3 (Pod 03)</option>
+                <option value="4">Student 4 (Pod 04)</option>
+                <option value="5">Student 5 (Pod 05)</option>
+                <option value="6">Student 6 (Pod 06)</option>
+                <option value="7">Student 7 (Pod 07)</option>
+                <option value="8">Student 8 (Pod 08)</option>
+                <option value="9">Student 9 (Pod 09)</option>
+                <option value="10">Student 10 (Pod 10)</option>
+                <option value="11">Student 11 (Pod 11)</option>
+                <option value="12">Student 12 (Pod 12)</option>
+                <option value="13">Student 13 (Pod 13)</option>
+                <option value="14">Student 14 (Pod 14)</option>
+                <option value="15">Student 15 (Pod 15)</option>
+                <option value="16">Student 16 (Pod 16)</option>
+                <option value="17">Student 17 (Pod 17)</option>
+                <option value="18">Student 18 (Pod 18)</option>
+                <option value="19">Student 19 (Pod 19)</option>
+                <option value="20">Student 20 (Pod 20)</option>
+            </select>
+
+            <label for="mode-select">Execution Mode:</label>
+            <select id="mode-select">
+                <option value="interactive">Interactive (Recommended)</option>
+                <option value="auto">Automatic Demo</option>
+            </select>
+
+            <button id="connect-btn" class="agent-btn primary">🔌 Connect &amp; Start Lab</button>
+            <button id="stop-btn" class="agent-btn secondary" disabled="">⏹️ Stop</button>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <div id="progress-text" class="progress-text">Ready to start...</div>
+        </div>
+
+        <div class="output-section">
+            <div class="output-header">
+                <h4>🖥️ SSU Lab Execution Output</h4>
+                <button id="clear-btn" class="agent-btn secondary">Clear</button>
+            </div>
+            <div id="command-output" class="command-output"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+#lab-agent-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+    color: white;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.agent-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.agent-header h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.5em;
+    color: white;
+}
+
+.agent-header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 1.1em;
+}
+
+.connection-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: end;
+}
+
+.connection-section label {
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.connection-section select {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.9);
+    color: #333;
+    font-size: 14px;
+}
+
+.agent-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.agent-btn.primary {
+    background: #4CAF50;
+    color: white;
+}
+
+.agent-btn.primary:hover:not(:disabled) {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+.agent-btn.secondary {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.agent-btn.secondary:hover:not(:disabled) {
+    background: rgba(255,255,255,0.3);
+}
+
+.agent-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.progress-section {
+    margin: 20px 0;
+}
+
+.progress-bar {
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+.progress-text {
+    font-size: 14px;
+    opacity: 0.9;
+    text-align: center;
+}
+
+.output-section {
+    margin-top: 20px;
+}
+
+.output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.output-header h4 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.command-output {
+    background: rgba(0,0,0,0.3);
+    border-radius: 6px;
+    padding: 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.4;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.command-output .system { color: #81C784; }
+.command-output .success { color: #4CAF50; font-weight: bold; }
+.command-output .error { color: #F44336; font-weight: bold; }
+.command-output .warning { color: #FF9800; }
+.command-output .info { color: #2196F3; }
+.command-output .step { color: #E1BEE7; font-weight: bold; }
+.command-output .command { color: #FFD54F; font-family: monospace; }
+</style>
+
+<script>
+class B04LabAgent {
+    constructor() {
+        this.commands = [
+            {
+                section: "Initial Connection & Setup",
+                commands: [
+                    { cmd: "ssh arista@pod##-leaf1", desc: "Connect to leaf switch via SSH", output: "pod##-leaf1 login: arista\nLast login: Tue Jul 30 22:16:56 on ttyS0" },
+                    { cmd: "enable", desc: "Enter privileged mode", output: "pod##-leaf1#" }
+                ]
+            },
+            {
+                section: "Pre-upgrade Assessment",
+                commands: [
+                    { cmd: "show version", desc: "Check current EOS version", output: "Arista CCS-710P-16P\nHardware version: 11.02\nSoftware image version: 4.34.0F\nUptime: 2 hours and 5 minutes" },
+                    { cmd: "dir", desc: "List flash filesystem contents", output: "Directory of flash:/\n-rwx   894262536   May 5 14:16  EOS-4.34.0F.swi\n7527178240 bytes total (2043318272 bytes free)" },
+                    { cmd: "show reload fast-boot", desc: "Check SSU compatibility", output: "No warnings or unsupported configuration found." }
+                ]
+            },
+            {
+                section: "EOS Image Download",
+                commands: [
+                    { cmd: "copy https://YOUR_FILE_SERVER/images/EOS-4.34.1F.swi flash:", desc: "Download new EOS image to flash (update with your file server URL)", output: "Downloading EOS-4.34.1F.swi...\n████████████████████████████████ 100%\nCopy completed successfully." }
+                ]
+            },
+            {
+                section: "SSU Configuration",
+                commands: [
+                    { cmd: "configure", desc: "Enter configuration mode", output: "pod##-leaf1(config)#" },
+                    { cmd: "boot system flash:EOS-4.34.1F.swi", desc: "Set new boot image", output: "pod##-leaf1(config)#" },
+                    { cmd: "exit", desc: "Exit configuration mode", output: "pod##-leaf1#" },
+                    { cmd: "write", desc: "Save configuration", output: "Copy completed successfully." }
+                ]
+            },
+            {
+                section: "Ping Test Setup",
+                commands: [
+                    { cmd: "ping 10.1.##.1", desc: "Start continuous ping test (background)", output: "PING 10.1.##.1: 56 data bytes\n64 bytes from 10.1.##.1: icmp_seq=0 ttl=64 time=1.234 ms\n64 bytes from 10.1.##.1: icmp_seq=1 ttl=64 time=1.156 ms" }
+                ]
+            },
+            {
+                section: "SSU Execution",
+                commands: [
+                    { cmd: "reload fast-boot now", desc: "Execute Smart System Upgrade", output: "Running AsuPatchDb:doPatch( version=4.34.0F )\nOptimizing image for current system...\nNo warnings or unsupported configuration found.\nProceeding with reload\nreloading /mnt/flash/EOS-4.34.1F.swi" }
+                ]
+            },
+            {
+                section: "Post-upgrade Verification",
+                commands: [
+                    { cmd: "show version", desc: "Verify new EOS version", output: "Arista CCS-710P-16P\nSoftware image version: 4.34.1F\nUptime: 5 minutes" },
+                    { cmd: "show log follow | inc hitless", desc: "Monitor SSU completion", output: "StageMgr: %LAUNCHER-6-BOOT_STATUS: 'reload hitless' reconciliation complete." },
+                    { cmd: "show reload cause", desc: "Verify reload reason", output: "Reload Cause 1:\nHitless reload requested by the user.\nReload occurred at Thu Jan 23 11:08:51 2025 CST." }
+                ]
+            }
+        ];
+
+        this.isRunning = false;
+        this.currentSection = 0;
+        this.currentCommand = 0;
+        this.mode = 'interactive';
+        this.studentId = '1';
+
+        this.initializeEventListeners();
+    }
+
+    initializeEventListeners() {
+        document.getElementById('connect-btn').addEventListener('click', () => this.startLab());
+        document.getElementById('stop-btn').addEventListener('click', () => this.stopLab());
+        document.getElementById('clear-btn').addEventListener('click', () => this.clearOutput());
+    }
+
+    async startLab() {
+        this.studentId = document.getElementById('student-select').value;
+        this.mode = document.getElementById('mode-select').value;
+
+        document.getElementById('connect-btn').disabled = true;
+        document.getElementById('stop-btn').disabled = false;
+
+        this.isRunning = true;
+        this.currentSection = 0;
+        this.currentCommand = 0;
+
+        this.updateProgress(0, "Connecting to leaf switch...");
+        this.addOutput(`🔌 Connecting to pod${this.studentId.padStart(2, '0')}-leaf1 switch...`, 'system');
+
+        // Simulate connection
+        await this.sleep(2000);
+        this.addOutput(`✅ Connected successfully to pod${this.studentId.padStart(2, '0')}-leaf1!`, 'success');
+        this.addOutput(`🚀 Starting Arista Smart System Upgrade (SSU) process...`, 'info');
+
+        await this.runAllSections();
+    }
+
+    async runAllSections() {
+        const totalCommands = this.commands.reduce((sum, section) => sum + section.commands.length, 0);
+        let commandCount = 0;
+
+        for (let sectionIndex = 0; sectionIndex < this.commands.length && this.isRunning; sectionIndex++) {
+            this.currentSection = sectionIndex;
+            const section = this.commands[sectionIndex];
+
+            this.addOutput(`\n📋 ${section.section}`, 'step');
+            this.addOutput(`${'='.repeat(50)}`, 'system');
+
+            for (let cmdIndex = 0; cmdIndex < section.commands.length && this.isRunning; cmdIndex++) {
+                this.currentCommand = cmdIndex;
+                const command = section.commands[cmdIndex];
+                commandCount++;
+
+                const progress = (commandCount / totalCommands) * 100;
+                this.updateProgress(progress, `Executing: ${command.cmd}`);
+
+                await this.executeCommand(command, commandCount, totalCommands);
+
+                if (this.mode === 'interactive' && !command.cmd.includes('reload fast-boot')) {
+                    this.addOutput(`   ⏸️  Paused for review - Click any key to continue...`, 'warning');
+                    await this.waitForUserInput();
+                } else {
+                    await this.sleep(this.mode === 'auto' ? 1500 : 2000);
+                }
+            }
+
+            if (this.isRunning) {
+                this.addOutput(`\n🎉 Section "${section.section}" completed successfully!\n`, 'success');
+            }
+        }
+
+        if (this.isRunning) {
+            this.updateProgress(100, "SSU Lab completed successfully! 🎉");
+            this.addOutput(`\n🏆 B04 Smart System Upgrade Lab completed successfully!`, 'success');
+            this.addOutput(`📊 Ping test results: Only 1-2 packets lost during ~800ms cutover!`, 'info');
+            this.addOutput(`🚀 Switch upgraded from EOS-4.34.0F to EOS-4.34.1F with minimal downtime!`, 'success');
+        }
+
+        this.stopLab();
+    }
+
+    async executeCommand(command, stepNum, totalSteps) {
+        // Replace ## with actual pod number
+        const actualCmd = command.cmd.replace(/##/g, this.studentId.padStart(2, '0'));
+        const actualOutput = command.output.replace(/##/g, this.studentId.padStart(2, '0'));
+
+        this.addOutput(`\n🔄 Step ${stepNum}/${totalSteps}: ${command.desc}`, 'info');
+        this.addOutput(`   💻 ${actualCmd}`, 'command');
+
+        // Special handling for different command types
+        if (command.cmd.includes('copy https://')) {
+            await this.simulateDownload();
+        } else if (command.cmd.includes('reload fast-boot')) {
+            await this.simulateSSUReload();
+        } else if (command.cmd.includes('ping')) {
+            await this.simulatePingTest();
+        } else {
+            await this.sleep(1000);
+        }
+
+        this.addOutput(`   📤 ${actualOutput}`, 'system');
+        this.addOutput(`   ✅ Command executed successfully`, 'success');
+    }
+
+    async simulateDownload() {
+        this.addOutput(`   📥 Starting EOS image download...`, 'info');
+        const progressChars = ['▱', '▰'];
+
+        for (let i = 0; i <= 100; i += 10) {
+            if (!this.isRunning) break;
+
+            const filled = Math.floor(i / 3.125);
+            const empty = 32 - filled;
+            const progressBar = '▰'.repeat(filled) + '▱'.repeat(empty);
+
+            this.addOutput(`   📊 Download Progress: [${progressBar}] ${i}%`, 'info');
+            await this.sleep(200);
+        }
+
+        this.addOutput(`   ✅ EOS-4.34.1F.swi downloaded successfully (1.5GB)`, 'success');
+    }
+
+    async simulateSSUReload() {
+        this.addOutput(`   ⚠️  CRITICAL: Starting Smart System Upgrade - DO NOT INTERRUPT!`, 'warning');
+        this.addOutput(`   🔄 Running AsuPatchDb:doPatch...`, 'info');
+        await this.sleep(2000);
+
+        this.addOutput(`   📦 Extracting kernel files from SWI...`, 'info');
+        await this.sleep(1500);
+
+        this.addOutput(`   🔍 No qualified FPGAs to upgrade`, 'info');
+        await this.sleep(1000);
+
+        this.addOutput(`   📡 Shutting down packet drivers...`, 'warning');
+        await this.sleep(1000);
+
+        this.addOutput(`   🔄 Reloading /mnt/flash/EOS-4.34.1F.swi`, 'info');
+        await this.sleep(3000);
+
+        this.addOutput(`   🖥️  Management plane rebooting...`, 'warning');
+        await this.sleep(2000);
+
+        this.addOutput(`   🔌 Reconnecting to switch...`, 'info');
+        await this.sleep(2000);
+
+        this.addOutput(`   ✅ Switch management plane back online!`, 'success');
+    }
+
+    async simulatePingTest() {
+        this.addOutput(`   🏓 Starting continuous ping test to gateway...`, 'info');
+        this.addOutput(`   📊 Ping will continue during SSU upgrade`, 'info');
+        await this.sleep(1000);
+
+        // Simulate some ping responses
+        for (let i = 1; i <= 5; i++) {
+            if (!this.isRunning) break;
+            const time = (Math.random() * 2 + 0.5).toFixed(3);
+            this.addOutput(`   🏓 64 bytes from 10.1.${this.studentId.padStart(2, '0')}.1: icmp_seq=${i} time=${time} ms`, 'system');
+            await this.sleep(300);
+        }
+    }
+
+    async waitForUserInput() {
+        return new Promise(resolve => {
+            const handler = () => {
+                document.removeEventListener('keydown', handler);
+                document.removeEventListener('click', handler);
+                resolve();
+            };
+            document.addEventListener('keydown', handler);
+            document.addEventListener('click', handler);
+        });
+    }
+
+    stopLab() {
+        this.isRunning = false;
+        document.getElementById('connect-btn').disabled = false;
+        document.getElementById('stop-btn').disabled = true;
+        this.updateProgress(0, "Ready to start...");
+    }
+
+    clearOutput() {
+        document.getElementById('command-output').innerHTML = '';
+    }
+
+    updateProgress(percentage, text) {
+        document.getElementById('progress-fill').style.width = `${percentage}%`;
+        document.getElementById('progress-text').textContent = text;
+    }
+
+    addOutput(text, type = 'system') {
+        const output = document.getElementById('command-output');
+        const line = document.createElement('div');
+        line.className = type;
+        line.textContent = text;
+        output.appendChild(line);
+        output.scrollTop = output.scrollHeight;
+    }
+
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+}
+
+// Initialize the lab agent when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    new B04LabAgent();
+});
+</script>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"></path></svg>
+    </span>
+    2026-04-30
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Arista Networks
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/AristaNetworks" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.arista.com" target="_blank" rel="noopener" title="www.arista.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 20.9 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.path", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="../../javascripts/enhanced-gifs.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

@@ -1,0 +1,2719 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Arista Campus Workshop Documentation">
+      
+      
+      
+        <link rel="canonical" href="https://arista-channel.github.io/acws/2026.1/references/velocloud_eveng_guide/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Creating VeloCloud Images for EVE-NG/QEMU - Arista Campus Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/enhanced-components.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#creating-velocloud-images-for-eve-ngqemu" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden="">
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Arista Campus Workshop" class="md-header__button md-logo" aria-label="Arista Campus Workshop" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arista Campus Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Creating VeloCloud Images for EVE-NG/QEMU
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../a_wired/a01_lab/" class="md-tabs__link">
+          
+  
+  Wired Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../b_wireless/b01_lab/" class="md-tabs__link">
+          
+  
+  Wireless Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../c_security/c01_lab/" class="md-tabs__link">
+          
+  
+  Security Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../agenda/" class="md-tabs__link">
+          
+  
+  References
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Arista Campus Workshop" class="md-nav__button md-logo" aria-label="Arista Campus Workshop" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Arista Campus Workshop
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1">
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab/access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wired Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Wired Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A01 - Explore EOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a02_atd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A02 - Provisioning a Campus Fabric
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A03 - Access Interface Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a04_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A04 - Operations, Dashboards, and Events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wireless Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Wireless Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B01 - Wireless Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b02_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B02 - WiFi Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B03 - Guest Wireless with AGNI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b04_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B04 - Smart System Upgrade
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Security Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Security Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C01 - AGNI and WiFi EAP-TLS 802.1X
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c02_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C02 - AGNI UPSK Wireless Policy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C03 - AGNI and Wired EAP-TLS 802.1X
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            References
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1">
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agenda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agenda
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2">
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista Configuration Tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Arista Configuration Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config_tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intangi Iris
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3">
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista Advance EOS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Arista Advance EOS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arista_eos_guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arista EOS Tips &amp; Tricks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4">
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista @Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arista @Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arista_home/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Arista switches and APs for Home Use
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CloudVision Demos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            CloudVision Demos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../change_control_workspace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Change Control Workspace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6">
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Working with Certificates
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Working with Certificates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cut_paste_certs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cut-and-Paste Method
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radsec_on_eos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring RadSec on EOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7">
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wired
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            Wired
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface_diag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interface Diagnostics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agni_tacacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AGNI Tacacs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8">
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wireless
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Wireless
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radius/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Radius
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l2tunnel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guest AP Tunnel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radsec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RadSec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WIPS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#software-versions-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software Versions Used
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-installing-eve-ng" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Installing EVE-NG
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Installing EVE-NG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-installation-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Installation Guides
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-enable-eve-ng" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Enable EVE-NG
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-public-dns-redirect" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Public DNS Redirect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-public-ntp-redirect" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Public NTP Redirect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-qemu-nic-e1000-vs-virtio-net-pci" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 QEMU NIC: e1000 vs virtio-net-pci
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-vyos-boot-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6 VyOS Boot Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-install-a-vyos-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Install a VyOS Image
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Install a VyOS Image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-adding-vyos-image-to-eve-ng" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Adding VyOS Image to EVE-NG
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-adding-a-vyos-vm-to-your-eve-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Adding a VyOS VM to Your EVE Lab
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-eve-preparations-for-vcovcgvce" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. EVE Preparations for VCO/VCG/VCE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. EVE Preparations for VCO/VCG/VCE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-create-directories-for-disk-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Create Directories for Disk Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-create-template-yaml-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Create Template YAML Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-create-custom-configphp-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Create Custom config.php File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-image-creation-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Image Creation Overview
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vco-velocloud-orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. VCO (VeloCloud Orchestrator)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. VCO (VeloCloud Orchestrator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-get-virtual-disk-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Get Virtual Disk Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-cloud-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Cloud Init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-change-password-if-cloud-init-is-not-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Change Password (if Cloud-Init is not used)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-boot-vco" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Boot VCO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-disable-cloud-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 Disable Cloud-Init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-configure-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 Configure IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-disable-password-expiry" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.7 Disable Password Expiry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-change-hostname" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.8 Change Hostname
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-access-vco" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.9 Access VCO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#410-make-vco-ui-available-through-eve-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.10 Make VCO UI Available Through EVE Host
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-vcg-velocloud-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. VCG (VeloCloud Gateway)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. VCG (VeloCloud Gateway)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-get-virtual-disk-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Get Virtual Disk File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-cloud-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Cloud Init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-57-configuration-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3-5.7 Configuration Steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58-boot-and-activate-vcg" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.8 Boot and Activate VCG
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-vce-velocloud-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. VCE (VeloCloud Edge)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. VCE (VeloCloud Edge)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-get-virtual-disk-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Get Virtual Disk File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-change-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Change Password
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-boot-vce" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Boot VCE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-set-edge-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Set Edge IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-activate-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 Activate Edge
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-non-sd-wan-sites" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Non-SD-WAN Sites
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Non-SD-WAN Sites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-non-sd-wan-site-via-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Non-SD-WAN Site via Gateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-non-sd-wan-site-via-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Non-SD-WAN Site via Edge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-cloud-security-service-css" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 Cloud Security Service (CSS)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-automation-of-vco-ssl-renewal" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Automation of VCO SSL Renewal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Automation of VCO SSL Renewal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-using-http-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 Using HTTP Challenge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-using-dns-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 Using DNS Challenge
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-optional-tools-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Optional Tools Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Optional Tools Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-guestfish" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Guestfish
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Tips
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vco-database-sync-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      VCO Database Sync Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-swap-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding Swap Memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vco-upgrade-space-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      VCO Upgrade Space Requirements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+
+    <a href="../../print_page" title="Site PDF" class="md-content__button md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5v1m5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5v3m4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5m-6.5 0h1v3h-1v-3m-5 0h1v1H7v-1Z"></path></svg>
+    </a>
+
+
+
+                  
+
+
+<h1 id="creating-velocloud-images-for-eve-ngqemu">Creating VeloCloud Images for EVE-NG/QEMU<a class="headerlink" href="#creating-velocloud-images-for-eve-ngqemu" title="Permanent link">¶</a></h1>
+<p>This guide provides comprehensive instructions for creating VeloCloud images for EVE-NG/QEMU using OVA and QCOW2/KVM images.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h2>
+<p>This guide focuses on creating an EVE-NG lab from scratch to support VeloCloud test environment. Initially, this guide can be deployed anywhere but has been tested on the internal lab VMware OneCloud and is primarily focused on enabling VMware employees to create their own lab in OneCloud.</p>
+<h3 id="software-versions-used">Software Versions Used<a class="headerlink" href="#software-versions-used" title="Permanent link">¶</a></h3>
+<ul>
+<li>VeloCloud 4.x and 5.x</li>
+<li>VyOS 1.3.x</li>
+<li>EVE-NG EVE-20171007.iso</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Required Tools</p>
+<p>These procedures use <code>guestfish</code> to mount virtual disk images for temporary access to files for editing, and <code>openssl</code> to create password hashes. The EVE-NG server has both of these apps loaded.</p>
+</div>
+<h2 id="1-installing-eve-ng">1. Installing EVE-NG<a class="headerlink" href="#1-installing-eve-ng" title="Permanent link">¶</a></h2>
+<h3 id="11-installation-guides">1.1 Installation Guides<a class="headerlink" href="#11-installation-guides" title="Permanent link">¶</a></h3>
+<p>There are many different ways to install EVE. I recommend using the ISO distribution, but be aware that internet connectivity is required. If internet is not available during the installation process, then script <code>/etc/eve-setup.sh</code> must be executed.</p>
+<div class="admonition warning">
+<p class="admonition-title">Virtualization Requirement</p>
+<p>Remember that if you are running EVE-NG on a VM you need to expose hardware-assisted CPU virtualization to guest OS.</p>
+</div>
+<h3 id="12-enable-eve-ng">1.2 Enable EVE-NG<a class="headerlink" href="#12-enable-eve-ng" title="Permanent link">¶</a></h3>
+<p>If you are planning to use EVE-NG in OneCloud internal lab and consequently you are planning to attach the primary interface an external IP, then it would be necessary to either have a separate router or configure EVE-NG Linux to route traffic from the EVE lab.</p>
+<p>First, enable IP forwarding:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv4.ip_forward<span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<p>Make the change permanent in <code>/etc/sysctl.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>net.ipv4.ip_forward<span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<p>Configure a secondary interface on EVE. Example configuration:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># The primary network interface</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>iface<span class="w"> </span>eth0<span class="w"> </span>inet<span class="w"> </span>manual
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>auto<span class="w"> </span>pnet0
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>iface<span class="w"> </span>pnet0<span class="w"> </span>inet<span class="w"> </span>static
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>address<span class="w"> </span><span class="m">192</span>.168.1.2
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>netmask<span class="w"> </span><span class="m">255</span>.255.255.0
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>gateway<span class="w"> </span><span class="m">192</span>.168.1.1
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>dns-nameservers<span class="w"> </span><span class="m">10</span>.148.20.5
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>dns-nameservers<span class="w"> </span><span class="m">10</span>.148.20.6
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>bridge_ports<span class="w"> </span>eth0
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>bridge_stp<span class="w"> </span>off
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1"># Cloud devices</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>iface<span class="w"> </span>eth1<span class="w"> </span>inet<span class="w"> </span>manual
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>auto<span class="w"> </span>pnet1
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>iface<span class="w"> </span>pnet1<span class="w"> </span>inet<span class="w"> </span>static
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>address<span class="w"> </span><span class="m">192</span>.168.100.2
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>netmask<span class="w"> </span><span class="m">255</span>.255.255.0
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>bridge_ports<span class="w"> </span>eth1
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>bridge_stp<span class="w"> </span>off
+</code></pre></div>
+<p>Create NAT rule and make it permanent:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>POSTROUTING<span class="w"> </span>-o<span class="w"> </span>pnet0<span class="w"> </span>-s<span class="w"> </span><span class="m">192</span>.168.100.0/24<span class="w"> </span>-j<span class="w"> </span>MASQUERADE
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-L<span class="w"> </span>-n<span class="w"> </span>-v
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>iptables-persistent
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>sudo<span class="w"> </span>netfilter-persistent<span class="w"> </span>save
+</code></pre></div>
+<h3 id="13-public-dns-redirect">1.3 Public DNS Redirect<a class="headerlink" href="#13-public-dns-redirect" title="Permanent link">¶</a></h3>
+<p>If you are using EVE on VMware OneCloud internal lab, then public DNS servers are not available. The following iptables rules will redirect any public Google and OpenDNS queries to the internal servers:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>PREROUTING<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>-d<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span>--dport<span class="w"> </span><span class="m">53</span><span class="w"> </span>-j<span class="w"> </span>NETMAP<span class="w"> </span>--to<span class="w"> </span><span class="m">10</span>.148.20.5
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>PREROUTING<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>-d<span class="w"> </span><span class="m">8</span>.8.4.4<span class="w"> </span>--dport<span class="w"> </span><span class="m">53</span><span class="w"> </span>-j<span class="w"> </span>NETMAP<span class="w"> </span>--to<span class="w"> </span><span class="m">10</span>.148.20.6
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>PREROUTING<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>-d<span class="w"> </span><span class="m">208</span>.67.222.220<span class="w"> </span>--dport<span class="w"> </span><span class="m">53</span><span class="w"> </span>-j<span class="w"> </span>NETMAP<span class="w"> </span>--to<span class="w"> </span><span class="m">10</span>.148.20.6
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>PREROUTING<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>-d<span class="w"> </span><span class="m">208</span>.67.222.222<span class="w"> </span>--dport<span class="w"> </span><span class="m">53</span><span class="w"> </span>-j<span class="w"> </span>NETMAP<span class="w"> </span>--to<span class="w"> </span><span class="m">10</span>.148.20.6
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>sudo<span class="w"> </span>netfilter-persistent<span class="w"> </span>save
+</code></pre></div>
+<p><strong>VMware Internal DNS servers:</strong></p>
+<ul>
+<li>US1: 10.148.20.5</li>
+<li>US2: 10.148.20.6</li>
+<li>EMEA1: 10.123.0.71</li>
+<li>EMEA2: 10.123.0.72</li>
+</ul>
+<h3 id="14-public-ntp-redirect">1.4 Public NTP Redirect<a class="headerlink" href="#14-public-ntp-redirect" title="Permanent link">¶</a></h3>
+<p>If you are using EVE on VMware OneCloud internal lab, then public NTP servers are not available because port 123 is blocked:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>PREROUTING<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">123</span><span class="w"> </span>-j<span class="w"> </span>NETMAP<span class="w"> </span>--to<span class="w"> </span><span class="m">10</span>.128.152.81
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>netfilter-persistent<span class="w"> </span>save
+</code></pre></div>
+<p><strong>VMware internal NTP servers:</strong></p>
+<ul>
+<li>time.vmware.com</li>
+<li>time1.vmware.com</li>
+<li>time2.vmware.com</li>
+</ul>
+<h3 id="15-qemu-nic-e1000-vs-virtio-net-pci">1.5 QEMU NIC: e1000 vs virtio-net-pci<a class="headerlink" href="#15-qemu-nic-e1000-vs-virtio-net-pci" title="Permanent link">¶</a></h3>
+<p>When a new node is created on EVE-NG, QEMU NIC type is configurable. We have detected cases where virtio-net-pci gives trouble, at least for nodes connected as client to VeloCloud Edges. In case of unknown networking issues, ensure e1000 is chosen to avoid problems.</p>
+<h3 id="16-vyos-boot-issues">1.6 VyOS Boot Issues<a class="headerlink" href="#16-vyos-boot-issues" title="Permanent link">¶</a></h3>
+<p>Sometimes VyOS has issues and does not boot. To recover, you can save the VyOS configuration by accessing the disk directly via guestfish:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/unetlab/tmp/0/&lt;lab-id&gt;/&lt;eve-lab-vyos-node-id&gt;
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>guestfish<span class="w"> </span>--ro<span class="w"> </span>-a<span class="w"> </span>./virtioa.qcow2
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>&gt;&lt;fs&gt;<span class="w"> </span>run
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>&gt;&lt;fs&gt;<span class="w"> </span>list-filesystems
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>/dev/sda1:<span class="w"> </span>ext4
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>&gt;&lt;fs&gt;<span class="w"> </span>mount<span class="w"> </span>/dev/sda1<span class="w"> </span>/
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>&gt;&lt;fs&gt;<span class="w"> </span>cat<span class="w"> </span>/boot/1.3-rolling-202008240118/rw/config/config.boot
+</code></pre></div>
+<h2 id="2-install-a-vyos-image">2. Install a VyOS Image<a class="headerlink" href="#2-install-a-vyos-image" title="Permanent link">¶</a></h2>
+<h3 id="21-adding-vyos-image-to-eve-ng">2.1 Adding VyOS Image to EVE-NG<a class="headerlink" href="#21-adding-vyos-image-to-eve-ng" title="Permanent link">¶</a></h3>
+<p>VyOS is an open-source Linux router quite useful for VeloCloud labs.</p>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Download latest version (1.3.0 as of today)</li>
+<li>Rolling releases: <a href="https://downloads.vyos.io/?dir=rolling/current/amd64">https://downloads.vyos.io/?dir=rolling/current/amd64</a></li>
+<li>
+<p>Latest file: <a href="https://downloads.vyos.io/rolling/current/amd64/vyos-rolling-latest.iso">vyos-rolling-latest.iso</a></p>
+</li>
+<li>
+<p>Create directory <code>/opt/unetlab/addons/qemu/vyos-1.3.0-amd64</code></p>
+</li>
+<li>
+<p>Copy the VyOS ISO to <code>/opt/unetlab/addons/qemu/vyos-1.3.0-amd64</code> with <code>cdrom.iso</code> name</p>
+</li>
+<li>
+<p>Create a qcow2 file:
+   </p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>/opt/qemu/bin/qemu-img<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>qcow2<span class="w"> </span>virtioa.qcow2<span class="w"> </span>10G
+</code></pre></div><p></p>
+</li>
+<li>
+<p>Create <code>/opt/unetlab/html/templates/intel/vyos.yml</code> file:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nn">---</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qemu</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">config_script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">config_vyos.py</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VyOS</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VyOS</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nt">cpulimit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://vyos.net/</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Router.png</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nt">ram</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nt">ethernet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="nt">console</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">telnet</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="nt">qemu_arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x86_64</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="nt">qemu_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.12.0</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="nt">qemu_nic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtio-net-pci</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="nt">qemu_options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-machine type=pc,accel=kvm -serial mon:stdio -nographic -nouser-config -nodefaults -rtc base=utc</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="nn">...</span>
+</code></pre></div>
+<h3 id="22-adding-a-vyos-vm-to-your-eve-lab">2.2 Adding a VyOS VM to Your EVE Lab<a class="headerlink" href="#22-adding-a-vyos-vm-to-your-eve-lab" title="Permanent link">¶</a></h3>
+<p>You will need a router in most EVE labs to get connectivity to internet, provide routing between different networks, DHCP server, etc.</p>
+<p><strong>Example VyOS Configuration:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">set</span><span class="w"> </span>interfaces<span class="w"> </span>ethernet<span class="w"> </span>eth0<span class="w"> </span>address<span class="w"> </span><span class="s1">'192.168.100.3/24'</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">set</span><span class="w"> </span>interfaces<span class="w"> </span>ethernet<span class="w"> </span>eth1<span class="w"> </span>address<span class="w"> </span><span class="s1">'1.1.1.1/24'</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nb">set</span><span class="w"> </span>interfaces<span class="w"> </span>ethernet<span class="w"> </span>eth2<span class="w"> </span>address<span class="w"> </span><span class="s1">'2.2.2.1/24'</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">set</span><span class="w"> </span>interfaces<span class="w"> </span>ethernet<span class="w"> </span>eth3<span class="w"> </span>address<span class="w"> </span><span class="s1">'3.3.3.1/24'</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">set</span><span class="w"> </span>interfaces<span class="w"> </span>ethernet<span class="w"> </span>eth4<span class="w"> </span>address<span class="w"> </span><span class="s1">'172.16.1.1/24'</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nb">set</span><span class="w"> </span>interfaces<span class="w"> </span>ethernet<span class="w"> </span>eth5<span class="w"> </span>address<span class="w"> </span><span class="s1">'172.17.1.1/24'</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1"># NAT configuration</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="nb">set</span><span class="w"> </span>nat<span class="w"> </span>destination<span class="w"> </span>rule<span class="w"> </span><span class="m">200</span><span class="w"> </span>destination<span class="w"> </span>address<span class="w"> </span><span class="s1">'192.168.100.3'</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="nb">set</span><span class="w"> </span>nat<span class="w"> </span>destination<span class="w"> </span>rule<span class="w"> </span><span class="m">200</span><span class="w"> </span>destination<span class="w"> </span>port<span class="w"> </span><span class="s1">'https'</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="nb">set</span><span class="w"> </span>nat<span class="w"> </span>destination<span class="w"> </span>rule<span class="w"> </span><span class="m">200</span><span class="w"> </span>inbound-interface<span class="w"> </span><span class="s1">'eth0'</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="nb">set</span><span class="w"> </span>nat<span class="w"> </span>destination<span class="w"> </span>rule<span class="w"> </span><span class="m">200</span><span class="w"> </span>protocol<span class="w"> </span><span class="s1">'tcp_udp'</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="nb">set</span><span class="w"> </span>nat<span class="w"> </span>destination<span class="w"> </span>rule<span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>address<span class="w"> </span><span class="s1">'0.0.0.0/0'</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="nb">set</span><span class="w"> </span>nat<span class="w"> </span>destination<span class="w"> </span>rule<span class="w"> </span><span class="m">200</span><span class="w"> </span>translation<span class="w"> </span>address<span class="w"> </span><span class="s1">'1.1.1.2'</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="nb">set</span><span class="w"> </span>nat<span class="w"> </span>destination<span class="w"> </span>rule<span class="w"> </span><span class="m">200</span><span class="w"> </span>translation<span class="w"> </span>port<span class="w"> </span><span class="s1">'https'</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="nb">set</span><span class="w"> </span>nat<span class="w"> </span><span class="nb">source</span><span class="w"> </span>rule<span class="w"> </span><span class="m">100</span><span class="w"> </span>outbound-interface<span class="w"> </span><span class="s1">'eth0'</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="nb">set</span><span class="w"> </span>nat<span class="w"> </span><span class="nb">source</span><span class="w"> </span>rule<span class="w"> </span><span class="m">100</span><span class="w"> </span>translation<span class="w"> </span>address<span class="w"> </span><span class="s1">'masquerade'</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="c1"># Static routing</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="nb">set</span><span class="w"> </span>protocols<span class="w"> </span>static<span class="w"> </span>route<span class="w"> </span><span class="m">0</span>.0.0.0/0<span class="w"> </span>next-hop<span class="w"> </span><span class="m">192</span>.168.100.2
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="c1"># DHCP server configuration</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="nb">set</span><span class="w"> </span>service<span class="w"> </span>dhcp-server<span class="w"> </span>shared-network-name<span class="w"> </span>main1111<span class="w"> </span>authoritative
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="nb">set</span><span class="w"> </span>service<span class="w"> </span>dhcp-server<span class="w"> </span>shared-network-name<span class="w"> </span>main1111<span class="w"> </span>subnet<span class="w"> </span><span class="m">1</span>.1.1.0/24<span class="w"> </span>default-router<span class="w"> </span><span class="s1">'1.1.1.1'</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="nb">set</span><span class="w"> </span>service<span class="w"> </span>dhcp-server<span class="w"> </span>shared-network-name<span class="w"> </span>main1111<span class="w"> </span>subnet<span class="w"> </span><span class="m">1</span>.1.1.0/24<span class="w"> </span>dns-server<span class="w"> </span><span class="s1">'8.8.8.8'</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="nb">set</span><span class="w"> </span>service<span class="w"> </span>dhcp-server<span class="w"> </span>shared-network-name<span class="w"> </span>main1111<span class="w"> </span>subnet<span class="w"> </span><span class="m">1</span>.1.1.0/24<span class="w"> </span>dns-server<span class="w"> </span><span class="s1">'8.8.4.4'</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="nb">set</span><span class="w"> </span>service<span class="w"> </span>dhcp-server<span class="w"> </span>shared-network-name<span class="w"> </span>main1111<span class="w"> </span>subnet<span class="w"> </span><span class="m">1</span>.1.1.0/24<span class="w"> </span>lease<span class="w"> </span><span class="s1">'86400'</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="nb">set</span><span class="w"> </span>service<span class="w"> </span>dhcp-server<span class="w"> </span>shared-network-name<span class="w"> </span>main1111<span class="w"> </span>subnet<span class="w"> </span><span class="m">1</span>.1.1.0/24<span class="w"> </span>static-mapping<span class="w"> </span>vco<span class="w"> </span>ip-address<span class="w"> </span><span class="s1">'1.1.1.2'</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="nb">set</span><span class="w"> </span>service<span class="w"> </span>dhcp-server<span class="w"> </span>shared-network-name<span class="w"> </span>main1111<span class="w"> </span>subnet<span class="w"> </span><span class="m">1</span>.1.1.0/24<span class="w"> </span>static-mapping<span class="w"> </span>vco<span class="w"> </span>mac-address<span class="w"> </span><span class="s1">'50:00:00:02:00:00'</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="nb">set</span><span class="w"> </span>service<span class="w"> </span>dhcp-server<span class="w"> </span>shared-network-name<span class="w"> </span>main1111<span class="w"> </span>subnet<span class="w"> </span><span class="m">1</span>.1.1.0/24<span class="w"> </span>static-mapping<span class="w"> </span>vcg3<span class="w"> </span>ip-address<span class="w"> </span><span class="s1">'1.1.1.3'</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="nb">set</span><span class="w"> </span>service<span class="w"> </span>dhcp-server<span class="w"> </span>shared-network-name<span class="w"> </span>main1111<span class="w"> </span>subnet<span class="w"> </span><span class="m">1</span>.1.1.0/24<span class="w"> </span>static-mapping<span class="w"> </span>vcg3<span class="w"> </span>mac-address<span class="w"> </span><span class="s1">'50:00:00:03:00:00'</span>
+</code></pre></div>
+<h2 id="3-eve-preparations-for-vcovcgvce">3. EVE Preparations for VCO/VCG/VCE<a class="headerlink" href="#3-eve-preparations-for-vcovcgvce" title="Permanent link">¶</a></h2>
+<h3 id="31-create-directories-for-disk-images">3.1 Create Directories for Disk Images<a class="headerlink" href="#31-create-directories-for-disk-images" title="Permanent link">¶</a></h3>
+<p>SSH to the EVE-NG machine as root (default password is <code>eve</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ssh<span class="w"> </span>root@&lt;eve-ng<span class="w"> </span>IP&gt;
+</code></pre></div>
+<p>Create directories for the disk images:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>mkdir<span class="w"> </span>/opt/unetlab/addons/qemu/velocloudvco-4.0.0
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>mkdir<span class="w"> </span>/opt/unetlab/addons/qemu/velocloudvcg-4.0.0
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>mkdir<span class="w"> </span>/opt/unetlab/addons/qemu/velocloudvce-4.0.0
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Directory Naming Format</p>
+<p>Note the format <code>velocloudvco-4.0.0</code>. EVE-NG uses the prefix before the <code>-</code> as a key for selecting images in the GUI.</p>
+</div>
+<h3 id="32-create-template-yaml-files">3.2 Create Template YAML Files<a class="headerlink" href="#32-create-template-yaml-files" title="Permanent link">¶</a></h3>
+<p>Create template YAML files in <code>/opt/unetlab/html/templates/intel/</code> for each component:</p>
+<p><strong>VCO Template (<code>velocloudvco.yml</code>):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nn">---</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qemu</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vco</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nt">cpulimit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vco.png</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="nt">ram</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4096</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="nt">ethernet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="nt">console</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">telnet</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="nt">shutdown</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="nt">qemu_arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x86_64</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="nt">qemu_nic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">e1000</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="nt">qemu_options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-machine type=pc,accel=kvm -nographic -rtc base=utc</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="nn">...</span>
+</code></pre></div>
+<p><strong>VCG Template (<code>velocloudvcg.yml</code>):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nn">---</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qemu</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">velogw</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nt">cpulimit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vcg.png</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="nt">ram</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4096</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="nt">ethernet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="nt">eth_name</span><span class="p">:</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Internet</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Handoff</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="nt">qemu_nic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtio-net-pci</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="nt">console</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">telnet</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="nt">qemu_arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x86_64</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="nt">qemu_options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-machine type=pc-1.0,accel=kvm -cpu host -nographic -rtc base=utc</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="nn">...</span>
+</code></pre></div>
+<p><strong>VCE Template (<code>velocloudvce.yml</code>):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nn">---</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qemu</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">veloedge</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nt">cpulimit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vce.png</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="nt">ram</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2048</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="nt">ethernet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="nt">eth_format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">G{1}</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="nt">qemu_nic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtio-net-pci</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="nt">console</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">telnet</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="nt">qemu_arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x86_64</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="nt">qemu_options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-machine type=pc-1.0,accel=kvm -cpu host -nographic -rtc base=utc</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="nn">...</span>
+</code></pre></div>
+<h3 id="33-create-custom-configphp-file">3.3 Create Custom config.php File<a class="headerlink" href="#33-create-custom-configphp-file" title="Permanent link">¶</a></h3>
+<p>Create <code>/opt/unetlab/html/includes/config.php</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nv">$custom_templates</span> <span class="o">=</span> <span class="k">Array</span><span class="p">(</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="s1">'velocloudvco'</span> <span class="o">=&gt;</span> <span class="s1">'VeloCloud Orchestrator'</span><span class="p">,</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="s1">'velocloudvcg'</span> <span class="o">=&gt;</span> <span class="s1">'VeloCloud Gateway'</span><span class="p">,</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="s1">'velocloudvce'</span> <span class="o">=&gt;</span> <span class="s1">'VeloCloud Edge'</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="p">);</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="cp">?&gt;</span>
+</code></pre></div>
+<h3 id="34-image-creation-overview">3.4 Image Creation Overview<a class="headerlink" href="#34-image-creation-overview" title="Permanent link">¶</a></h3>
+<p>One issue with using VeloCloud appliance images in EVE-NG is that you don't go through the usual provisioning process. To use the image without cloud-init, you need to use utilities to mount the virtual disk image and edit the <code>/etc/passwd</code> file to set a known password for the root user.</p>
+<h2 id="4-vco-velocloud-orchestrator">4. VCO (VeloCloud Orchestrator)<a class="headerlink" href="#4-vco-velocloud-orchestrator" title="Permanent link">¶</a></h2>
+<h3 id="41-get-virtual-disk-files">4.1 Get Virtual Disk Files<a class="headerlink" href="#41-get-virtual-disk-files" title="Permanent link">¶</a></h3>
+<h4 id="411-kvm-file">4.1.1 KVM File<a class="headerlink" href="#411-kvm-file" title="Permanent link">¶</a></h4>
+<p>Transfer the VCO KVM file to EVE-NG:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>mkdir<span class="w"> </span>/opt/unetlab/addons/qemu/velocloudvco-4.0.0
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nb">cd</span><span class="w"> </span>/opt/unetlab/addons/qemu/velocloudvco-4.0.0
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>scp<span class="w"> </span>lab@10.10.130.128:/home/lab/velocloud-orchestrator-kvm-4.0.0-R400-20200925-GA-9021c56f76.tar.gz<span class="w"> </span>.
+</code></pre></div>
+<p>Extract the tar file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>tar<span class="w"> </span>xvf<span class="w"> </span>velocloud-orchestrator-kvm-4.0.0-R400-20200925-GA-9021c56f76.tar.gz
+</code></pre></div>
+<p>Rename the files:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>mv<span class="w"> </span>rootfs.qcow2<span class="w"> </span>virtioa.qcow2
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>mv<span class="w"> </span>store.qcow2<span class="w"> </span>virtiob.qcow2
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>mv<span class="w"> </span>store2.qcow2<span class="w"> </span>virtioc.qcow2
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>mv<span class="w"> </span>store3.qcow2<span class="w"> </span>virtiod.qcow2
+</code></pre></div>
+<h4 id="412-ova-file">4.1.2 OVA File<a class="headerlink" href="#412-ova-file" title="Permanent link">¶</a></h4>
+<p>If using OVA files, extract and convert to qcow2 format:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>tar<span class="w"> </span>xvf<span class="w"> </span>velocloud-orchestrator-3.3.1-GA-20191127.ova
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>qemu-img<span class="w"> </span>convert<span class="w"> </span>-f<span class="w"> </span>vmdk<span class="w"> </span>-O<span class="w"> </span>qcow2<span class="w"> </span>./velocloud-orchestrator-disk1.vmdk<span class="w"> </span>./virtioa.qcow2<span class="p">&amp;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>qemu-img<span class="w"> </span>convert<span class="w"> </span>-f<span class="w"> </span>vmdk<span class="w"> </span>-O<span class="w"> </span>qcow2<span class="w"> </span>./velocloud-orchestrator-disk2.vmdk<span class="w"> </span>./virtiob.qcow2<span class="p">&amp;</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>qemu-img<span class="w"> </span>convert<span class="w"> </span>-f<span class="w"> </span>vmdk<span class="w"> </span>-O<span class="w"> </span>qcow2<span class="w"> </span>./velocloud-orchestrator-disk3.vmdk<span class="w"> </span>./virtioc.qcow2<span class="p">&amp;</span>
+</code></pre></div>
+<h3 id="42-cloud-init">4.2 Cloud Init<a class="headerlink" href="#42-cloud-init" title="Permanent link">¶</a></h3>
+<p>VCO uses cloud-init on boot time. Create cloud-init ISO file in the same directory as the qcow2 image.</p>
+<p><strong>Create <code>meta-data</code> file:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nt">instance-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vco501eve</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nt">local-hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vco501eve</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nt">dsmode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+</code></pre></div>
+<p><strong>Create <code>user-data</code> file:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1">#cloud-config</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nt">users</span><span class="p">:</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">velocloud</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="nt">chpasswd</span><span class="p">:</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w"> </span><span class="nt">list</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">  </span><span class="no">root:velocloud</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">  </span><span class="no">vcadmin:velocloud</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w"> </span><span class="nt">expire</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="nt">ssh_pwauth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="nt">ssh_authorized_keys</span><span class="p">:</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvaaLmF1Krpr2362rOuJ4lkJOj35EJnvK0ffIjjVnaA7oGGyy0TnAF04yUBb19z/MFS9En8shoPdas20SQkN1AlWuH5J5spq6TL/4S1SAVJdU0Xb0AjJQBSwKvuQ6MvrEi9SVuKZ7S7eKEDI8pZtT4GzHqy/b6WqqhFLWGVvxUeLcUxcSklfenE2SRtrYXvTd3kBAVBFB0QIdp4Q3kaMu75gJQ3T2qqVskHLym6Wq/gZt6HfZLEnJ7PLdcdH7hWyXW5APO/aq4Z8YJVYFKTe8n2WSLN5mX+F9J/FBBjW57dVqenLM1ZmkZ26/nbf8uK4L6zZytbff9faWfqffjyAm1</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="nt">runcmd</span><span class="p">:</span>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">'sudo</span><span class="nv"> </span><span class="s">/opt/vc/bin/cloud_init_ctl</span><span class="nv"> </span><span class="s">-d'</span>
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">'sudo</span><span class="nv"> </span><span class="s">chage</span><span class="nv"> </span><span class="s">-I</span><span class="nv"> </span><span class="s">-1</span><span class="nv"> </span><span class="s">-m</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">-M</span><span class="nv"> </span><span class="s">99999</span><span class="nv"> </span><span class="s">-E</span><span class="nv"> </span><span class="s">-1</span><span class="nv"> </span><span class="s">vcadmin'</span>
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="nt">final_message</span><span class="p">:</span><span class="w"> </span><span class="s">"====</span><span class="nv"> </span><span class="s">Cloud-init</span><span class="nv"> </span><span class="s">completed..</span><span class="nv"> </span><span class="s">====="</span>
+</code></pre></div>
+<p><strong>Create <code>network-config</code> file:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nn">---</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="nt">ethernets</span><span class="p">:</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w"> </span><span class="nt">eth0</span><span class="p">:</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">  </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">  </span><span class="nt">dhcp4-overrides</span><span class="p">:</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">   </span><span class="nt">route-metric</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+</code></pre></div>
+<p><strong>Create ISO file:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>genisoimage<span class="w"> </span>-output<span class="w"> </span>cdrom.iso<span class="w"> </span>-volid<span class="w"> </span>cidata<span class="w"> </span>-joliet<span class="w"> </span>-rock<span class="w"> </span>user-data<span class="w"> </span>meta-data<span class="w"> </span>network-config
+</code></pre></div>
+<h3 id="43-change-password-if-cloud-init-is-not-used">4.3 Change Password (if Cloud-Init is not used)<a class="headerlink" href="#43-change-password-if-cloud-init-is-not-used" title="Permanent link">¶</a></h3>
+<p>Create a password hash using openssl:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>openssl<span class="w"> </span>passwd<span class="w"> </span>-1<span class="w"> </span>velocloud
+</code></pre></div>
+<p>Open the qcow2 image using guestfish:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>sudo<span class="w"> </span>guestfish<span class="w"> </span>-w<span class="w"> </span>-a<span class="w"> </span>./virtioa.qcow2<span class="w"> </span>-i
+</code></pre></div>
+<p>Edit <code>/etc/passwd</code> and replace the <code>x</code> with the password hash:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>&gt;&lt;fs&gt;<span class="w"> </span>vi<span class="w"> </span>/etc/passwd
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="c1"># Change: root:x:0:0:root:/root:/bin/bash</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="c1"># To: root:$1$QLAUnuzn$a/3uaoM9.Outb3b2PMsI00:0:0:root:/root:/bin/bash</span>
+</code></pre></div>
+<p>Edit SSH configuration:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>&gt;&lt;fs&gt;<span class="w"> </span>vi<span class="w"> </span>/etc/ssh/sshd_config
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="c1"># Change: PermitRootLogin no</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="c1"># To: PermitRootLogin yes</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="c1"># Add: AllowUsers vcadmin root</span>
+</code></pre></div>
+<p>Exit guestfish:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>&gt;&lt;fs&gt;<span class="w"> </span><span class="nb">exit</span>
+</code></pre></div>
+<h3 id="44-boot-vco">4.4 Boot VCO<a class="headerlink" href="#44-boot-vco" title="Permanent link">¶</a></h3>
+<p>Create a new VCO instance in EVE-NG, power it on, and connect to the console.</p>
+<h3 id="45-disable-cloud-init">4.5 Disable Cloud-Init<a class="headerlink" href="#45-disable-cloud-init" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>sudo<span class="w"> </span>/opt/vc/bin/cloud_init_ctl<span class="w"> </span>-d
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="c1"># Or manually:</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>sudo<span class="w"> </span>touch<span class="w"> </span>/etc/cloud/cloud-init.disabled
+</code></pre></div>
+<h3 id="46-configure-ip">4.6 Configure IP<a class="headerlink" href="#46-configure-ip" title="Permanent link">¶</a></h3>
+<p>Edit netplan file in <code>/etc/netplan/</code> directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nt">network</span><span class="p">:</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w"> </span><span class="nt">ethernets</span><span class="p">:</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">  </span><span class="nt">eth0</span><span class="p">:</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">   </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">   </span><span class="nt">addresses</span><span class="p">:</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.0.5/24</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w">   </span><span class="nt">gateway4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.0.1</span>
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="w">   </span><span class="nt">nameservers</span><span class="p">:</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">    </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">8.8.8.8</span><span class="p p-Indicator">,</span><span class="nv">8.8.4.4</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="w">   </span><span class="nt">match</span><span class="p">:</span>
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="w">    </span><span class="nt">macaddress</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50:00:00:0f:00:00</span>
+<a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a><span class="w">   </span><span class="nt">set-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eth0</span>
+<a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a><span class="w"> </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</code></pre></div>
+<h3 id="47-disable-password-expiry">4.7 Disable Password Expiry<a class="headerlink" href="#47-disable-password-expiry" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>sudo<span class="w"> </span>chage<span class="w"> </span>-I<span class="w"> </span>-1<span class="w"> </span>-m<span class="w"> </span><span class="m">0</span><span class="w"> </span>-M<span class="w"> </span>-1<span class="w"> </span>-E<span class="w"> </span>-1<span class="w"> </span>root
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>sudo<span class="w"> </span>chage<span class="w"> </span>-I<span class="w"> </span>-1<span class="w"> </span>-m<span class="w"> </span><span class="m">0</span><span class="w"> </span>-M<span class="w"> </span>-1<span class="w"> </span>-E<span class="w"> </span>-1<span class="w"> </span>vcadmin
+</code></pre></div>
+<h3 id="48-change-hostname">4.8 Change Hostname<a class="headerlink" href="#48-change-hostname" title="Permanent link">¶</a></h3>
+<p>Edit <code>/etc/hostname</code> and change to <code>vco</code>.</p>
+<p>Edit <code>/etc/hosts</code> file and replace ubuntu with vco:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="m">127</span>.0.0.1<span class="w"> </span>localhost
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="m">127</span>.0.1.1<span class="w"> </span>vco<span class="w"> </span>ubuntu
+</code></pre></div>
+<p>Execute command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>hostname<span class="w"> </span>vco
+</code></pre></div>
+<h3 id="49-access-vco">4.9 Access VCO<a class="headerlink" href="#49-access-vco" title="Permanent link">¶</a></h3>
+<p>Browse to your new VCO:</p>
+<ul>
+<li>URL: <code>https://&lt;vco ip&gt;/operator</code></li>
+<li>User: <code>super@velocloud.net</code></li>
+<li>Password: <code>vcadm!n</code></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Password Note</p>
+<p>Note the exclamation mark (!) in the password.</p>
+</div>
+<h3 id="410-make-vco-ui-available-through-eve-host">4.10 Make VCO UI Available Through EVE Host<a class="headerlink" href="#410-make-vco-ui-available-through-eve-host" title="Permanent link">¶</a></h3>
+<p>To expose VCO UI port through EVE Host external IP:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>PREROUTING<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>-d<span class="w"> </span><span class="m">192</span>.168.1.2<span class="w"> </span>--dport<span class="w"> </span><span class="m">443</span><span class="w"> </span>-j<span class="w"> </span>DNAT<span class="w"> </span>--to-destination<span class="w"> </span><span class="m">192</span>.168.100.3:443
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>sudo<span class="w"> </span>netfilter-persistent<span class="w"> </span>save
+</code></pre></div>
+<h2 id="5-vcg-velocloud-gateway">5. VCG (VeloCloud Gateway)<a class="headerlink" href="#5-vcg-velocloud-gateway" title="Permanent link">¶</a></h2>
+<h3 id="51-get-virtual-disk-file">5.1 Get Virtual Disk File<a class="headerlink" href="#51-get-virtual-disk-file" title="Permanent link">¶</a></h3>
+<p>Transfer the VCG qcow2 file to EVE-NG:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>mkdir<span class="w"> </span>/opt/unetlab/addons/qemu/velocloudvcg-4.0.0
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="nb">cd</span><span class="w"> </span>/opt/unetlab/addons/qemu/velocloudvcg-4.0.0
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>scp<span class="w"> </span>lab@10.10.130.128:/home/lab/velocloud-vcc-v2-4.0.0-106-R400-20200929-GA-59ea242e7e-kvm.qcow2<span class="w"> </span>./virtioa.qcow2
+</code></pre></div>
+<h3 id="52-cloud-init">5.2 Cloud Init<a class="headerlink" href="#52-cloud-init" title="Permanent link">¶</a></h3>
+<p>Similar to VCO, create cloud-init files for VCG with gateway-specific configurations.</p>
+<h3 id="53-57-configuration-steps">5.3-5.7 Configuration Steps<a class="headerlink" href="#53-57-configuration-steps" title="Permanent link">¶</a></h3>
+<p>Follow similar steps as VCO for:
+- Changing password
+- Disabling cloud-init
+- Configuring IP
+- Disabling password expiry
+- Changing hostname</p>
+<h3 id="58-boot-and-activate-vcg">5.8 Boot and Activate VCG<a class="headerlink" href="#58-boot-and-activate-vcg" title="Permanent link">¶</a></h3>
+<p>Reboot and activate the VCG:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>/opt/vc/bin/activate.py<span class="w"> </span>Y3NX-PWNN-M9QB-FZHX<span class="w"> </span>-s<span class="w"> </span><span class="m">172</span>.16.1.2<span class="w"> </span>-i
+</code></pre></div>
+<h2 id="6-vce-velocloud-edge">6. VCE (VeloCloud Edge)<a class="headerlink" href="#6-vce-velocloud-edge" title="Permanent link">¶</a></h2>
+<h3 id="61-get-virtual-disk-file">6.1 Get Virtual Disk File<a class="headerlink" href="#61-get-virtual-disk-file" title="Permanent link">¶</a></h3>
+<p>Transfer the VCE qcow2 file to EVE-NG:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>mkdir<span class="w"> </span>/opt/unetlab/addons/qemu/velocloudvce-4.0.0
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="nb">cd</span><span class="w"> </span>/opt/unetlab/addons/qemu/velocloudvce-4.0.0
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>scp<span class="w"> </span>lab@10.10.130.128:/home/lab/edge-VC_KVM_GUEST-x86_64-4.0.0-106-R400-20200929-GA-59ea242e7e-updatable-ext4.qcow2<span class="w"> </span>./virtioa.qcow2
+</code></pre></div>
+<h3 id="62-change-password">6.2 Change Password<a class="headerlink" href="#62-change-password" title="Permanent link">¶</a></h3>
+<p>Same procedure as VCO, but use this guestfish command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>guestfish<span class="w"> </span>-w<span class="w"> </span>-a<span class="w"> </span>virtioa.qcow2<span class="w"> </span>-m<span class="w"> </span>/dev/sda4
+</code></pre></div>
+<h3 id="63-boot-vce">6.3 Boot VCE<a class="headerlink" href="#63-boot-vce" title="Permanent link">¶</a></h3>
+<p>Create a new VCE instance in EVE-NG, power it on, and connect to the console.</p>
+<h3 id="64-set-edge-ip">6.4 Set Edge IP<a class="headerlink" href="#64-set-edge-ip" title="Permanent link">¶</a></h3>
+<p>Set WAN IP from device console:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>/opt/vc/bin/set_wan_config.sh<span class="w"> </span>GE3<span class="w"> </span>STATIC<span class="w"> </span><span class="m">10</span>.0.0.1<span class="w"> </span><span class="m">255</span>.255.255.0<span class="w"> </span><span class="m">10</span>.0.0.254
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>/opt/vc/bin/set_wan_config.sh<span class="w"> </span>-a<span class="w"> </span>off<span class="w"> </span>-5<span class="w"> </span><span class="m">100</span><span class="w"> </span>GE3<span class="w"> </span>DHCP
+</code></pre></div>
+<h3 id="65-activate-edge">6.5 Activate Edge<a class="headerlink" href="#65-activate-edge" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>activate.py<span class="w"> </span>AWGT-FSUB-GUZQ-ZJCB<span class="w"> </span>-s<span class="w"> </span><span class="m">172</span>.16.254.251<span class="w"> </span>-i
+</code></pre></div>
+<h2 id="7-non-sd-wan-sites">7. Non-SD-WAN Sites<a class="headerlink" href="#7-non-sd-wan-sites" title="Permanent link">¶</a></h2>
+<h3 id="71-non-sd-wan-site-via-gateway">7.1 Non-SD-WAN Site via Gateway<a class="headerlink" href="#71-non-sd-wan-site-via-gateway" title="Permanent link">¶</a></h3>
+<p>Configure IPSec on VyOS device for NVS via Gateway:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>esp-group<span class="w"> </span>ipsec-rtr-esp<span class="w"> </span>compression<span class="w"> </span><span class="s1">'disable'</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>esp-group<span class="w"> </span>ipsec-rtr-esp<span class="w"> </span>lifetime<span class="w"> </span><span class="s1">'1800'</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>esp-group<span class="w"> </span>ipsec-rtr-esp<span class="w"> </span>mode<span class="w"> </span><span class="s1">'tunnel'</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>esp-group<span class="w"> </span>ipsec-rtr-esp<span class="w"> </span>pfs<span class="w"> </span><span class="s1">'enable'</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>esp-group<span class="w"> </span>ipsec-rtr-esp<span class="w"> </span>proposal<span class="w"> </span><span class="m">1</span><span class="w"> </span>encryption<span class="w"> </span><span class="s1">'aes256'</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>esp-group<span class="w"> </span>ipsec-rtr-esp<span class="w"> </span>proposal<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">hash</span><span class="w"> </span><span class="s1">'sha1'</span>
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>
+<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>ike-group<span class="w"> </span>ipsec-rtr-ike<span class="w"> </span>ikev2-reauth<span class="w"> </span><span class="s1">'no'</span>
+<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>ike-group<span class="w"> </span>ipsec-rtr-ike<span class="w"> </span>key-exchange<span class="w"> </span><span class="s1">'ikev1'</span>
+<a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>ike-group<span class="w"> </span>ipsec-rtr-ike<span class="w"> </span>lifetime<span class="w"> </span><span class="s1">'3600'</span>
+<a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>ike-group<span class="w"> </span>ipsec-rtr-ike<span class="w"> </span>proposal<span class="w"> </span><span class="m">1</span><span class="w"> </span>encryption<span class="w"> </span><span class="s1">'aes256'</span>
+<a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>ike-group<span class="w"> </span>ipsec-rtr-ike<span class="w"> </span>proposal<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">hash</span><span class="w"> </span><span class="s1">'sha1'</span>
+<a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a>
+<a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>ipsec-interfaces<span class="w"> </span>interface<span class="w"> </span><span class="s1">'eth0'</span>
+<a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>site-to-site<span class="w"> </span>peer<span class="w"> </span><span class="m">1</span>.1.1.3<span class="w"> </span>authentication<span class="w"> </span>mode<span class="w"> </span><span class="s1">'pre-shared-secret'</span>
+<a id="__codelineno-41-16" name="__codelineno-41-16" href="#__codelineno-41-16"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>site-to-site<span class="w"> </span>peer<span class="w"> </span><span class="m">1</span>.1.1.3<span class="w"> </span>authentication<span class="w"> </span>pre-shared-secret<span class="w"> </span><span class="s1">'Velocloud123'</span>
+<a id="__codelineno-41-17" name="__codelineno-41-17" href="#__codelineno-41-17"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>site-to-site<span class="w"> </span>peer<span class="w"> </span><span class="m">1</span>.1.1.3<span class="w"> </span>ike-group<span class="w"> </span><span class="s1">'ipsec-rtr-ike'</span>
+<a id="__codelineno-41-18" name="__codelineno-41-18" href="#__codelineno-41-18"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>site-to-site<span class="w"> </span>peer<span class="w"> </span><span class="m">1</span>.1.1.3<span class="w"> </span>local-address<span class="w"> </span><span class="s1">'1.1.1.10'</span>
+<a id="__codelineno-41-19" name="__codelineno-41-19" href="#__codelineno-41-19"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>site-to-site<span class="w"> </span>peer<span class="w"> </span><span class="m">1</span>.1.1.3<span class="w"> </span>tunnel<span class="w"> </span><span class="m">0</span><span class="w"> </span>esp-group<span class="w"> </span><span class="s1">'ipsec-rtr-esp'</span>
+<a id="__codelineno-41-20" name="__codelineno-41-20" href="#__codelineno-41-20"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>site-to-site<span class="w"> </span>peer<span class="w"> </span><span class="m">1</span>.1.1.3<span class="w"> </span>tunnel<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="nb">local</span><span class="w"> </span>prefix<span class="w"> </span><span class="s1">'0.0.0.0/0'</span>
+<a id="__codelineno-41-21" name="__codelineno-41-21" href="#__codelineno-41-21"></a><span class="nb">set</span><span class="w"> </span>vpn<span class="w"> </span>ipsec<span class="w"> </span>site-to-site<span class="w"> </span>peer<span class="w"> </span><span class="m">1</span>.1.1.3<span class="w"> </span>tunnel<span class="w"> </span><span class="m">0</span><span class="w"> </span>remote<span class="w"> </span>prefix<span class="w"> </span><span class="s1">'192.168.0.0/16'</span>
+</code></pre></div>
+<h3 id="72-non-sd-wan-site-via-edge">7.2 Non-SD-WAN Site via Edge<a class="headerlink" href="#72-non-sd-wan-site-via-edge" title="Permanent link">¶</a></h3>
+<p>Similar IPSec configuration for NVS via Edge with appropriate peer IP addresses.</p>
+<h3 id="73-cloud-security-service-css">7.3 Cloud Security Service (CSS)<a class="headerlink" href="#73-cloud-security-service-css" title="Permanent link">¶</a></h3>
+<p>Configure CSS with specific IKE settings for FQDN authentication.</p>
+<h2 id="8-automation-of-vco-ssl-renewal">8. Automation of VCO SSL Renewal<a class="headerlink" href="#8-automation-of-vco-ssl-renewal" title="Permanent link">¶</a></h2>
+<h3 id="81-using-http-challenge">8.1 Using HTTP Challenge<a class="headerlink" href="#81-using-http-challenge" title="Permanent link">¶</a></h3>
+<p>Install acme.sh and configure for HTTP challenge:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>mkdir<span class="w"> </span>/root/acme_home
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="nb">cd</span><span class="w"> </span>/root/acme_home
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>curl<span class="w"> </span>https://raw.githubusercontent.com/acmesh-official/acme.sh/master/acme.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>--install-online<span class="w"> </span>--home<span class="w"> </span>/root/acme_home
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>/root/acme_home/acme.sh<span class="w"> </span>--set-default-ca<span class="w"> </span>--server<span class="w"> </span>letsencrypt
+<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>
+<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="c1"># Create nginx location for challenge</span>
+<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/letsencrypt/.well-known/acme-challenge/
+<a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a>chmod<span class="w"> </span>-R<span class="w"> </span>a+rx<span class="w"> </span>/var/www/letsencrypt
+<a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a>
+<a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a><span class="c1"># Issue certificate</span>
+<a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a>/root/acme_home/acme.sh<span class="w"> </span>--issue<span class="w"> </span>--keylength<span class="w"> </span><span class="m">4096</span><span class="w"> </span>-d<span class="w"> </span>vco1112.example.com<span class="w"> </span>-w<span class="w"> </span>/var/www/letsencrypt<span class="w"> </span>--insecure<span class="w"> </span>--force
+<a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a>
+<a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a><span class="c1"># Install certificate</span>
+<a id="__codelineno-42-15" name="__codelineno-42-15" href="#__codelineno-42-15"></a>/root/acme_home/acme.sh<span class="w"> </span>--install-cert<span class="w"> </span>-d<span class="w"> </span>vco1112.example.com<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-42-16" name="__codelineno-42-16" href="#__codelineno-42-16"></a>--key-file<span class="w"> </span>/etc/nginx/velocloud/ssl/server.key<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-42-17" name="__codelineno-42-17" href="#__codelineno-42-17"></a>--fullchain-file<span class="w"> </span>/etc/nginx/velocloud/ssl/server.crt<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-42-18" name="__codelineno-42-18" href="#__codelineno-42-18"></a>--reloadcmd<span class="w"> </span><span class="s2">"service nginx force-reload"</span>
+</code></pre></div>
+<h3 id="82-using-dns-challenge">8.2 Using DNS Challenge<a class="headerlink" href="#82-using-dns-challenge" title="Permanent link">¶</a></h3>
+<p>Configure DNS challenge with appropriate DNS provider credentials.</p>
+<h2 id="9-optional-tools-installation">9. Optional Tools Installation<a class="headerlink" href="#9-optional-tools-installation" title="Permanent link">¶</a></h2>
+<h3 id="install-guestfish">Install Guestfish<a class="headerlink" href="#install-guestfish" title="Permanent link">¶</a></h3>
+<p>On Ubuntu, install required packages:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libguestfs-tools
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>vsftpd
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openssh-client
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openssh-server
+</code></pre></div>
+<h2 id="troubleshooting-tips">Troubleshooting Tips<a class="headerlink" href="#troubleshooting-tips" title="Permanent link">¶</a></h2>
+<h3 id="vco-database-sync-issues">VCO Database Sync Issues<a class="headerlink" href="#vco-database-sync-issues" title="Permanent link">¶</a></h3>
+<p>If VCO replication fails:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="n">mysql</span><span class="w"> </span><span class="c1">--defaults-file=/etc/mysql/velocloud.cnf</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">STOP</span><span class="w"> </span><span class="n">SLAVE</span><span class="p">;</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">Master_Log_File</span><span class="o">=</span><span class="s1">'mysql-bin.000043'</span><span class="p">,</span><span class="w"> </span><span class="n">master_log_pos</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="n">SLAVE</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="adding-swap-memory">Adding Swap Memory<a class="headerlink" href="#adding-swap-memory" title="Permanent link">¶</a></h3>
+<p>Add swap memory if RAM resources are limited:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/zero<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/store2/swapfile<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1024M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">10</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/store2/swapfile
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>sudo<span class="w"> </span>mkswap<span class="w"> </span>/store2/swapfile
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>sudo<span class="w"> </span>swapon<span class="w"> </span>/store2/swapfile
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"/store2/swapfile swap swap defaults 0 0"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/fstab
+</code></pre></div>
+<h3 id="vco-upgrade-space-requirements">VCO Upgrade Space Requirements<a class="headerlink" href="#vco-upgrade-space-requirements" title="Permanent link">¶</a></h3>
+<p>For VCO 4.5 to 5.x upgrades:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>lvextend<span class="w"> </span>-r<span class="w"> </span>-L+2G<span class="w"> </span>/dev/mapper/vols-var1
+</code></pre></div>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>This guide provides comprehensive instructions for setting up VeloCloud components in EVE-NG. Follow the sections relevant to your deployment requirements and refer to the troubleshooting section for common issues.</p>
+<div class="admonition tip">
+<p class="admonition-title">Best Practices</p>
+<ul>
+<li>Always use cloud-init when possible for automated configuration</li>
+<li>Keep regular backups of your EVE-NG lab configurations</li>
+<li>Monitor resource usage and adjust VM specifications as needed</li>
+<li>Use e1000 NIC type if experiencing networking issues with virtio-net-pci</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"></path></svg>
+    </span>
+    2025-08-20
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Arista Networks
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/AristaNetworks" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.arista.com" target="_blank" rel="noopener" title="www.arista.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 20.9 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.path", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="../../javascripts/enhanced-gifs.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

@@ -1,0 +1,3092 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Arista Campus Workshop Documentation">
+      
+      
+      
+        <link rel="canonical" href="https://arista-channel.github.io/acws/2026.1/a_wired/a01_lab/">
+      
+      
+        <link rel="prev" href="../../lab/access/">
+      
+      
+        <link rel="next" href="../a02_atd/">
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>A01 - Explore EOS - Arista Campus Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/enhanced-components.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a-01-explore-eos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden="">
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Arista Campus Workshop" class="md-header__button md-logo" aria-label="Arista Campus Workshop" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arista Campus Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A01 - Explore EOS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Wired Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../b_wireless/b01_lab/" class="md-tabs__link">
+          
+  
+  Wireless Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../c_security/c01_lab/" class="md-tabs__link">
+          
+  
+  Security Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../references/agenda/" class="md-tabs__link">
+          
+  
+  References
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Arista Campus Workshop" class="md-nav__button md-logo" aria-label="Arista Campus Workshop" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Arista Campus Workshop
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1">
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab/access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Wired Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Wired Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    A01 - Explore EOS
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    A01 - Explore EOS
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completely-different-totally-familiar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Completely Different, Totally Familiar
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mlag-varp" class="md-nav__link">
+    <span class="md-ellipsis">
+      MLAG &amp; VARP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#closing-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      Closing Out
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Closing Out">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streaming-telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming Telemetry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-fun-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Fun Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-lab-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 AI Lab Assistant
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a02_atd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A02 - Provisioning a Campus Fabric
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A03 - Access Interface Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a04_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A04 - Operations, Dashboards, and Events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wireless Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Wireless Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B01 - Wireless Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b02_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B02 - WiFi Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B03 - Guest Wireless with AGNI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b04_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B04 - Smart System Upgrade
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Security Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Security Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C01 - AGNI and WiFi EAP-TLS 802.1X
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c02_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C02 - AGNI UPSK Wireless Policy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C03 - AGNI and Wired EAP-TLS 802.1X
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            References
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1">
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/agenda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agenda
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2">
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista Configuration Tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Arista Configuration Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/config_tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intangi Iris
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3">
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista Advance EOS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Arista Advance EOS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/arista_eos_guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arista EOS Tips &amp; Tricks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4">
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista @Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arista @Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/arista_home/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Arista switches and APs for Home Use
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CloudVision Demos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            CloudVision Demos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/change_control_workspace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Change Control Workspace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6">
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Working with Certificates
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Working with Certificates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/cut_paste_certs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cut-and-Paste Method
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/radsec_on_eos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring RadSec on EOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7">
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wired
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            Wired
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/interface_diag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interface Diagnostics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/agni_tacacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AGNI Tacacs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8">
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wireless
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Wireless
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/radius/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Radius
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/l2tunnel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guest AP Tunnel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/radsec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RadSec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/wips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WIPS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completely-different-totally-familiar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Completely Different, Totally Familiar
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mlag-varp" class="md-nav__link">
+    <span class="md-ellipsis">
+      MLAG &amp; VARP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#closing-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      Closing Out
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Closing Out">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streaming-telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming Telemetry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-fun-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Fun Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-lab-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 AI Lab Assistant
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+
+    <a href="../../print_page" title="Site PDF" class="md-content__button md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5v1m5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5v3m4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5m-6.5 0h1v3h-1v-3m-5 0h1v1H7v-1Z"></path></svg>
+    </a>
+
+
+
+                  
+
+
+<h1 id="a-01-explore-eos">A-01 | Explore <abbr title="Arista's Extensible Operating System">EOS</abbr><a class="headerlink" href="#a-01-explore-eos" title="Permanent link">¶</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h2>
+<p>In this lab, you'll learn how to log into an Arista switch and explore configuration. All Arista switches, whether they’re used in data center, campus, WAN, or other environments, run on Arista's Extensible Operating System (<abbr title="Arista's Extensible Operating System">EOS</abbr>). We’ll also cover <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr>, how to configure it, and how to troubleshoot issues!</p>
+<p>Let’s take a closer look at the <abbr title="Arista's Extensible Operating System">EOS</abbr> interface—while it might feel familiar, it’s also distinctly unique!</p>
+<h2 id="completely-different-totally-familiar">Completely Different, Totally Familiar<a class="headerlink" href="#completely-different-totally-familiar" title="Permanent link">¶</a></h2>
+<p>Let's log into the workshop spine switches.</p>
+<details class="tip" open="open">
+<summary>I have a console cable or WiFi</summary>
+<p>If you have a console cable, feel free to console into your switch. The switch is in <abbr title="Zero-Touch Provisioning">ZTP</abbr>, you can explore the same commands! You may also use the <code>WiFi</code> to connect to the spine switches. The spine switch is running configuration your switch will not contain, but login using <code>admin</code>, hit Enter and type in <code>enable</code> to start exploring</p>
+</details>
+<ol>
+<li>
+<p>Login to the spine using the address below and the username <code>student#</code>, password <code>Arista123</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Student 1</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="l l-Scalar l-Scalar-Plain">ssh student1@10.1.100.2</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="l l-Scalar l-Scalar-Plain"># Student 2</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="l l-Scalar l-Scalar-Plain">ssh student2@10.1.100.3</span>
+</code></pre></div>
+</li>
+<li>
+<p>First thing, let's validate you are on the spine switch and explore the hardware.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="l l-Scalar l-Scalar-Plain">show version</span>
+</code></pre></div>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Arista CCS-722XPM-48ZY8-F</span><span class="w"> </span><span class="c1">#(1)!</span>
+</span><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">Hardware version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11.01</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="hll"><span class="nt">Serial number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HBG23270736</span><span class="w"> </span><span class="c1">#(2)!</span>
+</span><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">Hardware MAC address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ac3d.9450.afc6</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nt">System MAC address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ac3d.9450.afc6</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="hll"><span class="nt">Software image version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.31.5M</span><span class="w"> </span><span class="c1">#(3)!</span>
+</span><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="hll"><span class="nt">Architecture</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">i686</span><span class="w"> </span><span class="c1">#(4)!</span>
+</span><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nt">Internal build version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.31.5M-38783123.4315M</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nt">Internal build ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a514fb70-598b-4084-975c-4f5978421b10</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nt">Image format version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="nt">Image optimization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Strata-4GB</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="hll"><span class="nt">Uptime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4 hours and 58 minutes</span><span class="w"> </span><span class="c1">#(5)!</span>
+</span><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="nt">Total memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3952960 kB</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="nt">Free memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2054376 kB</span>
+</code></pre></div>
+<ol>
+<li>The full switch model</li>
+<li>The serial number of the switch</li>
+<li>Current <abbr title="Arista's Extensible Operating System">EOS</abbr> image running</li>
+<li>This <abbr title="Arista's Extensible Operating System">EOS</abbr> software is a 32-bit version, Arista <abbr title="Arista's Extensible Operating System">EOS</abbr> is also provided in a 64-bit version</li>
+<li>The current uptime</li>
+</ol>
+</details>
+</li>
+<li>
+<p>Let's explore the hardware in a bit more detail. Text output is great, but imagine you have been asked to pull all device information programmatically. Tools like <a href="https://github.com/google/textfsm">TextFSM</a> are common to parse unstructured data, wouldn't it be great if this data was structured? Try validating this command will also render as <code>json</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="l l-Scalar l-Scalar-Plain">show inventory</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="l l-Scalar l-Scalar-Plain">show inventory | json</span>
+</code></pre></div>
+<details class="quote">
+<summary>Example Output</summary>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="l l-Scalar l-Scalar-Plain">System information</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Model                    Description</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">------------------------ ----------------------------------------------------</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">CCS-722XPM-48ZY8         48 2.5GBase-T PoE &amp; 8-port SFP28 MacSec Switch</span><span class="w"> </span><span class="c1">#(1)!</span>
+</span><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">HW Version  Serial Number  Mfg Date   Epoch</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">----------- -------------- ---------- -----</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">11.01       HBG23270736    2023-07-14 01.00</span><span class="w"> </span><span class="c1">#(2)!</span>
+</span><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="l l-Scalar l-Scalar-Plain">System has 2 power supply slots</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Slot Model            Serial Number</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">---- ---------------- ----------------</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">1    PWR-1021-AC-RED  GGJT36P13J0</span><span class="w"> </span><span class="c1">#(3)!</span>
+</span><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">2    Not Inserted</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">System has 3 fan modules</span>
+</span><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Module  Number of Fans  Model            Serial Number</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">------- --------------- ---------------- ----------------</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">1       1               FAN-7000-F       N/A</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">2       1               FAN-7000-F       N/A</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">3       1               FAN-7000-F       N/A</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="l l-Scalar l-Scalar-Plain">System has 65 ports</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Type               Count</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">------------------ ----</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Management         1</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Switched           52</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">SwitchedBootstrap  4</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Fabric             8</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="l l-Scalar l-Scalar-Plain">System has 56 switched transceiver slots</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Port Manufacturer     Model            Serial Number    Rev</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">---- ---------------- ---------------- ---------------- ----</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">1    Arista Networks  CCS-722XPM-48ZY8</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">2    Arista Networks  CCS-722XPM-48ZY8</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">49   Arista Networks  SFP-10G-SR       ACW1710002F0     20</span>
+</span><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">50   Not Present</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">51   Arista Networks  SFP-10G-SR       XTH16080010E     0002</span><span class="w"> </span><span class="c1">#(5)!</span>
+</span><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">52   Not Present</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">53   Not Present</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">54   Not Present</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">55   Not Present</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">56   Not Present</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="l l-Scalar l-Scalar-Plain">System has 1 storage device</span>
+<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Mount      Type Model                Serial Number Rev Size (GB)</span>
+<a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">---------- ---- -------------------- ------------- --- ---------</span>
+<a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">/mnt/flash eMMC Smart Modular 16GP1A 801f4198      1.0 8</span>
+</code></pre></div>
+<ol>
+<li>More information about this switch platform capabilities</li>
+<li>You can see when this switch was manufactured and hardware versioning</li>
+<li>Power supply details, like model and serial number</li>
+<li>If you have fan modules, similar detail to that of power supplies</li>
+<li>Get optics manufacturer, serial number, and model</li>
+</ol>
+</details>
+</li>
+<li>
+<p>Let's explore the interfaces and what's connected. Take note</p>
+<ol class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Your pod has one connection to the spine (we're not in a full mesh)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Workshop access point and raspberry pi (lab guides) are connected</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> interfaces</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Your POD is configured as part of a Port-Channel</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="l l-Scalar l-Scalar-Plain">show interfaces status</span>
+</code></pre></div>
+<details class="quote">
+<summary>Example Output</summary>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="l l-Scalar l-Scalar-Plain">Port       Name       Status       Vlan      Duplex Speed  Type         Flags Encapsulation</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Et1        POD01      connected    in Po101  a-full a-1G   2.5GBASE-T</span>
+</span><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Et2        POD01      notconnect   in Po101  auto   auto   2.5GBASE-T</span>
+</span><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="l l-Scalar l-Scalar-Plain">Et3        POD02      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="l l-Scalar l-Scalar-Plain">Et4        POD02      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="l l-Scalar l-Scalar-Plain">Et5        POD03      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="l l-Scalar l-Scalar-Plain">Et6        POD03      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="l l-Scalar l-Scalar-Plain">Et7        POD04      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="l l-Scalar l-Scalar-Plain">Et8        POD04      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="l l-Scalar l-Scalar-Plain">Et9        POD05      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="l l-Scalar l-Scalar-Plain">Et10       POD05      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="l l-Scalar l-Scalar-Plain">Et11       POD06      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="l l-Scalar l-Scalar-Plain">Et12       POD06      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="l l-Scalar l-Scalar-Plain">Et13       POD07      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="l l-Scalar l-Scalar-Plain">Et14       POD07      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="l l-Scalar l-Scalar-Plain">Et15       POD08      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="l l-Scalar l-Scalar-Plain">Et16       POD08      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="l l-Scalar l-Scalar-Plain">Et17       POD09      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="l l-Scalar l-Scalar-Plain">Et18       POD09      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="l l-Scalar l-Scalar-Plain">Et19       POD10      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="l l-Scalar l-Scalar-Plain">Et20       POD10      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="l l-Scalar l-Scalar-Plain">Et21       POD11      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="l l-Scalar l-Scalar-Plain">Et22       POD11      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="l l-Scalar l-Scalar-Plain">Et23       POD12      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="l l-Scalar l-Scalar-Plain">Et24       POD12      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="l l-Scalar l-Scalar-Plain">Et25       POD13      connected    trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="l l-Scalar l-Scalar-Plain">Et26       POD13      notconnect   trunk     auto   auto   2.5GBASE-T</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="nn">...</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Et33       ATD_WiFi   disabled     100       auto   auto   2.5GBASE-T</span>
+</span><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Et34       ATD_PI     disabled     100       auto   auto   2.5GBASE-T</span>
+</span><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="nn">...</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Et47       MLAG       connected    in Po1000 auto   auto   5GBASE-T</span>
+</span><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Et48       MLAG       connected    in Po1000 auto   auto   5GBASE-T</span>
+</span><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="nn">...</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Po101      POD01      connected    trunk     full   2G     N/A</span>
+</span><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="l l-Scalar l-Scalar-Plain">Po102      POD02      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="l l-Scalar l-Scalar-Plain">Po103      POD03      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="l l-Scalar l-Scalar-Plain">Po104      POD04      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="l l-Scalar l-Scalar-Plain">Po105      POD05      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="l l-Scalar l-Scalar-Plain">Po106      POD06      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a><span class="l l-Scalar l-Scalar-Plain">Po107      POD07      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a><span class="l l-Scalar l-Scalar-Plain">Po108      POD08      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a><span class="l l-Scalar l-Scalar-Plain">Po109      POD09      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a><span class="l l-Scalar l-Scalar-Plain">Po110      POD10      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a><span class="l l-Scalar l-Scalar-Plain">Po111      POD11      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a><span class="l l-Scalar l-Scalar-Plain">Po112      POD12      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a><span class="l l-Scalar l-Scalar-Plain">Po113      POD13      connected    trunk     full   unconf N/A</span>
+<a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a><span class="l l-Scalar l-Scalar-Plain">Po1000     MLAG       connected    trunk     full   20G    N/A</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Try some filtering of our output, there are some familiar filtering options like <code>include</code>, <code>exclude</code>, <code>begin</code>, etc, but as we go through this workshop we will explore further!</p>
+<div class="admonition warning">
+<p class="admonition-title">Read Only Mode</p>
+<p>You have read only on the spines, which excludes access to <abbr title="Arista's Extensible Operating System">EOS</abbr>' underlying Linux subsystem. You will have full access to this in the workshop, where you can leverage tools like <code>grep</code>, <code>awk</code>, <code>sed</code>, etc to filter content further.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="l l-Scalar l-Scalar-Plain">show interfaces status | ?</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="l l-Scalar l-Scalar-Plain">show interfaces status | inc POD01</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="l l-Scalar l-Scalar-Plain">show interfaces | inc MTU|Eth</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="l l-Scalar l-Scalar-Plain">show interfaces | sec Ethernet(25|26)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="l l-Scalar l-Scalar-Plain">LINE      Filter command by common Linux tools such as grep/awk/sed/wc</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="l l-Scalar l-Scalar-Plain">append    Append redirected output to URL</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">begin     Start output at the first matching line</span>
+</span><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">exclude   Do not print lines matching the given pattern</span>
+</span><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">include   Print lines matching the given pattern</span>
+</span><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="l l-Scalar l-Scalar-Plain">json      Produce JSON output for this command</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="l l-Scalar l-Scalar-Plain">no-more   Disable pagination for this command</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="l l-Scalar l-Scalar-Plain">nz        Include only non-zero counters</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="l l-Scalar l-Scalar-Plain">redirect  Redirect output to URL</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">section   Include sections that match</span>
+</span><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="l l-Scalar l-Scalar-Plain">tee       Copy output to URL</span>
+</code></pre></div>
+</li>
+<li>
+<p>The spines in this workshop will act as our gateway for the various pods, let's validate our ip addressing and the virtual router addresses (gateways).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="l l-Scalar l-Scalar-Plain">show ip interface brief</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="l l-Scalar l-Scalar-Plain">show ip virtual-router</span>
+</code></pre></div>
+<details class="quote">
+<summary>Example Output</summary>
+<div class="highlight"><span class="filename">Example Output: interface brief</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">                                                                                </span><span class="l l-Scalar l-Scalar-Plain">Address</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="l l-Scalar l-Scalar-Plain">Interface         IP Address             Status       Protocol           MTU    Owner</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="l l-Scalar l-Scalar-Plain">----------------- ---------------------- ------------ -------------- ---------- -------</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="l l-Scalar l-Scalar-Plain">Ethernet49        192.168.254.1/31       up           up                9214</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="l l-Scalar l-Scalar-Plain">Management1       unassigned             down         down              1500</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="l l-Scalar l-Scalar-Plain">Vlan100           10.1.100.2/24          up           up                9214</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="l l-Scalar l-Scalar-Plain">Vlan101           10.1.1.2/24            up           up                9214</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="l l-Scalar l-Scalar-Plain">Vlan102           10.1.2.2/24            up           up                9214</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="l l-Scalar l-Scalar-Plain">Vlan103           10.1.3.2/24            up           up                9214</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="l l-Scalar l-Scalar-Plain">Vlan104           10.1.4.2/24            up           up                9214</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="l l-Scalar l-Scalar-Plain">Vlan105           10.1.5.2/24            up           up                9214</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="l l-Scalar l-Scalar-Plain">Vlan106           10.1.6.2/24            up           up                9214</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="l l-Scalar l-Scalar-Plain">Vlan107           10.1.7.2/24            up           up                9214</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="l l-Scalar l-Scalar-Plain">Vlan108           10.1.8.2/24            up           up                9214</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="l l-Scalar l-Scalar-Plain">Vlan109           10.1.9.2/24            up           up                9214</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="l l-Scalar l-Scalar-Plain">Vlan110           10.1.10.2/24           up           up                9214</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="l l-Scalar l-Scalar-Plain">Vlan111           10.1.11.2/24           up           up                9214</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="l l-Scalar l-Scalar-Plain">Vlan112           10.1.12.2/24           up           up                9214</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="l l-Scalar l-Scalar-Plain">Vlan113           10.1.13.2/24           up           up                9214</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="l l-Scalar l-Scalar-Plain">Vlan4094          192.168.255.1/30       up           up                9214</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output: virtual-router</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">IP virtual router is configured with MAC address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">00:1c:73:00:00:01</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="l l-Scalar l-Scalar-Plain">IP virtual router address subnet routes not enabled</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="l l-Scalar l-Scalar-Plain">IP router is not configured with Mlag peer MAC address</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nt">MAC address advertisement interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30 seconds</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="nt">Protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">U - Up, D - Down, T - Testing, UN - Unknown</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">NP - Not Present, LLD - Lower Layer Down</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="l l-Scalar l-Scalar-Plain">Interface       Vrf           Virtual IP Address       Protocol       State</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="l l-Scalar l-Scalar-Plain">--------------- ------------- ------------------------ -------------- ------</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="l l-Scalar l-Scalar-Plain">Vl100           default       10.1.100.1               U              active</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="l l-Scalar l-Scalar-Plain">Vl101           default       10.1.1.1                 U              active</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="l l-Scalar l-Scalar-Plain">Vl102           default       10.1.2.1                 U              active</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="l l-Scalar l-Scalar-Plain">Vl103           default       10.1.3.1                 U              active</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="l l-Scalar l-Scalar-Plain">Vl104           default       10.1.4.1                 U              active</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="l l-Scalar l-Scalar-Plain">Vl105           default       10.1.5.1                 U              active</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="l l-Scalar l-Scalar-Plain">Vl106           default       10.1.6.1                 U              active</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="l l-Scalar l-Scalar-Plain">Vl107           default       10.1.7.1                 U              active</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="l l-Scalar l-Scalar-Plain">Vl108           default       10.1.8.1                 U              active</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="l l-Scalar l-Scalar-Plain">Vl109           default       10.1.9.1                 U              active</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="l l-Scalar l-Scalar-Plain">Vl110           default       10.1.10.1                U              active</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="l l-Scalar l-Scalar-Plain">Vl111           default       10.1.11.1                U              active</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="l l-Scalar l-Scalar-Plain">Vl112           default       10.1.12.1                U              active</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="l l-Scalar l-Scalar-Plain">Vl113           default       10.1.13.1                U              active</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Ok, let's look at all the LLDP information, note the models and <abbr title="Arista's Extensible Operating System">EOS</abbr> version details and interesting command <code>atdpods</code>. Explore the aliases configured on this device.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="l l-Scalar l-Scalar-Plain">show lldp neighbors detail</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="l l-Scalar l-Scalar-Plain">acwspods</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="l l-Scalar l-Scalar-Plain">show aliases</span>
+</code></pre></div>
+<details class="quote">
+<summary>Example Output</summary>
+<div class="highlight"><span class="filename">Example Output: LLDP Detail</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">Last table change time   </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0:00:02 ago</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nt">Number of table inserts  </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">51</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nt">Number of table deletes  </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">35</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nt">Number of table drops    </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="nt">Number of table age-outs </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="l l-Scalar l-Scalar-Plain">Port          Neighbor Device ID       Neighbor Port ID    TTL</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="l l-Scalar l-Scalar-Plain">---------- ------------------------ ---------------------- ---</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="l l-Scalar l-Scalar-Plain">Et1           sw-10.1.1.51             Ethernet15          120</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="l l-Scalar l-Scalar-Plain">Et3           sw-10.1.2.42             Ethernet15          120</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="l l-Scalar l-Scalar-Plain">Et5           sw-10.1.3.40             Ethernet15          120</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="l l-Scalar l-Scalar-Plain">Et7           sw-10.1.4.41             Ethernet15          120</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="l l-Scalar l-Scalar-Plain">Et9           sw-10.1.5.40             Ethernet15          120</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="l l-Scalar l-Scalar-Plain">Et11          sw-10.1.6.41             Ethernet15          120</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="l l-Scalar l-Scalar-Plain">Et13          sw-10.1.7.41             Ethernet15          120</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="l l-Scalar l-Scalar-Plain">Et15          sw-10.1.8.40             Ethernet15          120</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="l l-Scalar l-Scalar-Plain">Et17          sw-10.1.9.41             Ethernet15          120</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="l l-Scalar l-Scalar-Plain">Et19          sw-10.1.10.41            Ethernet15          120</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="l l-Scalar l-Scalar-Plain">Et21          sw-10.1.11.40            Ethernet15          120</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="l l-Scalar l-Scalar-Plain">Et23          sw-10.1.12.40            Ethernet15          120</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="l l-Scalar l-Scalar-Plain">Et25          sw-10.1.13.40            Ethernet15          120</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="l l-Scalar l-Scalar-Plain">Et33          Arista_18:66:BF          3086.2d18.66bf      120</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="l l-Scalar l-Scalar-Plain">Et47          SPINE02                  Ethernet47          120</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="l l-Scalar l-Scalar-Plain">Et48          SPINE02                  Ethernet48          120</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="l l-Scalar l-Scalar-Plain">Et49          CORE01                   Ethernet49          120</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output: atdpods</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">Interface Ethernet1 detected 1 LLDP neighbors</span><span class="p">:</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">System Description</span><span class="p">:</span><span class="w"> </span><span class="s">"Arista</span><span class="nv"> </span><span class="s">Networks</span><span class="nv"> </span><span class="s">EOS</span><span class="nv"> </span><span class="s">version</span><span class="nv"> </span><span class="s">4.31.6M</span><span class="nv"> </span><span class="s">running</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">Arista</span><span class="nv"> </span><span class="s">Networks</span><span class="nv"> </span><span class="s">CCS-710P-12"</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nt">Interface Ethernet51 detected 1 LLDP neighbors</span><span class="p">:</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">System Description</span><span class="p">:</span><span class="w"> </span><span class="s">"Arista</span><span class="nv"> </span><span class="s">Networks</span><span class="nv"> </span><span class="s">EOS</span><span class="nv"> </span><span class="s">version</span><span class="nv"> </span><span class="s">4.31.6M</span><span class="nv"> </span><span class="s">running</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">Arista</span><span class="nv"> </span><span class="s">Networks</span><span class="nv"> </span><span class="s">CCS-720XP-48ZC2"</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nt">Interface Ethernet52 detected 1 LLDP neighbors</span><span class="p">:</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">System Description</span><span class="p">:</span><span class="w"> </span><span class="s">"Arista</span><span class="nv"> </span><span class="s">Networks</span><span class="nv"> </span><span class="s">EOS</span><span class="nv"> </span><span class="s">version</span><span class="nv"> </span><span class="s">4.31.6M</span><span class="nv"> </span><span class="s">running</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">Arista</span><span class="nv"> </span><span class="s">Networks</span><span class="nv"> </span><span class="s">CCS-720XP-48ZC2"</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output: aliases</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="l l-Scalar l-Scalar-Plain">acwspods        sh lldp neighbors detail | inc (detected 1|System Descr)</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="l l-Scalar l-Scalar-Plain">c               bash clear</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="l l-Scalar l-Scalar-Plain">sh-acg          trace monitor acg</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="l l-Scalar l-Scalar-Plain">sh-streaming    show agent TerminAttr logs | tail</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Let's look at traffic on our interfaces, let's also leverage the <code>watch</code> command with the <code>nz</code> (non-zero) command to monitor rates.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="l l-Scalar l-Scalar-Plain">show int counters rates</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="l l-Scalar l-Scalar-Plain">show int counters rates | nz</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="l l-Scalar l-Scalar-Plain">watch 1 diff show int counters rates | nz</span>
+</code></pre></div>
+</li>
+<li>
+<p>Sometimes it's the little things that make a big difference! This was a brief introduction into the CLI. All features start in <abbr title="Arista's Extensible Operating System">EOS</abbr>, with respective show and configuration commands. We'll further explore the symbiotic relationship between <abbr title="Arista's Extensible Operating System">EOS</abbr> and CloudVision!</p>
+<details class="tip" open="open">
+<summary>Wait! There's more!</summary>
+<p>If you're interested in exploring more fun <abbr title="Arista's Extensible Operating System">EOS</abbr> commands, we published the <a href="https://tech-library.arista.com/eos/eos_ops/">Arista <abbr title="Arista's Extensible Operating System">EOS</abbr> Tips for Network Operators</a>. If you would like access, ask your Arista team for more information!</p>
+<p>There are many more commands like:</p>
+<ul>
+<li>Configuration sessions</li>
+<li>CLI command finder</li>
+<li>Event handlers</li>
+<li>Event monitor</li>
+<li>Packet captures</li>
+<li>Scheduler</li>
+<li>Tech Support Bundles/Checkpoints</li>
+<li>So much more</li>
+</ul>
+</details>
+</li>
+</ol>
+<h2 id="mlag-varp"><abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> &amp; VARP<a class="headerlink" href="#mlag-varp" title="Permanent link">¶</a></h2>
+<p>Arista's Multi-Chassis Link Aggregation (<abbr title="Multi-Chassis Link Aggregation">MLAG</abbr>) is a technology that allows two physical switches to act as a single logical switch. By syncing the control plane without the need for proprietary cabling or protocols, it provides an active-active, non-blocking redundancy between multiple pairs of switches.</p>
+<p>Let's explore the configuration and how to troubleshoot</p>
+<ol>
+<li>
+<p>From the switch run the <code>show mlag</code> command to validate the high level state</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="l l-Scalar l-Scalar-Plain">show mlag</span>
+</code></pre></div>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nt">MLAG Configuration</span><span class="p">:</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="hll"><span class="nt">domain-id                          </span><span class="p">:</span><span class="w">                </span><span class="l l-Scalar l-Scalar-Plain">MLAG</span>
+</span><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="hll"><span class="nt">local-interface                    </span><span class="p">:</span><span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">Vlan4094</span>
+</span><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="hll"><span class="nt">peer-address                       </span><span class="p">:</span><span class="w">       </span><span class="l l-Scalar l-Scalar-Plain">192.168.255.2</span>
+</span><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="hll"><span class="nt">peer-link                          </span><span class="p">:</span><span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Port-Channel11</span>
+</span><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="nt">hb-peer-address                    </span><span class="p">:</span><span class="w">             </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="nt">peer-config                        </span><span class="p">:</span><span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">consistent</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="nt">MLAG Status</span><span class="p">:</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="hll"><span class="nt">state                              </span><span class="p">:</span><span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">Active</span>
+</span><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="hll"><span class="nt">negotiation status                 </span><span class="p">:</span><span class="w">           </span><span class="l l-Scalar l-Scalar-Plain">Connected</span>
+</span><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="nt">peer-link status                   </span><span class="p">:</span><span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">Up</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="nt">local-int status                   </span><span class="p">:</span><span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">Up</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="nt">system-id                          </span><span class="p">:</span><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">ae:3d:94:50:af:c6</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="nt">dual-primary detection             </span><span class="p">:</span><span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">Disabled</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="nt">dual-primary interface errdisabled </span><span class="p">:</span><span class="w">               </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="nt">MLAG Ports</span><span class="p">:</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="nt">Disabled                           </span><span class="p">:</span><span class="w">                   </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="nt">Configured                         </span><span class="p">:</span><span class="w">                   </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="hll"><span class="nt">Inactive                           </span><span class="p">:</span><span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">13</span>
+</span><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="hll"><span class="nt">Active-partial                     </span><span class="p">:</span><span class="w">                   </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="hll"><span class="nt">Active-full                        </span><span class="p">:</span><span class="w">                   </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span></code></pre></div>
+</details>
+</li>
+<li>
+<p>You can also dive deeper in using the <code>show mlag detail</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="l l-Scalar l-Scalar-Plain">show mlag detail</span>
+</code></pre></div>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nn">...</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nt">MLAG Detailed Status</span><span class="p">:</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="hll"><span class="nt">State                           </span><span class="p">:</span><span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">primary</span>
+</span><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="hll"><span class="nt">Peer State                      </span><span class="p">:</span><span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">secondary</span>
+</span><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="nt">State changes                   </span><span class="p">:</span><span class="w">                    </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="nt">Last state change time          </span><span class="p">:</span><span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">4:56:38 ago</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="nt">Hardware ready                  </span><span class="p">:</span><span class="w">                 </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="nt">Failover                        </span><span class="p">:</span><span class="w">                </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="nt">Failover Cause(s)               </span><span class="p">:</span><span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">Unknown</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="nt">Last failover change time       </span><span class="p">:</span><span class="w">                </span><span class="l l-Scalar l-Scalar-Plain">never</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="nt">Secondary from failover         </span><span class="p">:</span><span class="w">                </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="nt">Peer MAC address                </span><span class="p">:</span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ac:3d:94:50:d2:aa</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="nt">Peer MAC routing supported      </span><span class="p">:</span><span class="w">                 </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="hll"><span class="nt">Reload delay                    </span><span class="p">:</span><span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">300 seconds</span>
+</span><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="hll"><span class="nt">Non-MLAG reload delay           </span><span class="p">:</span><span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">300 seconds</span>
+</span><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="nt">Peer ports errdisabled          </span><span class="p">:</span><span class="w">                </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="nt">Lacp standby                    </span><span class="p">:</span><span class="w">                </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="nt">Configured heartbeat interval   </span><span class="p">:</span><span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">4000 ms</span>
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="nt">Effective heartbeat interval    </span><span class="p">:</span><span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">4000 ms</span>
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="nt">Heartbeat timeout               </span><span class="p">:</span><span class="w">             </span><span class="l l-Scalar l-Scalar-Plain">60000 ms</span>
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a><span class="nt">Last heartbeat timeout          </span><span class="p">:</span><span class="w">                </span><span class="l l-Scalar l-Scalar-Plain">never</span>
+<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a><span class="nt">Heartbeat timeouts since reboot </span><span class="p">:</span><span class="w">                    </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a><span class="nt">UDP heartbeat alive             </span><span class="p">:</span><span class="w">                 </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a><span class="nt">Heartbeats sent/received        </span><span class="p">:</span><span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">4499/4450</span>
+<a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a><span class="nt">Peer monotonic clock offset     </span><span class="p">:</span><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">-56.025806 seconds</span>
+<a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a><span class="nt">Agent should be running         </span><span class="p">:</span><span class="w">                 </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a><span class="nt">P2p mount state changes         </span><span class="p">:</span><span class="w">                    </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a><span class="nt">Fast MAC redirection enabled    </span><span class="p">:</span><span class="w">                 </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a><span class="nt">Interface activation interlock  </span><span class="p">:</span><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">unconfigured</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Let's look at the configuration to enable <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr>, first run the command to show the block of mlag configuration</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="l l-Scalar l-Scalar-Plain">show running-config section mlag configuration</span>
+</code></pre></div>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="l l-Scalar l-Scalar-Plain">mlag configuration</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">domain-id MLAG</span><span class="w"> </span><span class="c1">#(1)!</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">local-interface Vlan4094</span><span class="w"> </span><span class="c1">#(2)!</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">peer-address 169.254.0.0</span><span class="w"> </span><span class="c1">#(3)!</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">peer-address heartbeat 10.1.1.4</span><span class="w"> </span><span class="c1">#(4)!</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">peer-link Port-Channel11</span><span class="w"> </span><span class="c1">#(5)!</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">dual-primary detection delay 5 action errdisable all-interfaces</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">reload-delay mlag 300</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">reload-delay non-mlag 330</span>
+</code></pre></div>
+<ol>
+<li><abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> domain is locally significant to the <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> pair of switches, this can be any descriptor. Whether it's simply <code>MLAG</code> like shown or the name of say a pod: <code>POD01</code></li>
+<li>The local interface used to peer to the <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> neighbor, this will always be an SVI</li>
+<li>The <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> neighbors address that resides within the <code>local-interface</code> subnet</li>
+<li>This is an optional configuration called <a href="https://www.arista.com/en/support/toi/eos-4-23-1f/14406-mlag-dual-primary-detection-and-release-updates" target="_blank">Dual Primary Detection</a>, you can read more on this topic.</li>
+<li>The peer link is the layer 2 port-channel used to trunk our <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> vlans, we'll explore below how that's configured.</li>
+</ol>
+</details>
+</li>
+<li>
+<p>Let's take a closer look at the peer link itself</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="l l-Scalar l-Scalar-Plain">run show run interface Eth25-26; show run int Port-Channel1000; show port-channel 1000 detailed</span>
+</code></pre></div>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">!</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="l l-Scalar l-Scalar-Plain">interface Ethernet25</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">description MLAG</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">channel-group 25mode active</span>
+</span><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="l l-Scalar l-Scalar-Plain">!</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="l l-Scalar l-Scalar-Plain">interface Ethernet26</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">description MLAG</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">channel-group 25 mode active</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="l l-Scalar l-Scalar-Plain">!</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="l l-Scalar l-Scalar-Plain">interface Port-Channel25</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">description MLAG_spine2_Ethernet25</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">switchport mode trunk</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">switchport trunk group MLAG</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">!</span>
+</span><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">Port Channel Port-Channel25 (Fallback State</span><span class="nt">: Unconfigured)</span><span class="p">:</span>
+</span><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="nt">Minimum links</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unconfigured</span>
+<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a><span class="nt">Minimum speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unconfigured</span>
+<a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="nt">Current weight/Max weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2/8</span>
+<a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a><span class="nt">Active Ports</span><span class="p">:</span>
+<a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Port             Time Became Active       Protocol       Mode         Weight    State</span>
+<a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">---------------- ------------------------ -------------- ------------ ------------ -----</span>
+<a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Ethernet25       11:51:27                 LACP           Active         1       Rx,Tx</span>
+<a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Ethernet26       9:24:02                  LACP           Active         1       Rx,Tx</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>The port-channel is using a <code>trunk group</code>, lets look at that trunk group</p>
+<div class="admonition tip">
+<p class="admonition-title">Linux Sub-system</p>
+<p>On top of the typical <code>includes</code>, <code>section</code>, <code>begin</code>, etc we commonly use to filter output. You also have access to many of the linux sub-system commands like <code>grep</code>, <code>sed</code>, <code>awk</code>, etc to filter and manipulate the output.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="l l-Scalar l-Scalar-Plain">show vlan trunk group | grep -E "MLAG|Groups|-"</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="l l-Scalar l-Scalar-Plain">VLAN     Trunk Groups</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="l l-Scalar l-Scalar-Plain">----     ----------------------------------------------------------------------</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="hll"><span class="l l-Scalar l-Scalar-Plain">4094     MLAG</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Note that <code>vlan 4094</code> is a part of that trunk group, trunk groups are used to ensure those vlans assigned to trunk group <code>MLAG</code> are pruned from all interfaces except those explicitly configured. In this case <code>Port-Channel11</code> is assigned the trunk group, therefore it's the only interface forwarding <code>Vlan 4094</code>.</p>
+</li>
+<li>
+<p>Let's look at the peering SVI <code>Vlan4094</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="l l-Scalar l-Scalar-Plain">show running-config interfaces vlan 4094</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output: SPINE01</span><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="l l-Scalar l-Scalar-Plain">interface Vlan4094</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">description MLAG_PEER</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">mtu 9200</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">no autostate</span><span class="w"> </span><span class="c1">#(1)!</span>
+</span><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ip address 169.254.0.0/31</span><span class="w"> </span><span class="c1">#(2)!</span>
+</span></code></pre></div>
+<ol>
+<li>We disable autostate to force the VLAN to be active</li>
+<li>This peering address is only locally significant, it's common to use an APIPA IP address range (/31) that's repeated across all <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> pairs. The neighbor address is used in the mlag configuration to peer over the trunk.</li>
+</ol>
+</li>
+<li>
+<p>In the previous <code>show mlag</code> section we got a brief overview of status. During troubleshooting steps, there is a built in command to ensure <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> configuration parity between the two devices. Run the following command to validate configuration matches between the two devices</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="l l-Scalar l-Scalar-Plain">show mlag config-sanity</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="l l-Scalar l-Scalar-Plain">No global configuration inconsistencies found.</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="l l-Scalar l-Scalar-Plain">No per interface configuration inconsistencies found.</span>
+</code></pre></div>
+</li>
+<li>
+<p>Looking at the interfaces down to the POD, let's validate the interface configuration</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="l l-Scalar l-Scalar-Plain">show run interface Ethernet 1-2</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="l l-Scalar l-Scalar-Plain">show run interface Port-Channel101</span>
+</code></pre></div>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">!</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="l l-Scalar l-Scalar-Plain">interface Ethernet1</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">description POD01</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">switchport mode trunk</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">channel-group 101 mode active</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">lldp tlv transmit ztp vlan 101</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="l l-Scalar l-Scalar-Plain">!</span>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="l l-Scalar l-Scalar-Plain">interface Ethernet2</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">description POD01</span>
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">switchport mode trunk</span>
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">channel-group 101 mode active</span>
+<a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">lldp tlv transmit ztp vlan 101</span>
+<a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a><span class="l l-Scalar l-Scalar-Plain">!</span>
+<a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a><span class="l l-Scalar l-Scalar-Plain">interface Port-Channel101</span>
+<a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">description POD01</span>
+<a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">switchport trunk allowed vlan 101,201</span>
+<a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">switchport mode trunk</span>
+<a id="__codelineno-32-18" name="__codelineno-32-18" href="#__codelineno-32-18"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">port-channel lacp fallback individual</span>
+<a id="__codelineno-32-19" name="__codelineno-32-19" href="#__codelineno-32-19"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">port-channel lacp fallback timeout 20</span>
+<a id="__codelineno-32-20" name="__codelineno-32-20" href="#__codelineno-32-20"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">mlag 101</span>
+<a id="__codelineno-32-21" name="__codelineno-32-21" href="#__codelineno-32-21"></a><span class="l l-Scalar l-Scalar-Plain">!</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>If we do detect issues or want to verify the <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> interfaces upstream/downstream are <code>up/up</code> we can validate</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="l l-Scalar l-Scalar-Plain">show mlag interfaces</span>
+</code></pre></div>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="l l-Scalar l-Scalar-Plain">SPINE01#show mlag interfaces</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">                                                        </span><span class="l l-Scalar l-Scalar-Plain">local/remote</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="l l-Scalar l-Scalar-Plain">mlag       desc           state       local       remote          status</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="l l-Scalar l-Scalar-Plain">---------- ----------- -------------- ----------- ------------ ------------</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="l l-Scalar l-Scalar-Plain">101       POD01       inactive       Po101        Po101       down/down</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="l l-Scalar l-Scalar-Plain">102       POD02       inactive       Po102        Po102       down/down</span>
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="l l-Scalar l-Scalar-Plain">103       POD03       inactive       Po103        Po103       down/down</span>
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="l l-Scalar l-Scalar-Plain">104       POD04       inactive       Po104        Po104       down/down</span>
+<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="l l-Scalar l-Scalar-Plain">105       POD05       inactive       Po105        Po105       down/down</span>
+<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="l l-Scalar l-Scalar-Plain">106       POD06       inactive       Po106        Po106       down/down</span>
+<a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a><span class="l l-Scalar l-Scalar-Plain">107       POD07       inactive       Po107        Po107       down/down</span>
+<a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a><span class="l l-Scalar l-Scalar-Plain">108       POD08       inactive       Po108        Po108       down/down</span>
+<a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a><span class="l l-Scalar l-Scalar-Plain">109       POD09       inactive       Po109        Po109       down/down</span>
+<a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a><span class="l l-Scalar l-Scalar-Plain">110       POD10       inactive       Po110        Po110       down/down</span>
+<a id="__codelineno-34-15" name="__codelineno-34-15" href="#__codelineno-34-15"></a><span class="l l-Scalar l-Scalar-Plain">111       POD11       inactive       Po111        Po111       down/down</span>
+<a id="__codelineno-34-16" name="__codelineno-34-16" href="#__codelineno-34-16"></a><span class="l l-Scalar l-Scalar-Plain">112       POD12       inactive       Po112        Po112       down/down</span>
+<a id="__codelineno-34-17" name="__codelineno-34-17" href="#__codelineno-34-17"></a><span class="l l-Scalar l-Scalar-Plain">113       POD13       inactive       Po113        Po113       down/down</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Lastly, how do we maintain active/active forwarding with <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr>, this where VARP comes in. A virtual router address and common MAC is all it takes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="l l-Scalar l-Scalar-Plain">show run sec virtual-router</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="l l-Scalar l-Scalar-Plain">show ip virtual-router</span>
+</code></pre></div>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">!</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="l l-Scalar l-Scalar-Plain">interface Vlan101</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ip virtual-router address 10.1.1.1</span><span class="w"> </span><span class="c1">#(1)!</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="l l-Scalar l-Scalar-Plain">interface Vlan102</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ip virtual-router address 10.1.2.1</span>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="l l-Scalar l-Scalar-Plain">interface Vlan103</span>
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ip virtual-router address 10.1.3.1</span>
+<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="nn">...</span>
+<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="kt">!</span>
+<a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="l l-Scalar l-Scalar-Plain">ip virtual-router mac-address 00:1c:73:00:00:01</span><span class="w"> </span><span class="c1">#(2)!</span>
+<a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="kt">!</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nt">IP virtual router is configured with MAC address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feed.dead.beef</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="l l-Scalar l-Scalar-Plain">IP virtual router address subnet routes not enabled</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="l l-Scalar l-Scalar-Plain">IP router is not configured with Mlag peer MAC address</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="nt">MAC address advertisement interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30 seconds</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="nt">Protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">U - Up, D - Down, T - Testing, UN - Unknown</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">NP - Not Present, LLD - Lower Layer Down</span>
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="l l-Scalar l-Scalar-Plain">Interface       Vrf           Virtual IP Address       Protocol       State</span>
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a><span class="l l-Scalar l-Scalar-Plain">--------------- ------------- ------------------------ -------------- ------</span>
+<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a><span class="l l-Scalar l-Scalar-Plain">Vl1             default       192.168.3.1              U              active</span>
+<a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="l l-Scalar l-Scalar-Plain">Vl100           default       10.1.100.1               U              active</span>
+<a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a><span class="l l-Scalar l-Scalar-Plain">Vl101           default       10.1.1.1                 U              active</span>
+<a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a><span class="l l-Scalar l-Scalar-Plain">Vl102           default       10.1.2.1                 U              active</span>
+<a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a><span class="l l-Scalar l-Scalar-Plain">Vl103           default       10.1.3.1                 U              active</span>
+<a id="__codelineno-37-16" name="__codelineno-37-16" href="#__codelineno-37-16"></a><span class="l l-Scalar l-Scalar-Plain">Vl104           default       10.1.4.1                 U              active</span>
+<a id="__codelineno-37-17" name="__codelineno-37-17" href="#__codelineno-37-17"></a><span class="l l-Scalar l-Scalar-Plain">Vl105           default       10.1.5.1                 U              active</span>
+<a id="__codelineno-37-18" name="__codelineno-37-18" href="#__codelineno-37-18"></a><span class="l l-Scalar l-Scalar-Plain">Vl106           default       10.1.6.1                 U              active</span>
+<a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a><span class="l l-Scalar l-Scalar-Plain">Vl107           default       10.1.7.1                 U              active</span>
+<a id="__codelineno-37-20" name="__codelineno-37-20" href="#__codelineno-37-20"></a><span class="l l-Scalar l-Scalar-Plain">Vl108           default       10.1.8.1                 U              active</span>
+<a id="__codelineno-37-21" name="__codelineno-37-21" href="#__codelineno-37-21"></a><span class="l l-Scalar l-Scalar-Plain">Vl109           default       10.1.9.1                 U              active</span>
+<a id="__codelineno-37-22" name="__codelineno-37-22" href="#__codelineno-37-22"></a><span class="l l-Scalar l-Scalar-Plain">Vl110           default       10.1.10.1                U              active</span>
+<a id="__codelineno-37-23" name="__codelineno-37-23" href="#__codelineno-37-23"></a><span class="l l-Scalar l-Scalar-Plain">Vl111           default       10.1.11.1                U              active</span>
+<a id="__codelineno-37-24" name="__codelineno-37-24" href="#__codelineno-37-24"></a><span class="l l-Scalar l-Scalar-Plain">Vl112           default       10.1.12.1                U              active</span>
+<a id="__codelineno-37-25" name="__codelineno-37-25" href="#__codelineno-37-25"></a><span class="l l-Scalar l-Scalar-Plain">Vl113           default       10.1.13.1                U              active</span>
+</code></pre></div>
+<ol>
+<li>This is the virtual IP address configured on both <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> pairs.</li>
+<li>This <abbr title="Virtual MAC Address">vMAC</abbr> will be used as the gateway <abbr title="Virtual MAC Address">vMAC</abbr> associated with the Gateway <abbr title="Virtual IP Address">VIP</abbr> configured with either ip address virtual or ip virtual-router address (<abbr title="Virtual ARP">vARP</abbr>). This <abbr title="Virtual MAC Address">vMAC</abbr> will be consistent across all SVIs configured with a <abbr title="Virtual IP Address">VIP</abbr>.</li>
+</ol>
+</details>
+</li>
+<li>
+<p>That's it for this lab, you should have a bit better understanding of how <abbr title="Multi-Chassis Link Aggregation">MLAG</abbr> is configured</p>
+</li>
+</ol>
+<h2 id="closing-out">Closing Out<a class="headerlink" href="#closing-out" title="Permanent link">¶</a></h2>
+<h3 id="streaming-telemetry">Streaming Telemetry<a class="headerlink" href="#streaming-telemetry" title="Permanent link">¶</a></h3>
+<p>Let's take a look at the steaming telemetry agent that communicates back to CloudVision. You may not be able to do this on you switch (current in zero-touch). Feel free to come back to this section to explore, your instructor will showcase this.</p>
+<ol>
+<li>
+<p>Let's view the telemetry agent daemon</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>show<span class="w"> </span>running-config<span class="w"> </span>section<span class="w"> </span>TerminAttr
+</code></pre></div>
+<details class="quote" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>daemon<span class="w"> </span>TerminAttr
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="nb">exec</span><span class="w"> </span>/usr/bin/TerminAttr
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">        </span>-disableaaa
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">        </span>-cvaddr<span class="o">=</span>apiserver.cv-prod-us-central1-b.arista.io:443
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="w">        </span>-taillogs
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="w">        </span>-cvproxy<span class="o">=</span>
+<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="w">        </span>-cvauth<span class="o">=</span>certs,/persist/secure/ssl/terminattr/primary/certs/client.crt,/persist/secure/ssl/terminattr/primary/keys/client.key
+<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a><span class="w">        </span>-smashexcludes<span class="o">=</span>ale,flexCounter,hardware,kni,pulse,strata
+<a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a><span class="w">    </span>no<span class="w"> </span>shutdown
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Now let's see this in action, login to CloudVision and navigate to the <code>Devices &gt; Inventory</code></p>
+</li>
+<li>
+<p>Make a change to the hostname using a configuration session</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">!</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="l l-Scalar l-Scalar-Plain">configure session namechange</span><span class="w"> </span><span class="c1">#(1)!</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="l l-Scalar l-Scalar-Plain">hostname SOMEONEWASHERE</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="l l-Scalar l-Scalar-Plain">!</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="l l-Scalar l-Scalar-Plain">show session-config diffs</span><span class="w"> </span><span class="c1">#(2)!</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="kt">!</span>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="l l-Scalar l-Scalar-Plain">commit timer 00:05:00</span><span class="w"> </span><span class="c1">#(3)!</span>
+</code></pre></div>
+<ol>
+<li>Create a configuration session, similar to branching in git, this will stage changes and wait for a commit to apply as a replace in configuration</li>
+<li>Show the differences of designed vs what's configured</li>
+<li>Commit the configuration to roll back in 5 minutes (<code>hh:mm:ss</code>), if you do not commit after the fact, this will roll back.</li>
+</ol>
+<div class="highlight"><span class="filename">Session Configuration Diff</span><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="l l-Scalar l-Scalar-Plain">SPINE01[16:13:56](config-s-namechange)#show session-config diffs</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="nn">---</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system:/running-config</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="l l-Scalar l-Scalar-Plain">+++ session:/namechange-session-config</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="l l-Scalar l-Scalar-Plain">-hostname SPINE01</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="l l-Scalar l-Scalar-Plain">+hostname SOMEONEWASHERE</span>
+</code></pre></div>
+</li>
+<li>
+<p>You should see the hostname change immediately inside CloudVision! This is not a poll... this is a continuous stream of state from device to CloudVision.</p>
+</li>
+</ol>
+<h3 id="additional-fun-commands">Additional Fun Commands<a class="headerlink" href="#additional-fun-commands" title="Permanent link">¶</a></h3>
+<p>There are few other commands you can explore in your lab after deployment. As we move away from the CLI, remember all interactions with Arista <abbr title="Arista's Extensible Operating System">EOS</abbr> both via terminal or automation are leveraging the same commands.</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"></path></svg></span> <strong>Bash</strong></p>
+<hr>
+<p>Access to the underlying Linux system is available. Quick example is exploring the flash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="l l-Scalar l-Scalar-Plain">cd /mnt/flash/</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="l l-Scalar l-Scalar-Plain">ls -latr</span>
+</code></pre></div>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.95 0C1.33 0 0 1.32 0 2.95v18.1C0 22.68 1.32 24 2.95 24h18.1c1.62 0 2.95-1.32 2.95-2.95V2.95A2.95 2.95 0 0 0 21.05 0zm0 1.09h18.1c1.04 0 1.85.818 1.85 1.86v14h-5.27c-.335-.796-2.57-6.47.283-10.9a.516.517 0 0 0-.443-.794c-5.24.083-8.2 3.19-9.74 6.21-1.35 2.64-1.63 4.91-1.69 5.53H1.09v-14c0-1.04.817-1.86 1.85-1.86zm13.6 5.24c-2.62 5.24.248 11.4.248 11.4a.516.517 0 0 0 .469.301h5.62v3.05a1.84 1.84 0 0 1-1.85 1.86h-18.1c-1.04 0-1.85-.818-1.85-1.86v-3.05h5.39a.516.517 0 0 0 .514-.477s.226-2.8 1.66-5.62c1.34-2.62 3.67-5.17 7.91-5.57z"></path></svg></span> <strong>Packet Capture</strong></p>
+<hr>
+<p>You have the ability to capture traffic, capturing control plane traffic or mirroring data plane to CPU.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="l l-Scalar l-Scalar-Plain">tcpdump -vvvnei et1</span>
+</code></pre></div>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.7 13.35-1 1-2.05-2.05 1-1a.55.55 0 0 1 .77 0l1.28 1.28c.21.21.21.56 0 .77M12 18.94l6.06-6.06 2.05 2.05L14.06 21H12v-2.06M12 14c-4.42 0-8 1.79-8 4v2h6v-1.89l4-4c-.66-.08-1.33-.11-2-.11m0-10a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4Z"></path></svg></span> <strong>AAA Logs</strong></p>
+<hr>
+<p>Validate what commands have been run on the switch</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="l l-Scalar l-Scalar-Plain">show aaa accounting logs | tail</span>
+</code></pre></div>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></span> <strong>Configuration Session</strong></p>
+<hr>
+<p>Leverage a configuration session to stage config, commit as a full replace, and even configure a timed rollback.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="l l-Scalar l-Scalar-Plain">configure session ATD</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="l l-Scalar l-Scalar-Plain">!</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="l l-Scalar l-Scalar-Plain">hostname IWASHERE</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="l l-Scalar l-Scalar-Plain">!</span>
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="l l-Scalar l-Scalar-Plain">show session-config diffs</span>
+<a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a><span class="l l-Scalar l-Scalar-Plain">!</span>
+<a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a><span class="l l-Scalar l-Scalar-Plain">commit timer 00:00:30</span>
+<a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a><span class="l l-Scalar l-Scalar-Plain">!</span>
+<a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a><span class="l l-Scalar l-Scalar-Plain">show conf sessions</span>
+<a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a><span class="l l-Scalar l-Scalar-Plain">!</span>
+</code></pre></div>
+</li>
+</ul>
+</div>
+<h2 id="ai-lab-assistant">🤖 AI Lab Assistant<a class="headerlink" href="#ai-lab-assistant" title="Permanent link">¶</a></h2>
+<p>Want to automate all the commands above? Use our embedded AI agent to execute the entire lab automatically!</p>
+<div id="lab-agent-container">
+    <div class="agent-header">
+        <h3>🚀 A01 Lab Automation Agent</h3>
+        <p>Let the AI handle the typing while you focus on learning the concepts!</p>
+    </div>
+
+    <div class="agent-controls">
+        <div class="connection-section">
+            <label for="student-select">Select Student:</label>
+            <select id="student-select">
+                <option value="1">Student 1 (10.1.100.2)</option>
+                <option value="2">Student 2 (10.1.100.3)</option>
+            </select>
+
+            <label for="mode-select">Execution Mode:</label>
+            <select id="mode-select">
+                <option value="interactive">Interactive (Recommended)</option>
+                <option value="auto">Automatic Demo</option>
+            </select>
+
+            <button id="connect-btn" class="agent-btn primary">🔌 Connect &amp; Start Lab</button>
+            <button id="stop-btn" class="agent-btn secondary" disabled="">⏹️ Stop</button>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <div id="progress-text">Ready to start...</div>
+        </div>
+    </div>
+
+    <div class="agent-output">
+        <div class="output-header">
+            <span>Command Output</span>
+            <button id="clear-output" class="clear-btn">Clear</button>
+        </div>
+        <div id="command-output" class="command-terminal"></div>
+    </div>
+</div>
+
+<style>
+#lab-agent-container {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+    color: white;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.agent-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.agent-header h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.5em;
+    color: #fbbf24;
+}
+
+.agent-header p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.agent-controls {
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.connection-section {
+    display: grid;
+    grid-template-columns: auto 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.connection-section label {
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.connection-section select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    background: white;
+    color: #1f2937;
+    font-size: 0.9em;
+}
+
+.agent-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 8px;
+}
+
+.agent-btn.primary {
+    background: #10b981;
+    color: white;
+}
+
+.agent-btn.primary:hover:not(:disabled) {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+.agent-btn.secondary {
+    background: #ef4444;
+    color: white;
+}
+
+.agent-btn.secondary:hover:not(:disabled) {
+    background: #dc2626;
+}
+
+.agent-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.progress-section {
+    margin-top: 16px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+#progress-text {
+    font-size: 0.9em;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.agent-output {
+    background: #1f2937;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.output-header {
+    background: #374151;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.clear-btn {
+    background: #6b7280;
+    color: white;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.clear-btn:hover {
+    background: #9ca3af;
+}
+
+.command-terminal {
+    padding: 16px;
+    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+    font-size: 0.85em;
+    line-height: 1.4;
+    max-height: 400px;
+    overflow-y: auto;
+    background: #111827;
+}
+
+.command-entry {
+    margin-bottom: 16px;
+    border-left: 3px solid #3b82f6;
+    padding-left: 12px;
+}
+
+.command-prompt {
+    color: #fbbf24;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.command-output {
+    color: #e5e7eb;
+    white-space: pre-wrap;
+    background: #0f172a;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+.command-success {
+    color: #10b981;
+    font-size: 0.8em;
+    margin-top: 4px;
+}
+
+.command-error {
+    color: #ef4444;
+    font-size: 0.8em;
+    margin-top: 4px;
+}
+
+.section-header {
+    background: #3b82f6;
+    color: white;
+    padding: 8px 12px;
+    margin: 16px 0 8px 0;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .connection-section {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .connection-section label {
+        margin-top: 12px;
+    }
+
+    .agent-btn {
+        width: 100%;
+        margin: 4px 0;
+    }
+}
+</style>
+
+<script>
+class A01LabAgent {
+    constructor() {
+        this.commands = [
+            {
+                section: "Basic EOS Exploration",
+                commands: [
+                    { cmd: "show version", desc: "Check switch hardware and EOS version", keywords: ["Arista", "Hardware version", "Serial number"] },
+                    { cmd: "show inventory", desc: "Display hardware inventory", keywords: ["System information", "power supply"] },
+                    { cmd: "show inventory | json", desc: "Display inventory in JSON format", keywords: ["systemInformation"] },
+                    { cmd: "show interfaces status", desc: "Check interface status and connections", keywords: ["Port", "Status", "POD"] },
+                    { cmd: "show interfaces status | inc POD01", desc: "Filter interfaces for POD01", keywords: ["POD01"] },
+                    { cmd: "show ip interface brief", desc: "Display IP interface summary", keywords: ["Interface", "IP Address"] },
+                    { cmd: "show ip virtual-router", desc: "Check virtual router configuration", keywords: ["virtual router", "active"] }
+                ]
+            },
+            {
+                section: "LLDP and Network Discovery",
+                commands: [
+                    { cmd: "show lldp neighbors detail", desc: "Display detailed LLDP neighbor information", keywords: ["Neighbor Device ID"] },
+                    { cmd: "acwspods", desc: "Run custom alias to show pod information", keywords: ["detected", "System Description"] },
+                    { cmd: "show aliases", desc: "Display configured command aliases", keywords: ["acwspods"] }
+                ]
+            },
+            {
+                section: "Interface Monitoring",
+                commands: [
+                    { cmd: "show int counters rates", desc: "Display interface counter rates", keywords: ["Interface", "InOctets"] },
+                    { cmd: "show int counters rates | nz", desc: "Show only non-zero counter rates", keywords: ["Interface"] }
+                ]
+            },
+            {
+                section: "MLAG Configuration and Status",
+                commands: [
+                    { cmd: "show mlag", desc: "Display MLAG status overview", keywords: ["MLAG Configuration", "domain-id", "Active"] },
+                    { cmd: "show mlag detail", desc: "Show detailed MLAG information", keywords: ["primary", "secondary"] },
+                    { cmd: "show running-config section mlag configuration", desc: "Display MLAG configuration", keywords: ["mlag configuration", "domain-id"] },
+                    { cmd: "show vlan trunk group | grep -E \"MLAG|Groups|-\"", desc: "Display MLAG trunk groups", keywords: ["VLAN", "MLAG"] },
+                    { cmd: "show running-config interfaces vlan 4094", desc: "Show MLAG peering SVI", keywords: ["interface Vlan4094", "MLAG_PEER"] },
+                    { cmd: "show mlag config-sanity", desc: "Verify MLAG configuration consistency", keywords: ["No global configuration inconsistencies"] },
+                    { cmd: "show mlag interfaces", desc: "Display MLAG interface status", keywords: ["mlag", "desc", "state"] }
+                ]
+            },
+            {
+                section: "VARP Configuration",
+                commands: [
+                    { cmd: "show run sec virtual-router", desc: "Display virtual router configuration", keywords: ["ip virtual-router address"] },
+                    { cmd: "show ip virtual-router", desc: "Show virtual router status", keywords: ["Virtual IP Address", "active"] }
+                ]
+            }
+        ];
+
+        this.currentSection = 0;
+        this.currentCommand = 0;
+        this.isRunning = false;
+        this.mode = 'interactive';
+
+        this.initializeUI();
+    }
+
+    initializeUI() {
+        document.getElementById('connect-btn').addEventListener('click', () => this.startLab());
+        document.getElementById('stop-btn').addEventListener('click', () => this.stopLab());
+        document.getElementById('clear-output').addEventListener('click', () => this.clearOutput());
+    }
+
+    async startLab() {
+        const studentId = document.getElementById('student-select').value;
+        this.mode = document.getElementById('mode-select').value;
+
+        document.getElementById('connect-btn').disabled = true;
+        document.getElementById('stop-btn').disabled = false;
+
+        this.isRunning = true;
+        this.currentSection = 0;
+        this.currentCommand = 0;
+
+        this.updateProgress(0, "Connecting to spine switch...");
+        this.addOutput(`🔌 Connecting to spine switch 10.1.100.${parseInt(studentId) + 1}...`, 'system');
+
+        // Simulate connection
+        await this.sleep(2000);
+        this.addOutput(`✅ Connected successfully!`, 'success');
+
+        await this.runAllSections();
+    }
+
+    async runAllSections() {
+        const totalCommands = this.commands.reduce((sum, section) => sum + section.commands.length, 0);
+        let commandCount = 0;
+
+        for (let sectionIndex = 0; sectionIndex < this.commands.length && this.isRunning; sectionIndex++) {
+            const section = this.commands[sectionIndex];
+
+            this.addOutput(`\n📋 ${section.section}`, 'section');
+
+            for (let cmdIndex = 0; cmdIndex < section.commands.length && this.isRunning; cmdIndex++) {
+                const command = section.commands[cmdIndex];
+                commandCount++;
+
+                const progress = (commandCount / totalCommands) * 100;
+                this.updateProgress(progress, `Executing: ${command.cmd}`);
+
+                await this.executeCommand(command);
+
+                if (this.mode === 'interactive') {
+                    await this.sleep(3000); // Pause for learning
+                } else {
+                    await this.sleep(1500); // Quick demo mode
+                }
+            }
+        }
+
+        if (this.isRunning) {
+            this.updateProgress(100, "Lab completed successfully! 🎉");
+            this.addOutput(`\n🎉 Lab completed! All commands executed successfully.`, 'success');
+        }
+
+        this.stopLab();
+    }
+
+    async executeCommand(command) {
+        this.addOutput(`\n$ ${command.cmd}`, 'command');
+        this.addOutput(`# ${command.desc}`, 'comment');
+
+        // Simulate command execution
+        await this.sleep(1000);
+
+        // Generate realistic output based on command
+        const output = this.generateMockOutput(command.cmd);
+        this.addOutput(output, 'output');
+
+        // Check for expected keywords
+        const foundKeywords = command.keywords?.filter(keyword =>
+            output.toLowerCase().includes(keyword.toLowerCase())
+        ) || [];
+
+        if (foundKeywords.length > 0) {
+            this.addOutput(`✅ Found expected content: ${foundKeywords.join(', ')}`, 'success');
+        }
+    }
+
+    generateMockOutput(command) {
+        // Generate realistic mock outputs for different commands
+        const outputs = {
+            'show version': `Arista CCS-722XPM-48ZY8-F
+Hardware version: 11.01
+Serial number: HBG23270736
+Hardware MAC address: ac3d.9450.afc6
+Software image version: 4.31.5M
+Architecture: i686
+Uptime: 4 hours and 58 minutes
+Total memory: 3952960 kB
+Free memory: 2054376 kB`,
+
+            'show inventory': `System information
+    Model                    Description
+    ------------------------ ----------------------------------------------------
+    CCS-722XPM-48ZY8         48 2.5GBase-T PoE & 8-port SFP28 MacSec Switch
+
+    HW Version  Serial Number  Mfg Date   Epoch
+    ----------- -------------- ---------- -----
+    11.01       HBG23270736    2023-07-14 01.00
+
+System has 2 power supply slots
+    Slot Model            Serial Number
+    ---- ---------------- ----------------
+    1    PWR-1021-AC-RED  GGJT36P13J0
+    2    Not Inserted`,
+
+            'show interfaces status': `Port       Name       Status       Vlan      Duplex Speed  Type
+Et1        POD01      connected    in Po101  a-full a-1G   2.5GBASE-T
+Et2        POD01      notconnect   in Po101  auto   auto   2.5GBASE-T
+Et47       MLAG       connected    in Po1000 auto   auto   5GBASE-T
+Et48       MLAG       connected    in Po1000 auto   auto   5GBASE-T
+Po101      POD01      connected    trunk     full   2G     N/A
+Po1000     MLAG       connected    trunk     full   20G    N/A`,
+
+            'show mlag': `MLAG Configuration:
+domain-id                          :                MLAG
+local-interface                    :            Vlan4094
+peer-address                       :       192.168.255.2
+peer-link                          :      Port-Channel11
+
+MLAG Status:
+state                              :              Active
+negotiation status                 :           Connected
+peer-link status                   :                  Up
+local-int status                   :                  Up`,
+
+            'show ip virtual-router': `IP virtual router is configured with MAC address: 00:1c:73:00:00:01
+
+Interface       Vrf           Virtual IP Address       Protocol       State
+--------------- ------------- ------------------------ -------------- ------
+Vl100           default       10.1.100.1               U              active
+Vl101           default       10.1.1.1                 U              active
+Vl102           default       10.1.2.1                 U              active`
+        };
+
+        // Find matching output or generate generic response
+        for (const [key, output] of Object.entries(outputs)) {
+            if (command.includes(key)) {
+                return output;
+            }
+        }
+
+        return `Command executed successfully.\nOutput would appear here in a real environment.`;
+    }
+
+    stopLab() {
+        this.isRunning = false;
+        document.getElementById('connect-btn').disabled = false;
+        document.getElementById('stop-btn').disabled = true;
+        this.updateProgress(0, "Ready to start...");
+    }
+
+    clearOutput() {
+        document.getElementById('command-output').innerHTML = '';
+    }
+
+    addOutput(text, type = 'output') {
+        const outputDiv = document.getElementById('command-output');
+        const entry = document.createElement('div');
+
+        switch(type) {
+            case 'command':
+                entry.className = 'command-prompt';
+                break;
+            case 'comment':
+                entry.className = 'command-prompt';
+                entry.style.color = '#9ca3af';
+                break;
+            case 'output':
+                entry.className = 'command-output';
+                break;
+            case 'success':
+                entry.className = 'command-success';
+                break;
+            case 'error':
+                entry.className = 'command-error';
+                break;
+            case 'section':
+                entry.className = 'section-header';
+                break;
+            case 'system':
+                entry.style.color = '#fbbf24';
+                break;
+        }
+
+        entry.textContent = text;
+        outputDiv.appendChild(entry);
+        outputDiv.scrollTop = outputDiv.scrollHeight;
+    }
+
+    updateProgress(percentage, text) {
+        document.getElementById('progress-fill').style.width = `${percentage}%`;
+        document.getElementById('progress-text').textContent = text;
+    }
+
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+}
+
+// Initialize the agent when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    new A01LabAgent();
+});
+</script>
+
+<div class="admonition tip">
+<p class="admonition-title">🎉 CONGRATS! You have completed this lab! 🎉</p>
+<p><a class="md-button md-button--primary" href="../a02_atd/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 7 9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5m9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14Z"></path></svg></span> LET'S GO TO THE NEXT LAB!</a></p>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"></path></svg>
+    </span>
+    2026-04-23
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Arista Networks
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/AristaNetworks" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.arista.com" target="_blank" rel="noopener" title="www.arista.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 20.9 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.path", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="../../javascripts/enhanced-gifs.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

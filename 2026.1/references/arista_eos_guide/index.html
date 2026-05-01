@@ -1,0 +1,3400 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Arista Campus Workshop Documentation">
+      
+      
+      
+        <link rel="canonical" href="https://arista-channel.github.io/acws/2026.1/references/arista_eos_guide/">
+      
+      
+        <link rel="prev" href="../config_tools/">
+      
+      
+        <link rel="next" href="../arista_home/">
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Arista EOS Tips &amp; Tricks - Arista Campus Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/enhanced-components.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#eos-overview-and-tips-for-network-operators" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden="">
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Arista Campus Workshop" class="md-header__button md-logo" aria-label="Arista Campus Workshop" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arista Campus Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Arista EOS Tips &amp; Tricks
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../a_wired/a01_lab/" class="md-tabs__link">
+          
+  
+  Wired Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../b_wireless/b01_lab/" class="md-tabs__link">
+          
+  
+  Wireless Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../c_security/c01_lab/" class="md-tabs__link">
+          
+  
+  Security Lab Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../agenda/" class="md-tabs__link">
+          
+  
+  References
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Arista Campus Workshop" class="md-nav__button md-logo" aria-label="Arista Campus Workshop" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Arista Campus Workshop
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1">
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab/access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wired Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Wired Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A01 - Explore EOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a02_atd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A02 - Provisioning a Campus Fabric
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A03 - Access Interface Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a_wired/a04_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A04 - Operations, Dashboards, and Events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wireless Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Wireless Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B01 - Wireless Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b02_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B02 - WiFi Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B03 - Guest Wireless with AGNI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../b_wireless/b04_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    B04 - Smart System Upgrade
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Security Lab Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Security Lab Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c01_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C01 - AGNI and WiFi EAP-TLS 802.1X
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c02_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C02 - AGNI UPSK Wireless Policy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c_security/c03_lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C03 - AGNI and Wired EAP-TLS 802.1X
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            References
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1">
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agenda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agenda
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2">
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista Configuration Tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Arista Configuration Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config_tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intangi Iris
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista Advance EOS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Arista Advance EOS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Arista EOS Tips &amp; Tricks
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Arista EOS Tips &amp; Tricks
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eos-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      EOS Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-flexibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform Flexibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality Metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eos-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      EOS Lifecycle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EOS Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-system-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic System Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic System Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Information
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eos-upgrades" class="md-nav__link">
+    <span class="md-ellipsis">
+      EOS Upgrades
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-cli-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced CLI Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced CLI Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#show-active-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Show Active Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Monitor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#watch-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      Watch Command
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command History
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-command-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      CLI Command Discovery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      CLI Scheduler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-bundle-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support Bundle Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-analysis-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Analysis Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Analysis Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Differences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-zero-values-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-Zero Values Filter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sanitized-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sanitized Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Sessions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Sessions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-configuration-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Configuration Session
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review Changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit Changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-checkpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Checkpoints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-cli-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced CLI Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced CLI Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structured-data-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structured Data Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      VRF Context
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Handlers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Event Handlers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-handler-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Handler Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-backup-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Backup Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Aliases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Command Aliases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-alias-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Alias Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alias-with-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alias with Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-regex-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Regex Aliases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Diagnostics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cable-testing-base-t" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cable Testing (Base-T)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transceiver-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transceiver Simulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#led-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      LED Identification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring and Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Audit Trail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-log-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time Log Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packet-capture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Packet Capture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Logs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-management_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4">
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arista @Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arista @Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arista_home/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Arista switches and APs for Home Use
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CloudVision Demos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            CloudVision Demos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../change_control_workspace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Change Control Workspace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6">
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Working with Certificates
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Working with Certificates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cut_paste_certs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cut-and-Paste Method
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radsec_on_eos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring RadSec on EOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7">
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wired
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            Wired
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface_diag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interface Diagnostics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agni_tacacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AGNI Tacacs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8">
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wireless
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Wireless
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radius/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Radius
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l2tunnel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guest AP Tunnel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radsec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RadSec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WIPS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eos-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      EOS Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-flexibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform Flexibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality Metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eos-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      EOS Lifecycle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EOS Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-system-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic System Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic System Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Information
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eos-upgrades" class="md-nav__link">
+    <span class="md-ellipsis">
+      EOS Upgrades
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-cli-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced CLI Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced CLI Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#show-active-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Show Active Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Monitor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#watch-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      Watch Command
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command History
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-command-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      CLI Command Discovery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      CLI Scheduler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-bundle-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support Bundle Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-analysis-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Analysis Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Analysis Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Differences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-zero-values-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-Zero Values Filter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sanitized-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sanitized Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Sessions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Sessions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-configuration-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Configuration Session
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review Changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit Changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-checkpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Checkpoints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-cli-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced CLI Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced CLI Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structured-data-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structured Data Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      VRF Context
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Handlers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Event Handlers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-handler-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Handler Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-backup-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Backup Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Aliases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Command Aliases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-alias-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Alias Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alias-with-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alias with Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-regex-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Regex Aliases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Diagnostics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cable-testing-base-t" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cable Testing (Base-T)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transceiver-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transceiver Simulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#led-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      LED Identification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring and Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Audit Trail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-log-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time Log Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packet-capture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Packet Capture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Logs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-management_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+
+    <a href="../../print_page" title="Site PDF" class="md-content__button md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5v1m5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5v3m4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5m-6.5 0h1v3h-1v-3m-5 0h1v1H7v-1Z"></path></svg>
+    </a>
+
+
+
+                  
+
+
+<h1 id="eos-overview-and-tips-for-network-operators">EOS Overview and Tips for Network Operators<a class="headerlink" href="#eos-overview-and-tips-for-network-operators" title="Permanent link">¶</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h2>
+<p>Arista EOS (Extensible Operating System) is built on a foundation of quality, reliability, and programmability. This guide covers essential EOS features and practical tips for network operators.</p>
+<h3 id="eos-architecture">EOS Architecture<a class="headerlink" href="#eos-architecture" title="Permanent link">¶</a></h3>
+<p>EOS features a unique architecture with several key advantages:</p>
+<ul>
+<li><strong>Decoupled State from Process</strong>: Self-healing processes ensure system stability</li>
+<li><strong>Live Patching</strong>: Updates without downtime</li>
+<li><strong>Unmodified Linux Kernel</strong>: Full Linux compatibility</li>
+<li><strong>Industry Standard CLI</strong>: Familiar command-line interface</li>
+<li><strong>Consistent API</strong>: eAPI for automation</li>
+<li><strong>Access to Bash</strong>: Direct Linux shell access</li>
+</ul>
+<h3 id="platform-flexibility">Platform Flexibility<a class="headerlink" href="#platform-flexibility" title="Permanent link">¶</a></h3>
+<p>EOS runs across multiple deployment models:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Use Case</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Standard EOS</strong></td>
+<td>Production Networks</td>
+<td>Hardware + Software bundled solution</td>
+</tr>
+<tr>
+<td><strong>vEOS</strong></td>
+<td>Lab Simulation</td>
+<td>EOS in a virtual machine</td>
+</tr>
+<tr>
+<td><strong>cEOS</strong></td>
+<td>Container Networks</td>
+<td>EOS in a container</td>
+</tr>
+<tr>
+<td><strong>CloudEOS</strong></td>
+<td>Cloud Native</td>
+<td>Multi-hypervisor cloud deployment</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quality-metrics">Quality Metrics<a class="headerlink" href="#quality-metrics" title="Permanent link">¶</a></h3>
+<p>Over approximately 12 years of development:</p>
+<ul>
+<li><strong>1</strong> OS version across all switching &amp; routing platforms</li>
+<li><strong>8</strong> Software regression bugs</li>
+<li><strong>30</strong> Security advisories (CVEs)</li>
+<li><strong>2</strong> Security advisories requiring downtime</li>
+<li><strong>~1,000</strong> Quality control testbeds</li>
+<li><strong>230,000+</strong> Auto-tests per day</li>
+<li><strong>&lt;1%</strong> EOS defect rate</li>
+</ul>
+<h2 id="eos-lifecycle">EOS Lifecycle<a class="headerlink" href="#eos-lifecycle" title="Permanent link">¶</a></h2>
+<h3 id="release-types">Release Types<a class="headerlink" href="#release-types" title="Permanent link">¶</a></h3>
+<h4 id="f-releases-new-feature-phase">F Releases (New Feature Phase)<a class="headerlink" href="#f-releases-new-feature-phase" title="Permanent link">¶</a></h4>
+<ul>
+<li>Introduces new features and/or platforms</li>
+<li>Multiple releases for ongoing development</li>
+<li>Active development phase</li>
+</ul>
+<h4 id="m-releases-maintenance-phase">M Releases (Maintenance Phase)<a class="headerlink" href="#m-releases-maintenance-phase" title="Permanent link">¶</a></h4>
+<ul>
+<li>Identified with "M" in version number</li>
+<li>Incremental fixes only</li>
+<li>No new functionality added</li>
+<li>Periodic releases as needed</li>
+<li><strong>30 months</strong> support duration</li>
+</ul>
+<h4 id="support-only-phase">Support Only Phase<a class="headerlink" href="#support-only-phase" title="Permanent link">¶</a></h4>
+<ul>
+<li>Software upgrade required for bug fixes</li>
+<li><strong>6 months</strong> duration before end-of-life</li>
+</ul>
+<h2 id="basic-system-commands">Basic System Commands<a class="headerlink" href="#basic-system-commands" title="Permanent link">¶</a></h2>
+<h3 id="system-information">System Information<a class="headerlink" href="#system-information" title="Permanent link">¶</a></h3>
+<h4 id="show-version">Show Version<a class="headerlink" href="#show-version" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SWITCH#show<span class="w"> </span>version
+</code></pre></div>
+<p>Example output:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Arista CCS-720XP-48ZC2-F
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Hardware version: 10.50
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Serial number: JPE19181588
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Hardware MAC address: fcbd.670f.3c31
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>System MAC address: fcbd.670f.3c31
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Software image version: 4.31.3M
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Architecture: i686
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Internal build version: 4.31.3M-36737551.4313M
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Internal build ID: c8d3a574-c649-455d-90a4-b2510051cf0d
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>Image format version: 3.0
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>Image optimization: Strata-4GB
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Uptime: 8 hours and 4 minutes
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>Total memory: 3952980 kB
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>Free memory: 2220948 kB
+</code></pre></div><p></p>
+<h4 id="system-environment">System Environment<a class="headerlink" href="#system-environment" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SWITCH#show<span class="w"> </span>system<span class="w"> </span>environment<span class="w"> </span>all
+</code></pre></div>
+<h4 id="interface-status">Interface Status<a class="headerlink" href="#interface-status" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SWITCH#show<span class="w"> </span>interface<span class="w"> </span>ethernet1
+</code></pre></div>
+<h3 id="configuration-management">Configuration Management<a class="headerlink" href="#configuration-management" title="Permanent link">¶</a></h3>
+<h4 id="save-configuration">Save Configuration<a class="headerlink" href="#save-configuration" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Save running config to startup config</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>SWITCH#copy<span class="w"> </span>running-config<span class="w"> </span>startup-config
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Alternative method</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>SWITCH#write<span class="w"> </span>memory
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Short form</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>SWITCH#wr<span class="w"> </span>mem
+</code></pre></div>
+<h4 id="erase-startup-configuration">Erase Startup Configuration<a class="headerlink" href="#erase-startup-configuration" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>SWITCH#erase<span class="w"> </span>startup-config
+</code></pre></div>
+<h3 id="eos-upgrades">EOS Upgrades<a class="headerlink" href="#eos-upgrades" title="Permanent link">¶</a></h3>
+<h4 id="installation-process">Installation Process<a class="headerlink" href="#installation-process" title="Permanent link">¶</a></h4>
+<ol>
+<li>
+<p>Copy new EOS image to flash:
+   </p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Verify current boot configuration</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>EOS1#show<span class="w"> </span>boot-config
+</code></pre></div><p></p>
+</li>
+<li>
+<p>Install new image:
+   </p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>EOS1<span class="o">(</span>config<span class="o">)</span><span class="c1">#install system flash:EOS-4.31.3M.swi</span>
+</code></pre></div><p></p>
+</li>
+<li>
+<p>Reload the switch:
+   </p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>EOS1<span class="o">(</span>config<span class="o">)</span><span class="c1">#reload</span>
+</code></pre></div><p></p>
+</li>
+</ol>
+<h2 id="advanced-cli-features">Advanced CLI Features<a class="headerlink" href="#advanced-cli-features" title="Permanent link">¶</a></h2>
+<h3 id="show-active-configuration">Show Active Configuration<a class="headerlink" href="#show-active-configuration" title="Permanent link">¶</a></h3>
+<p>View configuration for current context instead of full running-config:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>SWITCH<span class="o">(</span>config-if-Et1<span class="o">)</span><span class="c1">#show active</span>
+</code></pre></div><p></p>
+<p>Example output:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>interface Ethernet1
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>   description EOS1
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>   mtu 9216
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>   no switchport
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>   ip address 10.1.18.18/24
+</code></pre></div><p></p>
+<h3 id="event-monitor">Event Monitor<a class="headerlink" href="#event-monitor" title="Permanent link">¶</a></h3>
+<p>Monitor changes to system tables in real-time:</p>
+<h4 id="enable-event-monitor">Enable Event Monitor<a class="headerlink" href="#enable-event-monitor" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>SWITCH<span class="o">(</span>config<span class="o">)</span><span class="c1">#event-monitor</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>SWITCH<span class="o">(</span>config<span class="o">)</span><span class="c1">#event-monitor sync</span>
+</code></pre></div>
+<h4 id="view-event-monitor-data">View Event Monitor Data<a class="headerlink" href="#view-event-monitor-data" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>SWITCH#show<span class="w"> </span>event-monitor<span class="w"> </span>arp
+</code></pre></div>
+<p>Automatically stores changes to:
+- ARP tables
+- IGMP snooping
+- LACP
+- MAC address tables
+- Multicast routes
+- Routes (IPv4/IPv6)
+- Spanning Tree Protocol</p>
+<h3 id="watch-command">Watch Command<a class="headerlink" href="#watch-command" title="Permanent link">¶</a></h3>
+<p>Real-time monitoring of command output:</p>
+<h4 id="basic-watch">Basic Watch<a class="headerlink" href="#basic-watch" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Update every 2 seconds (default)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>SWITCH#watch<span class="w"> </span>show<span class="w"> </span>ip<span class="w"> </span>arp
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Update every 1 second with diff highlighting</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>SWITCH#watch<span class="w"> </span><span class="m">1</span><span class="w"> </span>diff<span class="w"> </span>show<span class="w"> </span>ip<span class="w"> </span>arp
+</code></pre></div>
+<h4 id="advanced-watch-example">Advanced Watch Example<a class="headerlink" href="#advanced-watch-example" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Watch MAC address table changes</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>SWITCH#watch<span class="w"> </span><span class="m">1</span><span class="w"> </span>diff<span class="w"> </span>show<span class="w"> </span>mac<span class="w"> </span>address-table
+</code></pre></div>
+<h3 id="command-history">Command History<a class="headerlink" href="#command-history" title="Permanent link">¶</a></h3>
+<p>View command history for current session:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>SWITCH#show<span class="w"> </span><span class="nb">history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>begin<span class="w"> </span>conf
+</code></pre></div><p></p>
+<h3 id="cli-command-discovery">CLI Command Discovery<a class="headerlink" href="#cli-command-discovery" title="Permanent link">¶</a></h3>
+<p>Find available commands with grep filtering:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Show all commands containing "distance"</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>SWITCH#show<span class="w"> </span>cli<span class="w"> </span>commands<span class="w"> </span>all-modes<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>distance
+</code></pre></div><p></p>
+<h3 id="cli-scheduler">CLI Scheduler<a class="headerlink" href="#cli-scheduler" title="Permanent link">¶</a></h3>
+<h4 id="default-tech-support-collection">Default Tech-Support Collection<a class="headerlink" href="#default-tech-support-collection" title="Permanent link">¶</a></h4>
+<p>EOS automatically runs tech-support every 60 minutes:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>SWITCH#show<span class="w"> </span>schedule<span class="w"> </span>tech-support
+</code></pre></div><p></p>
+<h4 id="custom-scheduler-examples">Custom Scheduler Examples<a class="headerlink" href="#custom-scheduler-examples" title="Permanent link">¶</a></h4>
+<p><strong>Basic Interface Monitoring:</strong>
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>SWITCH<span class="o">(</span>config<span class="o">)</span><span class="c1">#schedule show-int interval 10 max-log-files 10 command show interface counters</span>
+</code></pre></div><p></p>
+<p><strong>Automated Backup with TFTP:</strong>
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>SWITCH<span class="o">(</span>config<span class="o">)</span><span class="c1">#schedule backup-config interval 30 timeout 1 max-log-files 10 command bash sudo ip netns exec ns-MGMT tftp 172.31.0.8 -c put /mnt/flash/startup-config $(hostname)_$(date +%Y-%m-%d-%H%M.%S.txt)</span>
+</code></pre></div><p></p>
+<h3 id="support-bundle-generation">Support Bundle Generation<a class="headerlink" href="#support-bundle-generation" title="Permanent link">¶</a></h3>
+<p>Generate comprehensive support bundle for TAC:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Basic support bundle to flash</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>SWITCH#send<span class="w"> </span>support-bundle<span class="w"> </span>flash:
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># Support bundle with case number</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>SWITCH#send<span class="w"> </span>support-bundle<span class="w"> </span>flash:<span class="w"> </span><span class="k">case</span>-number<span class="w"> </span><span class="m">123456</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="c1"># Available destinations</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>SWITCH#send<span class="w"> </span>support-bundle<span class="w"> </span>?
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="c1"># flash:, ftp:, http:, https:, scp:, sftp:, tftp:</span>
+</code></pre></div><p></p>
+<h2 id="configuration-analysis-tools">Configuration Analysis Tools<a class="headerlink" href="#configuration-analysis-tools" title="Permanent link">¶</a></h2>
+<h3 id="configuration-differences">Configuration Differences<a class="headerlink" href="#configuration-differences" title="Permanent link">¶</a></h3>
+<p>Compare running and startup configurations:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>SWITCH#show<span class="w"> </span>running-config<span class="w"> </span>diffs
+</code></pre></div><p></p>
+<p>Example output:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="gd">--- flash:/startup-config</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="gi">+++ system:/running-config</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="gu">@@ -70,7 +70,9 @@</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w"> </span>no switchport
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w"> </span>!
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w"> </span>interface Ethernet10
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="gd">- no switchport</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="gi">+ description Whoops...should have saved this</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="gi">+ switchport mode trunk</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="gi">+ switchport</span>
+</code></pre></div><p></p>
+<h3 id="non-zero-values-filter">Non-Zero Values Filter<a class="headerlink" href="#non-zero-values-filter" title="Permanent link">¶</a></h3>
+<p>Show only non-zero statistics:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>SWITCH#show<span class="w"> </span>interfaces<span class="w"> </span>counters<span class="w"> </span>rates<span class="w"> </span><span class="p">|</span><span class="w"> </span>nz
+</code></pre></div><p></p>
+<h3 id="sanitized-configuration">Sanitized Configuration<a class="headerlink" href="#sanitized-configuration" title="Permanent link">¶</a></h3>
+<p>Remove passwords and sensitive data for sharing:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>SWITCH#show<span class="w"> </span>running-config<span class="w"> </span>sanitized
+</code></pre></div><p></p>
+<p>Example:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Before sanitization</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>SWITCH#show<span class="w"> </span>run<span class="w"> </span>sec<span class="w"> </span>snmp
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>snmp-server<span class="w"> </span>community<span class="w"> </span>asdf1234asdf<span class="w"> </span>ro
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="c1"># After sanitization  </span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>SWITCH#show<span class="w"> </span>run<span class="w"> </span>sanitized<span class="w"> </span>sec<span class="w"> </span>snmp
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>snmp-server<span class="w"> </span>community<span class="w"> </span>&lt;removed&gt;<span class="w"> </span>ro
+</code></pre></div><p></p>
+<h2 id="configuration-sessions">Configuration Sessions<a class="headerlink" href="#configuration-sessions" title="Permanent link">¶</a></h2>
+<p>Configuration sessions allow batch application of changes:</p>
+<h3 id="create-configuration-session">Create Configuration Session<a class="headerlink" href="#create-configuration-session" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>SWITCH#configure<span class="w"> </span>session<span class="w"> </span>MySession
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>SWITCH<span class="o">(</span>config-s-mysess<span class="o">)</span><span class="c1">#</span>
+</code></pre></div>
+<h3 id="review-changes">Review Changes<a class="headerlink" href="#review-changes" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>SWITCH#show<span class="w"> </span>session-config<span class="w"> </span>diffs
+</code></pre></div>
+<h3 id="commit-changes">Commit Changes<a class="headerlink" href="#commit-changes" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># Immediate commit</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>SWITCH<span class="o">(</span>config-s-mysess<span class="o">)</span><span class="c1">#commit</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="c1"># Commit with auto-rollback timer</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>SWITCH<span class="o">(</span>config-s-mysess<span class="o">)</span><span class="c1">#commit timer 00:05:00</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="c1"># Confirm commit (if timer was set)</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>SWITCH#configure<span class="w"> </span>session<span class="w"> </span>MySession<span class="w"> </span>commit
+</code></pre></div>
+<h3 id="configuration-checkpoints">Configuration Checkpoints<a class="headerlink" href="#configuration-checkpoints" title="Permanent link">¶</a></h3>
+<h4 id="list-previous-commits">List Previous Commits<a class="headerlink" href="#list-previous-commits" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>SWITCH#show<span class="w"> </span>configuration<span class="w"> </span>checkpoints
+</code></pre></div>
+<h4 id="view-previous-configuration">View Previous Configuration<a class="headerlink" href="#view-previous-configuration" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>SWITCH#more<span class="w"> </span>checkpoint:ckp-20240513-0
+</code></pre></div>
+<h4 id="rollback-to-previous-configuration">Rollback to Previous Configuration<a class="headerlink" href="#rollback-to-previous-configuration" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>SWITCH#configure<span class="w"> </span>checkpoint<span class="w"> </span>restore<span class="w"> </span>ckp-20240513-0
+</code></pre></div>
+<h2 id="advanced-cli-techniques">Advanced CLI Techniques<a class="headerlink" href="#advanced-cli-techniques" title="Permanent link">¶</a></h2>
+<h3 id="multiple-commands">Multiple Commands<a class="headerlink" href="#multiple-commands" title="Permanent link">¶</a></h3>
+<p>Execute multiple commands in sequence:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>SWITCH#run<span class="w"> </span>show<span class="w"> </span>version<span class="p">;</span><span class="w"> </span>show<span class="w"> </span>ip<span class="w"> </span>int<span class="w"> </span>brief<span class="p">;</span><span class="w"> </span>show<span class="w"> </span>int<span class="w"> </span>e5
+</code></pre></div><p></p>
+<h4 id="advanced-multi-command-with-watch">Advanced Multi-Command with Watch<a class="headerlink" href="#advanced-multi-command-with-watch" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>SWITCH#watch<span class="w"> </span><span class="m">1</span><span class="w"> </span>diff<span class="w"> </span>run<span class="w"> </span>show<span class="w"> </span>int<span class="w"> </span>e48<span class="w"> </span>counters<span class="w"> </span>rates<span class="w"> </span><span class="p">|</span><span class="w"> </span>nz<span class="p">;</span>!<span class="p">;</span>!<span class="p">;</span><span class="w"> </span>show<span class="w"> </span>int<span class="w"> </span>e48<span class="w"> </span>counters<span class="w"> </span>queue<span class="w"> </span>detail
+</code></pre></div>
+<p><em>Tip: Use <code>;!;!</code> to create buffer space between command outputs</em></p>
+<h3 id="structured-data-output">Structured Data Output<a class="headerlink" href="#structured-data-output" title="Permanent link">¶</a></h3>
+<p>Convert command output to JSON format:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>SWITCH#show<span class="w"> </span>version<span class="w"> </span><span class="p">|</span><span class="w"> </span>json
+</code></pre></div><p></p>
+<p>Example JSON output:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="p">{</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">  </span><span class="nt">"mfgName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arista"</span><span class="p">,</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">  </span><span class="nt">"modelName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DCS-7280SR3K-48YC8-F"</span><span class="p">,</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">  </span><span class="nt">"hardwareRevision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.02"</span><span class="p">,</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">  </span><span class="nt">"serialNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JPE21043548"</span><span class="p">,</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">  </span><span class="nt">"systemMacAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94:8e:d3:51:77:94"</span><span class="p">,</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.31.1F"</span><span class="p">,</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="w">  </span><span class="nt">"architecture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x86_64"</span><span class="p">,</span>
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="w">  </span><span class="nt">"uptime"</span><span class="p">:</span><span class="w"> </span><span class="mf">9452806.97</span><span class="p">,</span>
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="w">  </span><span class="nt">"memTotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">65734516</span><span class="p">,</span>
+<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="w">  </span><span class="nt">"memFree"</span><span class="p">:</span><span class="w"> </span><span class="mi">61283092</span>
+<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a><span class="p">}</span>
+</code></pre></div><p></p>
+<h3 id="vrf-context">VRF Context<a class="headerlink" href="#vrf-context" title="Permanent link">¶</a></h3>
+<p>Set CLI to operate within a specific VRF context:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>SWITCH#cli<span class="w"> </span>vrf<span class="w"> </span>MGMT
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>SWITCH<span class="o">(</span>vrf:MGMT<span class="o">)</span><span class="c1">#show ip route</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>SWITCH<span class="o">(</span>vrf:MGMT<span class="o">)</span><span class="c1">#ping 172.31.0.1</span>
+</code></pre></div><p></p>
+<h2 id="event-handlers">Event Handlers<a class="headerlink" href="#event-handlers" title="Permanent link">¶</a></h2>
+<p>Event handlers allow automated responses to system events:</p>
+<h3 id="event-handler-components">Event Handler Components<a class="headerlink" href="#event-handler-components" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Trigger</strong>: Condition that activates the handler</li>
+<li><strong>Action</strong>: Response when trigger condition is met</li>
+</ul>
+<h4 id="available-actions">Available Actions<a class="headerlink" href="#available-actions" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>SWITCH<span class="o">(</span>config-handler-config-backup<span class="o">)</span><span class="c1">#action ?</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="c1"># bash    - Define BASH command action</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="c1"># increment - Define INCREMENT command action  </span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="c1"># log     - Log a message when triggered</span>
+</code></pre></div>
+<h4 id="available-triggers">Available Triggers<a class="headerlink" href="#available-triggers" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>SWITCH<span class="o">(</span>config-handler-config-backup<span class="o">)</span><span class="c1">#trigger ?</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="c1"># on-boot           - System boot</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="c1"># on-config         - Handler configuration</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="c1"># on-counters       - Statistical counter evaluation</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="c1"># on-intf           - Interface changes</span>
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="c1"># on-logging        - Log message regex match</span>
+<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="c1"># on-maintenance    - Maintenance operations</span>
+<a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="c1"># on-startup-config - Startup config changes</span>
+<a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a><span class="c1"># vm-tracer         - VmTracer events</span>
+</code></pre></div>
+<h3 id="configuration-backup-example">Configuration Backup Example<a class="headerlink" href="#configuration-backup-example" title="Permanent link">¶</a></h3>
+<p>Automatically backup configuration when user exits config mode:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>SWITCH<span class="o">(</span>config<span class="o">)</span><span class="c1">#event-handler config-backup</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>SWITCH<span class="o">(</span>config-handler-config-backup<span class="o">)</span><span class="c1">#action bash</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>FastCli<span class="w"> </span>-p<span class="w"> </span><span class="m">15</span><span class="w"> </span>-c<span class="w"> </span><span class="s1">'copy running-config flash:staged_backup'</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>sudo<span class="w"> </span>ip<span class="w"> </span>netns<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>ns-MGMT<span class="w"> </span>tftp<span class="w"> </span><span class="m">172</span>.31.0.8<span class="w"> </span>-c<span class="w"> </span>put<span class="w"> </span>/mnt/flash/staged_backup<span class="w"> </span><span class="k">$(</span>hostname<span class="k">)</span>_<span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d-%H%M.%S.txt<span class="k">)</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>EOF
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>SWITCH<span class="o">(</span>config-handler-config-backup<span class="o">)</span><span class="c1">#delay 1</span>
+<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>SWITCH<span class="o">(</span>config-handler-config-backup<span class="o">)</span><span class="c1">#trigger on-logging</span>
+<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>SWITCH<span class="o">(</span>config-handler-config-backup-on-logging<span class="o">)</span><span class="c1">#regex .*SYS-5-CONFIG_I.*Configured from.*</span>
+</code></pre></div><p></p>
+<h2 id="command-aliases">Command Aliases<a class="headerlink" href="#command-aliases" title="Permanent link">¶</a></h2>
+<h3 id="basic-alias-creation">Basic Alias Creation<a class="headerlink" href="#basic-alias-creation" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>SWITCH#alias<span class="w"> </span>whatsdiff<span class="w"> </span>show<span class="w"> </span>run<span class="w"> </span>diffs<span class="w"> </span><span class="p">|</span><span class="w"> </span>include<span class="w"> </span>^<span class="se">\+</span><span class="p">|</span>^<span class="se">\-</span>
+</code></pre></div>
+<h3 id="alias-with-variables">Alias with Variables<a class="headerlink" href="#alias-with-variables" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>SWITCH<span class="o">(</span>config<span class="o">)</span><span class="c1">#alias shporc show port-channel %1 detail</span>
+</code></pre></div>
+<p>Usage:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>SWITCH#shporc<span class="w"> </span><span class="m">10</span>
+</code></pre></div><p></p>
+<h3 id="advanced-regex-aliases">Advanced Regex Aliases<a class="headerlink" href="#advanced-regex-aliases" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="c1"># Port-channel summary alias</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>SWITCH<span class="o">(</span>config<span class="o">)</span><span class="c1">#alias "sh port-c sum"</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>SWITCH<span class="o">(</span>config-alias-regex<span class="o">)</span><span class="c1">#10 show port-channel dense</span>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="c1"># VRF-aware interface brief</span>
+<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>SWITCH<span class="o">(</span>config<span class="o">)</span><span class="c1">#alias "sh ip int br vrf (\w+)"</span>
+<a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a>SWITCH<span class="o">(</span>config-alias-regex<span class="o">)</span><span class="c1">#10 show ip interface vrf %1 brief</span>
+</code></pre></div>
+<h2 id="hardware-diagnostics">Hardware Diagnostics<a class="headerlink" href="#hardware-diagnostics" title="Permanent link">¶</a></h2>
+<h3 id="cable-testing-base-t">Cable Testing (Base-T)<a class="headerlink" href="#cable-testing-base-t" title="Permanent link">¶</a></h3>
+<p>Test Ethernet cables remotely:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>SWITCH#test<span class="w"> </span>l1<span class="w"> </span>cable<span class="w"> </span>base-t<span class="w"> </span>interfaces<span class="w"> </span>e17
+</code></pre></div><p></p>
+<p>View cable test results:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>SWITCH#show<span class="w"> </span>interfaces<span class="w"> </span>e17<span class="w"> </span>cable<span class="w"> </span>detail
+</code></pre></div><p></p>
+<p>Example output:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>Ethernet17
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>Cable test runs: 1
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a>Cable length accuracy: +/-10m
+<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a>Current State Changes Last Change
+<a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a>Diagnostics status completed 2 0:00:07 ago
+<a id="__codelineno-46-6" name="__codelineno-46-6" href="#__codelineno-46-6"></a>Cable status ok 1 0:00:07 ago
+<a id="__codelineno-46-7" name="__codelineno-46-7" href="#__codelineno-46-7"></a>Length of pair A 47m 1 0:00:07 ago
+<a id="__codelineno-46-8" name="__codelineno-46-8" href="#__codelineno-46-8"></a>Length of pair B 39m 1 0:00:07 ago
+</code></pre></div><p></p>
+<p><em>Note: Cable testing will cause the interface to flap</em></p>
+<h3 id="transceiver-simulation">Transceiver Simulation<a class="headerlink" href="#transceiver-simulation" title="Permanent link">¶</a></h3>
+<p>Simulate transceiver removal without physical access:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>SWITCH<span class="o">(</span>config-if-Et49/1<span class="o">)</span><span class="c1">#transceiver diag simulate removed</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>SWITCH<span class="o">(</span>config-if-Et49/1<span class="o">)</span><span class="c1">#show interface e49/1 status</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>
+<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="c1"># Restore transceiver</span>
+<a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a>SWITCH<span class="o">(</span>config-if-Et49/1<span class="o">)</span><span class="c1">#no transceiver diag simulate removed</span>
+</code></pre></div><p></p>
+<h3 id="led-identification">LED Identification<a class="headerlink" href="#led-identification" title="Permanent link">¶</a></h3>
+<p>Flash LEDs to identify hardware components:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="c1"># Flash interface LED</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>SWITCH#locator-led<span class="w"> </span>interface<span class="w"> </span>ethernet<span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>
+<a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="c1"># Flash fan tray LED</span>
+<a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a>SWITCH#locator-led<span class="w"> </span>fantray<span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a>
+<a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a><span class="c1"># Flash power supply LED  </span>
+<a id="__codelineno-48-8" name="__codelineno-48-8" href="#__codelineno-48-8"></a>SWITCH#locator-led<span class="w"> </span>powersupply<span class="w"> </span><span class="m">1</span>
+</code></pre></div><p></p>
+<h3 id="interface-capabilities">Interface Capabilities<a class="headerlink" href="#interface-capabilities" title="Permanent link">¶</a></h3>
+<p>View interface speed and feature capabilities:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="c1"># Show default capabilities</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>SWITCH#show<span class="w"> </span>int<span class="w"> </span>e9/1<span class="w"> </span>hardware<span class="w"> </span>default
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="c1"># Show current transceiver capabilities</span>
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>SWITCH#show<span class="w"> </span>int<span class="w"> </span>e9/1<span class="w"> </span>hardware
+</code></pre></div><p></p>
+<h2 id="monitoring-and-troubleshooting">Monitoring and Troubleshooting<a class="headerlink" href="#monitoring-and-troubleshooting" title="Permanent link">¶</a></h2>
+<h3 id="command-audit-trail">Command Audit Trail<a class="headerlink" href="#command-audit-trail" title="Permanent link">¶</a></h3>
+<p>View detailed command history with user attribution:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>SWITCH#show<span class="w"> </span>aaa<span class="w"> </span>accounting<span class="w"> </span>logs
+</code></pre></div><p></p>
+<p>Filter by time range or username:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>SWITCH#show<span class="w"> </span>aaa<span class="w"> </span>accounting<span class="w"> </span>logs<span class="w"> </span>username<span class="w"> </span>mitch
+</code></pre></div><p></p>
+<h3 id="real-time-log-monitoring">Real-time Log Monitoring<a class="headerlink" href="#real-time-log-monitoring" title="Permanent link">¶</a></h3>
+<p>Follow system logs in real-time:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># Basic log following</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>SWITCH#show<span class="w"> </span>logging<span class="w"> </span>follow
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="c1"># Filtered log following</span>
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>SWITCH#show<span class="w"> </span>logging<span class="w"> </span>follow<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>ethernet
+</code></pre></div><p></p>
+<h3 id="packet-capture">Packet Capture<a class="headerlink" href="#packet-capture" title="Permanent link">¶</a></h3>
+<h4 id="control-plane-capture">Control-Plane Capture<a class="headerlink" href="#control-plane-capture" title="Permanent link">¶</a></h4>
+<p>All platforms support control-plane packet capture:</p>
+<ol>
+<li>
+<p><strong>Create Monitor Session:</strong>
+   </p><div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>SWITCH<span class="o">(</span>config<span class="o">)</span><span class="c1">#monitor session test-sess source Ethernet2</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>SWITCH<span class="o">(</span>config<span class="o">)</span><span class="c1">#monitor session test-sess destination cpu</span>
+</code></pre></div><p></p>
+</li>
+<li>
+<p><strong>Verify Monitor Session:</strong>
+   </p><div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>SWITCH#show<span class="w"> </span>monitor<span class="w"> </span>session
+</code></pre></div><p></p>
+</li>
+<li>
+<p><strong>Start Packet Capture:</strong>
+   </p><div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>SWITCH#tcpdump<span class="w"> </span>interface<span class="w"> </span>mirror0
+</code></pre></div><p></p>
+</li>
+</ol>
+<h4 id="advanced-capture-options">Advanced Capture Options<a class="headerlink" href="#advanced-capture-options" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>SWITCH#tcpdump<span class="w"> </span>?
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="c1"># file          - Set output file</span>
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="c1"># filecount     - Number of output files</span>
+<a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="c1"># filter        - Filtering expression</span>
+<a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a><span class="c1"># interface     - Interface to monitor</span>
+<a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a><span class="c1"># packet-count  - Limit number of packets</span>
+<a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a><span class="c1"># size          - Maximum bytes per packet</span>
+<a id="__codelineno-56-8" name="__codelineno-56-8" href="#__codelineno-56-8"></a><span class="c1"># verbose       - Enable verbose mode</span>
+</code></pre></div>
+<h4 id="remote-live-capture">Remote Live Capture<a class="headerlink" href="#remote-live-capture" title="Permanent link">¶</a></h4>
+<p>Stream packet capture directly to Wireshark:</p>
+<p><strong>Windows:</strong>
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>plink -l admin -pw admin -batch 172.31.0.28 "bash sudo tcpdump -s 0 -Un -w - -i mirror0" | wireshark -k -i - -o "gui.window_title:Eth1"
+</code></pre></div><p></p>
+<p><strong>macOS/Linux:</strong>
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>ssh<span class="w"> </span>admin@172.31.0.28<span class="w"> </span><span class="s2">"bash sudo tcpdump -s 0 -Un -w - -i mirror0"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wireshark<span class="w"> </span>-k<span class="w"> </span>-i<span class="w"> </span>-<span class="w"> </span>-o<span class="w"> </span><span class="s2">"gui.window_title:Eth1"</span>
+</code></pre></div><p></p>
+<h3 id="performance-testing">Performance Testing<a class="headerlink" href="#performance-testing" title="Permanent link">¶</a></h3>
+<h4 id="iperf-network-testing">iPerf Network Testing<a class="headerlink" href="#iperf-network-testing" title="Permanent link">¶</a></h4>
+<p>EOS includes iPerf for network performance testing:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>SWITCH#bash
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="o">[</span>arista@SWITCH<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>iperf<span class="w"> </span>--help
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="o">[</span>arista@SWITCH<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>iperf<span class="w"> </span>--version
+</code></pre></div><p></p>
+<p><em>Note: Throughput is limited by CPU-to-ASIC interface capacity</em></p>
+<h2 id="advanced-troubleshooting">Advanced Troubleshooting<a class="headerlink" href="#advanced-troubleshooting" title="Permanent link">¶</a></h2>
+<h3 id="agent-logs">Agent Logs<a class="headerlink" href="#agent-logs" title="Permanent link">¶</a></h3>
+<p>Access detailed per-agent logging:</p>
+<h4 id="list-available-agent-logs">List Available Agent Logs<a class="headerlink" href="#list-available-agent-logs" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>SWITCH#bash<span class="w"> </span>ls<span class="w"> </span>/var/log/agents
+</code></pre></div>
+<h4 id="view-specific-agent-log">View Specific Agent Log<a class="headerlink" href="#view-specific-agent-log" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>SWITCH#bash<span class="w"> </span>more<span class="w"> </span>/var/log/agents/Acl-3671
+</code></pre></div>
+<h4 id="quicktrace-analysis">QuickTrace Analysis<a class="headerlink" href="#quicktrace-analysis" title="Permanent link">¶</a></h4>
+<p>For detailed debugging (typically used with TAC support):
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>SWITCH#bash<span class="w"> </span>qtcat<span class="w"> </span>/var/log/qt/Acl.qt<span class="w"> </span><span class="p">|</span><span class="w"> </span>more
+</code></pre></div><p></p>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">¶</a></h2>
+<h3 id="configuration-management_1">Configuration Management<a class="headerlink" href="#configuration-management_1" title="Permanent link">¶</a></h3>
+<ol>
+<li>Always save configurations after changes: <code>copy running-config startup-config</code></li>
+<li>Use configuration sessions for complex changes</li>
+<li>Test changes with commit timers for automatic rollback</li>
+<li>Regular configuration backups using event handlers</li>
+</ol>
+<h3 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link">¶</a></h3>
+<ol>
+<li>Enable event monitoring for change tracking</li>
+<li>Use scheduled commands for regular health checks</li>
+<li>Implement custom aliases for frequently used command sequences</li>
+<li>Leverage structured data output for automation</li>
+</ol>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h3>
+<ol>
+<li>Use <code>show active</code> instead of full running-config in specific contexts</li>
+<li>Filter outputs with <code>nz</code> for relevant non-zero values</li>
+<li>Utilize real-time monitoring with <code>watch</code> command</li>
+<li>Generate support bundles for TAC cases with complete system state</li>
+</ol>
+<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">¶</a></h3>
+<ol>
+<li>Use <code>sanitized</code> output when sharing configurations</li>
+<li>Implement command accounting for audit trails</li>
+<li>Regular review of system logs with filtering</li>
+<li>Proper access control and authentication</li>
+</ol>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>Arista EOS provides a comprehensive set of tools and features for network operation and troubleshooting. The combination of Linux-based architecture, extensive CLI capabilities, and built-in automation features makes EOS a powerful platform for modern network infrastructure.</p>
+<p>Key advantages include:
+- Unmatched software quality and reliability
+- Extensive troubleshooting and monitoring capabilities
+- Flexible deployment options across physical and virtual environments
+- Rich automation and programmability features
+- Comprehensive support and diagnostic tools</p>
+<p>For additional information and updates, refer to the official Arista documentation and support resources.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"></path></svg>
+    </span>
+    2025-08-16
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Arista Networks
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/AristaNetworks" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.arista.com" target="_blank" rel="noopener" title="www.arista.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 20.9 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.path", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="../../javascripts/enhanced-gifs.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
